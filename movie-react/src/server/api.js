@@ -1,0 +1,23 @@
+//header请求数据；
+export const MOVIE_TYPES=[
+    {
+        id:Math.random()+"1",
+        type:'1',
+        title:'电视剧',
+    },
+    {
+        id:Math.random()+"2",
+        type:'2',
+        title:'电影',
+    },
+    {
+        id:Math.random()+"3",
+        type:'3',
+        title:'动画',
+    },
+    {
+        id:Math.random()+"4",
+        type:'4',
+        title:'综艺',
+    }
+]
