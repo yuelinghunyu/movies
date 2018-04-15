@@ -22,3 +22,16 @@
     -webkit-align-items:center;
     align-items: center;
 }
+.justify-content-around{
+    -webkit-box-pack:space-around;
+    -ms-flex-pack:space-around;
+    -webkit-justify-content:space-around;
+    justify-content: space-around;
+}
+@mixin radius($size:5px){
+    -moz-border-radius:$size;
+    -webkit-border-radius:$size;
+    -o-border-radius:$size;
+    -ms-border-radius:$size;
+    border-radius:$size; 
+}

@@ -38,7 +38,16 @@ class Header extends Component{
                 <div className="header-types">
                     <ul>{listType}</ul>
                 </div>
-                <div className="header-select"></div>
+                <div className="header-select">
+                    <p className="select-movie">
+                        <span>权利的游戏</span>
+                    </p>
+                    <p className="select-child-type">
+                        <span>史诗</span>
+                        <span>惊悚</span>
+                        <span>全部</span>
+                    </p>
+                </div>
             </div>
         )
     }

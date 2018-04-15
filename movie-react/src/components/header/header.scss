@@ -1,6 +1,9 @@
 @import '../../common/base.scss';
 
 .header-container{
+    position: absolute;
+    top:0;
+    left: 0;
     width: 100%;
     height: 140px;
     font-size: 30px;
@@ -35,5 +38,31 @@
         background-color: #362b25;
         opacity: 0.5;
         filter: alpha(opacity=50);
+        @extend .flex;
+        @extend .flex-direction-r;
+        @extend .justify-content-around;
+        @extend .justify-content-center;
+        p{
+            width: 42%;
+            height: 60px;
+            @include radius(30px);
+            background-color: #000;
+            @extend .flex;
+            @extend .flex-direction-r;
+            @extend .align-items-center;
+            @extend .justify-content-center;
+            font-size: 24px;
+            color: #fff;
+            span{
+                line-height: 60px;
+                margin: 0 5%;
+            }
+        }
+        p:nth-child(1){
+            margin-left: 2%;
+        }
+        p:nth-child(2){
+            margin-right: 2%;
+        }
     }
 }
