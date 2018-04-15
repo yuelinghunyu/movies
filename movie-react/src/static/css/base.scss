@@ -28,6 +28,19 @@
     -webkit-justify-content:space-around;
     justify-content: space-around;
 }
+.flex-direction-column{
+    -webkit-box-direction: column;
+    -moz-box-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction:column;
+}
+.flex-1{
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex:1;
+    -ms-flex: 1;
+    flex: 1;
+}
 @mixin radius($size:5px){
     -moz-border-radius:$size;
     -webkit-border-radius:$size;

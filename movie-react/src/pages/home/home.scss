@@ -1,11 +1,19 @@
+@import '../../static/css/base.scss';
 .home-container{
    width: 100%;
    height: 100%;
    position: relative;
    overflow: hidden;
-   .home-banner{
-       width: 100%;
-       height: 350px;
-       margin-top: 80px;
+   @extend .flex;
+   @extend .flex-direction-column;
+   .home-scroll{
+        @extend .flex-1;
+        overflow: auto;
+        .home-banner{
+            width: 100%;
+            height: 350px;
+            margin-top: 80px;
+        }
    }
+  
 }

@@ -3,15 +3,26 @@ import ReactSwipe from 'react-swipe'
 import './swiper.scss'
 
 class Swiper extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        this.state = {
+            swiperList:this.props.swiperList,
+        }
     }
     render(){
+        let option = {
+            speed: 400,
+            auto: 3000,
+            continuous: true,
+        };
+        let divList = this.state.swiperList.map((item)=>
+            <div className="banner-slide"key={item.id}>
+                <img src={item.picUrl} />
+            </div>
+        )
         return (
-            <ReactSwipe className="carousel" swipeOptions={{continuous: false}}>
-                <div className="banner-slide">PANE 1</div>
-                <div className="banner-slide">PANE 2</div>
-                <div className="banner-slide">PANE 3</div>
+            <ReactSwipe className="carousel" swipeOptions={option}>
+              {divList}
             </ReactSwipe>
         );
     }

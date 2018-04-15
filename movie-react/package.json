@@ -17,6 +17,7 @@
     "lib-flexible": "^0.3.2",
     "node-sass": "^4.8.3",
     "postcss-px2rem": "^0.3.0",
+    "pubsub-js": "^1.6.0",
     "react-fastclick": "^3.0.2",
     "react-router": "^3.2.0",
     "react-swipe": "^5.1.1",
