@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SWIPER_LIST } from '../../server/api';
+import { debounce } from '../../common/dom';
 
 import './home.scss';
 import Header from '../../components/header/header';
@@ -12,10 +13,10 @@ class Home  extends Component{
         super();
         this.state = {
             swiperList:[],
+            scrollTopVal:0,
         }
     }
     componentWillMount(){
-
         this.setState({
             swiperList:SWIPER_LIST,
         })
@@ -23,7 +24,7 @@ class Home  extends Component{
     render(){
         return (
             <div className="home-container">
-                <Header></Header>
+                <Header scrollTop={this.state.scrollTopVal}></Header>
                 <div className="home-scroll">
                     <div className="home-banner">
                     <Swiper swiperList={this.state.swiperList}></Swiper> 
@@ -33,6 +34,15 @@ class Home  extends Component{
                 <Footer></Footer>
             </div>
         );
+    }
+    componentDidMount(){
+        let homeScroll = document.getElementsByClassName("home-scroll")[0];
+        homeScroll.addEventListener("scroll",(e)=>{
+           let scrollTop = e.target.scrollTop
+           this.setState({
+               scrollTopVal:scrollTop
+           })
+        });
     }
 };
 

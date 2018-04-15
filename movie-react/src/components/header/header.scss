@@ -37,12 +37,14 @@
         width: 100%;
         height: 60px;
         background-color: #362b25;
-        opacity: 0.5;
-        filter: alpha(opacity=50);
         @extend .flex;
         @extend .flex-direction-r;
         @extend .justify-content-around;
         @extend .justify-content-center;
+        transition: opacity .1s;
+        -moz-transition: opacity .3s;	/* Firefox 4 */
+        -webkit-transition: opacity .3s;	/* Safari 和 Chrome */
+        -o-transition: opacity .3s;	/* Opera */
         p{
             width: 42%;
             height: 60px;
@@ -65,5 +67,13 @@
         p:nth-child(2){
             margin-right: 2%;
         }
+    }
+    .nor{
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+    }
+    .cur{
+        opacity: 0;
+        filter: alpha(opacity=0);
     }
 }

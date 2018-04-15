@@ -12,13 +12,12 @@ class Header extends Component{
     }
     selectTypeItem(type){
         this.setState({
-            currentType:type
+            currentType:type,
         })
     }
     render(){
         let listType = null;
         listType = this.state.movie_types.map((item)=>{
-
             return(
                 <li 
                     key={item.id}
@@ -38,7 +37,7 @@ class Header extends Component{
                 <div className="header-types">
                     <ul>{listType}</ul>
                 </div>
-                <div className="header-select">
+                <div className={`header-select ${this.props.scrollTop<290?'nor':'cur'}`}>
                     <p className="select-movie">
                         <span>权利的游戏</span>
                     </p>
@@ -50,6 +49,9 @@ class Header extends Component{
                 </div>
             </div>
         )
+    }
+    componentDidMount(){
+        
     }
 }
 

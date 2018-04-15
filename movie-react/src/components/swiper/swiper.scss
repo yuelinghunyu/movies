@@ -1,11 +1,45 @@
-.banner-slide{
-    width: 100px;
-    height: 350px;
-    text-align: center;
-    img{
-        display: block;
-        border: none;
-        width: 100%;
-        height: 100%;
+@import '../../static/css/base.scss';
+.swiper-container{
+    position: relative;
+    .banner-slide{
+        width: 100px;
+        height: 350px;
+        text-align: center;
+        img{
+            display: block;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .dot{
+        position: absolute;
+        right: 8px;
+        bottom: 26px;
+        z-index: 1000;
+        width: auto;
+        height: 6px;
+        @extend .flex;
+        @extend .flex-direction-r;
+        @extend .align-items-center;
+        span{
+            display: inline-block;
+            background-color: #9b9391;
+            margin: 0 3px;
+            transition: width .3s;
+            -moz-transition: width .3s;	/* Firefox 4 */
+            -webkit-transition: width .3s;	/* Safari 和 Chrome */
+            -o-transition: width .3s;	/* Opera */
+        }
+        .normal{
+            width: 6px;
+            height: 6px;
+            @include radius(6px);
+        }
+        .active{
+            width: 26px;
+            height: 6px;
+            @include radius(6px);
+        }
     }
 }

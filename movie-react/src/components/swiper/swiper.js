@@ -7,6 +7,7 @@ class Swiper extends Component{
         super(props);
         this.state = {
             swiperList:this.props.swiperList,
+            currentIndex:0,
         }
     }
     render(){
@@ -14,17 +15,30 @@ class Swiper extends Component{
             speed: 400,
             auto: 3000,
             continuous: true,
+            transitionEnd: ((index, elem)=>{
+               this.transitionEndCallback(index,elem);
+            })
         };
-        let divList = this.state.swiperList.map((item)=>
-            <div className="banner-slide"key={item.id}>
-                <img src={item.picUrl} />
-            </div>
-        )
+        let divList = [],spanList=[];
+        this.state.swiperList.map((item,index)=>{
+            divList.push(<div className="banner-slide" key={item.id}>
+            <img src={item.picUrl} />
+            </div>);
+            spanList.push(<span className={this.state.currentIndex==index?"active":"normal"} key={index}></span>);
+        })
         return (
-            <ReactSwipe className="carousel" swipeOptions={option}>
-              {divList}
-            </ReactSwipe>
+            <div className = "swiper-container">
+                <ReactSwipe className="carousel" swipeOptions={option}>
+                {divList}
+                </ReactSwipe>
+                <p className="dot">{spanList}</p>
+            </div>
         );
+    }
+    transitionEndCallback(index, elem){
+       this.setState({
+           currentIndex:index
+       });
     }
 };
 
