@@ -22,7 +22,7 @@ class Swiper extends Component{
         let divList = [],spanList=[];
         this.state.swiperList.map((item,index)=>{
             divList.push(<div className="banner-slide" key={item.id}>
-            <img src={item.picUrl} />
+            <img src={item.picUrl} alt={item.title}/>
             </div>);
             spanList.push(<span className={this.state.currentIndex==index?"active":"normal"} key={index}></span>);
         })

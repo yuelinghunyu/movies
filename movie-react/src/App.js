@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {Router,Link,Route,hashHistory} from 'react-router';
+import {Router,Route,hashHistory} from 'react-router';
 import Home from './pages/home/home';
 import List from './pages/list/list';
 import Person from './pages/person/person';
-import logo from './logo.svg';
 import './App.css';
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();

@@ -63,9 +63,23 @@
         }
         p:nth-child(1){
             margin-left: 2%;
+            .select-logo{
+                width: 26px;
+                height: 26px;
+                background: url('../../static/image/header.png')  -56px -10px;
+                margin-right:-10px; 
+            }
         }
         p:nth-child(2){
             margin-right: 2%;
+            .select-all{
+                width: 26px;
+                height: 26px;
+                background: url('../../static/image/header.png')  -10px -10px;
+            }
+            .select-all-text{
+                margin-left: -10px;
+            }
         }
     }
     .nor{

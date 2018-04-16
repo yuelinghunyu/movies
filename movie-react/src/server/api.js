@@ -21,21 +21,81 @@ export const MOVIE_TYPES=[
         title:'综艺',
     }
 ]
-
+//轮播图数据;
 export const SWIPER_LIST = [
     {
         id:Math.random()+"1",
         picUrl:'http://n.sinaimg.cn/news/transform/700/w1000h500/20180411/d-s3-fyzeyqa3238853.jpg',
         rsId:Math.random()+"11",
+        title:"海上牧云姬"
     },
     {
         id:Math.random()+"2",
         picUrl:'http://n.sinaimg.cn/news/transform/700/w1000h500/20180412/I2o6-fyzeyqa8717592.jpg',
         rsId:Math.random()+"22",
+        title:"海上牧云姬"
     },
     {
         id:Math.random()+"3",
         picUrl:'http://n.sinaimg.cn/news/transform/700/w1000h500/20180412/JDwj-fyzeyqa8803322.jpg',
         rsId:Math.random()+"33",
+        title:"海上牧云姬"
+    }
+]
+
+export const HOT_SERIES_LIST = [
+   {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/transform/700/w1000h500/20180412/I2o6-fyzeyqa8717592.jpg",
+        title:"海上牧云姬",
+        discription:"九国争霸，灭国统一，谁主沉浮",
+        length:"20集",
+        flag:"1"//代表hot
+   },
+   {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/transform/700/w1000h500/20180412/JDwj-fyzeyqa8803322.jpg",
+        title:"海上牧云姬",
+        discription:"九国争霸，灭国统一，谁主沉浮",
+        length:"20集",
+        flag:"1"//代表hot
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/transform/700/w1000h500/20180411/d-s3-fyzeyqa3238853.jpg",
+        title:"海上牧云姬",
+        discription:"九国争霸，灭国统一，谁主沉浮",
+        length:"20集",
+        flag:"1"//代表hot
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/transform/700/w1000h500/20180412/JDwj-fyzeyqa8803322.jpg",
+        title:"海上牧云姬",
+        discription:"九国争霸，灭国统一，谁主沉浮",
+        length:"20集",
+        flag:"1"//代表hot
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/transform/700/w1000h500/20180411/d-s3-fyzeyqa3238853.jpg",
+        title:"海上牧云姬",
+        discription:"九国争霸，灭国统一，谁主沉浮",
+        length:"20集",
+        flag:"1"//代表hot
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/transform/700/w1000h500/20180412/I2o6-fyzeyqa8717592.jpg",
+        title:"海上牧云姬",
+        discription:"九国争霸，灭国统一，谁主沉浮",
+        length:"20集",
+        flag:"1"//代表hot
     }
 ]

@@ -5,5 +5,48 @@
     border-top:1px solid #b5b5b5; 
     @extend .flex;
     @extend .flex-direction-r;
-    @extend .align-items-center;
+    @extend .align-items-end;
+    @extend .justify-content-around;
+    p{
+        a{
+            @extend .flex;
+            @extend .flex-direction-column;
+            @extend .align-items-center;
+            span:nth-child(1){
+                width: 40px;
+                height: 40px;
+            }
+            span:nth-child(2){
+                font-size: 18px;
+                line-height: 40px;
+            }
+        }
+      
+        .home-normal{
+            background: url('../../static/image/grey.png') -250px -70px;
+        }
+        .home-active{
+            background: url('../../static/image/blue.png') -250px -70px;
+        }
+
+    
+        .competitive-normal{
+            background: url('../../static/image/grey.png') -130px -190px;
+        }
+        .competitive-active{
+            background: url('../../static/image/blue.png') -130px -190px;
+        }
+        .person-normal{
+            background: url('../../static/image/grey.png') -70px -10px;
+        }
+        .person-active{
+            background: url('../../static/image/blue.png') -70px -10px;
+        }
+        .active{
+            color: #539fdd;
+        }
+        .normal{
+            color: #a8a8a8;
+        }
+    }
 }

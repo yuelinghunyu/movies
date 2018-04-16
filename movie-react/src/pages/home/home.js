@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { SWIPER_LIST } from '../../server/api';
-import { debounce } from '../../common/dom';
+import { SWIPER_LIST,HOT_SERIES_LIST } from '../../server/api';
 
 import './home.scss';
 import Header from '../../components/header/header';
@@ -19,6 +18,7 @@ class Home  extends Component{
     componentWillMount(){
         this.setState({
             swiperList:SWIPER_LIST,
+            hotSeriesList:HOT_SERIES_LIST,
         })
     }
     render(){
@@ -29,9 +29,11 @@ class Home  extends Component{
                     <div className="home-banner">
                     <Swiper swiperList={this.state.swiperList}></Swiper> 
                     </div>
-                    <HomeContent></HomeContent>
+                    <HomeContent 
+                        hotSeriesList={this.state.hotSeriesList}
+                    ></HomeContent>
                 </div>
-                <Footer></Footer>
+                <Footer status={"home"}></Footer>
             </div>
         );
     }

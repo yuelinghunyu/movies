@@ -39,12 +39,14 @@ class Header extends Component{
                 </div>
                 <div className={`header-select ${this.props.scrollTop<290?'nor':'cur'}`}>
                     <p className="select-movie">
+                        <span className="select-logo"></span>
                         <span>权利的游戏</span>
                     </p>
                     <p className="select-child-type">
                         <span>史诗</span>
                         <span>惊悚</span>
-                        <span>全部</span>
+                        <span className="select-all"></span>
+                        <span className="select-all-text">全部</span>
                     </p>
                 </div>
             </div>
