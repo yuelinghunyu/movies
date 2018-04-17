@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { browserHistory } from 'react-router'
 import { MOVIE_TYPES } from '../../server/api';
 import './header.scss';
 
@@ -14,6 +15,12 @@ class Header extends Component{
         this.setState({
             currentType:type,
         })
+    }
+    skipRouteEvent(event){//跳转到搜索组件
+        event.preventDefault();
+        const path = '/select'
+        // browserHistory.push(path);
+        this.context.router.push(path);
     }
     render(){
         let listType = null;
@@ -38,7 +45,7 @@ class Header extends Component{
                     <ul>{listType}</ul>
                 </div>
                 <div className={`header-select ${this.props.scrollTop<290?'nor':'cur'}`}>
-                    <p className="select-movie">
+                    <p className="select-movie" onClick={this.skipRouteEvent.bind(this)}>
                         <span className="select-logo"></span>
                         <span>权利的游戏</span>
                     </p>
@@ -56,5 +63,7 @@ class Header extends Component{
         
     }
 }
-
+Header.contextTypes = {
+    router: Object
+}
 export default Header;

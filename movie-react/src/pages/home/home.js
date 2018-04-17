@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SWIPER_LIST,HOT_SERIES_LIST } from '../../server/api';
+import { SWIPER_LIST,HOT_SERIES_LIST,CLASSICAL_SERIES_LIST } from '../../server/api';
 
 import './home.scss';
 import Header from '../../components/header/header';
@@ -18,7 +18,8 @@ class Home  extends Component{
     componentWillMount(){
         this.setState({
             swiperList:SWIPER_LIST,
-            hotSeriesList:HOT_SERIES_LIST,
+            hotSeriesList:HOT_SERIES_LIST,//最热的剧
+            classicalSeriesList:CLASSICAL_SERIES_LIST,//经典的剧
         })
     }
     render(){
@@ -31,6 +32,7 @@ class Home  extends Component{
                     </div>
                     <HomeContent 
                         hotSeriesList={this.state.hotSeriesList}
+                        classicalSeriesList={this.state.classicalSeriesList}
                     ></HomeContent>
                 </div>
                 <Footer status={"home"}></Footer>
@@ -47,5 +49,4 @@ class Home  extends Component{
         });
     }
 };
-
 export default Home;

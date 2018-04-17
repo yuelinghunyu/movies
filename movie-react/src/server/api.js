@@ -51,7 +51,7 @@ export const HOT_SERIES_LIST = [
         title:"海上牧云姬",
         discription:"九国争霸，灭国统一，谁主沉浮",
         length:"20集",
-        flag:"1"//代表hot
+        flag:1//代表hot
    },
    {
         id:Math.random()+"1",
@@ -60,7 +60,7 @@ export const HOT_SERIES_LIST = [
         title:"海上牧云姬",
         discription:"九国争霸，灭国统一，谁主沉浮",
         length:"20集",
-        flag:"1"//代表hot
+        flag:1//代表hot
     },
     {
         id:Math.random()+"1",
@@ -69,7 +69,7 @@ export const HOT_SERIES_LIST = [
         title:"海上牧云姬",
         discription:"九国争霸，灭国统一，谁主沉浮",
         length:"20集",
-        flag:"1"//代表hot
+        flag:1//代表hot
     },
     {
         id:Math.random()+"1",
@@ -78,7 +78,7 @@ export const HOT_SERIES_LIST = [
         title:"海上牧云姬",
         discription:"九国争霸，灭国统一，谁主沉浮",
         length:"20集",
-        flag:"1"//代表hot
+        flag:1//代表hot
     },
     {
         id:Math.random()+"1",
@@ -87,7 +87,7 @@ export const HOT_SERIES_LIST = [
         title:"海上牧云姬",
         discription:"九国争霸，灭国统一，谁主沉浮",
         length:"20集",
-        flag:"1"//代表hot
+        flag:1//代表hot
     },
     {
         id:Math.random()+"1",
@@ -96,6 +96,62 @@ export const HOT_SERIES_LIST = [
         title:"海上牧云姬",
         discription:"九国争霸，灭国统一，谁主沉浮",
         length:"20集",
-        flag:"1"//代表hot
+        flag:1//代表hot
     }
 ]
+export const CLASSICAL_SERIES_LIST = [
+    {
+         id:Math.random()+"1",
+         type:1,
+         picUrl:"http://n.sinaimg.cn/photo/0/w2000h1200/20180322/XJ_G-fysnevk5977709.jpg",
+         title:"新青年",
+         discription:"拿起画具，向水面滴入颜料，颜料慢慢漾开",
+         length:"20集",
+         flag:2//代表经典
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/1_img/upload/3ad618a7/783/w950h633/20180321/J74g-fyskeue2143601.jpg",
+        title:"新青年",
+        discription:"拿起画具，向水面滴入颜料，颜料慢慢漾开",
+        length:"20集",
+        flag:2//代表经典
+   },
+   {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/1_img/upload/2b0c102b/783/w950h633/20180409/q1WN-fyvtmxe6847322.jpg",
+        title:"新青年",
+        discription:"拿起画具，向水面滴入颜料，颜料慢慢漾开",
+        length:"20集",
+        flag:2//代表经典
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/photo/0/w2000h1200/20180322/XJ_G-fysnevk5977709.jpg",
+        title:"新青年",
+        discription:"佛系夫妇放弃百万年薪在家做艺术皂",
+        length:"20集",
+        flag:2//代表经典
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/photo/0/w2000h1200/20180322/XJ_G-fysnevk5977709.jpg",
+        title:"新青年",
+        discription:"拿起画具，向水面滴入颜料，颜料慢慢漾开",
+        length:"20集",
+        flag:2//代表经典
+    },
+    {
+        id:Math.random()+"1",
+        type:1,
+        picUrl:"http://n.sinaimg.cn/news/1_img/upload/d2808720/783/w950h633/20180402/gBml-fysuuxz7614821.jpg",
+        title:"新青年",
+        discription:"出生于1997年的高倩身上有很多标签：“美臀冠军”、“网红主播”、“健身达人”。",
+        length:"20集",
+        flag:2//代表经典
+    },
+ ]
