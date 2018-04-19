@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 import { MOVIE_TYPES } from '../../server/api';
 import './header.scss';
 
@@ -19,8 +19,7 @@ class Header extends Component{
     skipRouteEvent(event){//跳转到搜索组件
         event.preventDefault();
         const path = '/select'
-        // browserHistory.push(path);
-        this.context.router.push(path);
+        browserHistory.push(path);
     }
     render(){
         let listType = null;
@@ -63,7 +62,5 @@ class Header extends Component{
         
     }
 }
-Header.contextTypes = {
-    router: Object
-}
+
 export default Header;

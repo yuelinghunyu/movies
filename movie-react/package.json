@@ -14,16 +14,22 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "animated": "^0.2.2",
     "babel-preset-stage-0": "^6.24.1",
+    "history": "^4.7.2",
     "lib-flexible": "^0.3.2",
     "node-sass": "^4.8.3",
     "postcss-px2rem": "^0.3.0",
     "pubsub-js": "^1.6.0",
+    "radium": "^0.24.0",
+    "react-animations": "^1.0.0",
     "react-fastclick": "^3.0.2",
     "react-lazy-load": "^3.0.13",
     "react-lazyload": "^2.3.0",
-    "react-router": "^3.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-swipe": "^5.1.1",
+    "react-transition-group": "^2.3.1",
     "sass-loader": "^7.0.0",
     "swipe-js-iso": "^2.0.4"
   }

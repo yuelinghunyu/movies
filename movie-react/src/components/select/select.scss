@@ -1,6 +1,40 @@
 @import '../../static/css/base.scss';
-.select-container{
-    width: 100%;
+.cssRoot{
+    position: relative;
     height: 100%;
-    background-color: #333;
+    .select-container{
+        padding: 0 20px;
+        height: 100%;
+        overflow: auto;
+        .input-container{
+            @extend .flex;
+            @extend .justify-content-between;
+            @extend .align-items-center;
+            height: 45px;
+            margin-top:20px; 
+           p{
+                @extend .flex;
+                @extend .flex-direction-r;
+                @extend .align-items-center;
+                span:nth-child(1){
+                    display: inline-block;
+                    width: 45px;
+                    height: 45px;
+                    background: url('../../static/image/header.png')  -45px 0px no-repeat;
+                }
+                input{
+                    border: none;
+                    height: 45px;
+                    line-height: 45px;
+                    width: 550px;
+                    font-size: 30px;
+                    text-indent: 10px;
+                    color: #9a9a9a;
+                }
+           }
+           .inputCancel{
+                padding-right: 20px;
+            }
+        }
+    }
 }
