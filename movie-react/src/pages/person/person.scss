@@ -1,3 +1,10 @@
+@import '../../static/css/base.scss';
 .person-container{
     color: #000;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    @extend .flex-1;
+    @extend .flex;
+    @extend .flex-direction-column;
 }

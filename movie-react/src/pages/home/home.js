@@ -35,7 +35,6 @@ class Home  extends Component{
                         classicalSeriesList={this.state.classicalSeriesList}
                     ></HomeContent>
                 </div>
-                <Footer status={"home"}></Footer>
             </div>
         );
     }

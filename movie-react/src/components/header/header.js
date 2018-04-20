@@ -1,9 +1,13 @@
 import React,{Component} from 'react';
-import { browserHistory } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { MOVIE_TYPES } from '../../server/api';
 import './header.scss';
 
 class Header extends Component{
+    static contextTypes = {
+        router:PropTypes.object.isRequired,
+    }
     constructor(props){
         super(props);
         this.state = {
@@ -19,7 +23,7 @@ class Header extends Component{
     skipRouteEvent(event){//跳转到搜索组件
         event.preventDefault();
         const path = '/select'
-        browserHistory.push(path);
+        this.context.router.history.push(path);
     }
     render(){
         let listType = null;

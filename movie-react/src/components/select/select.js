@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 import { fadeInUpBig,fadeOutRightBig } from 'react-animations';
 import Radium,{StyleRoot} from 'radium';
 import './select.scss';

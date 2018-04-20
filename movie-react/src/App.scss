@@ -1,0 +1,11 @@
+@import './static/css/base.scss';
+#root{
+    height: 100%;
+    .container{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        @extend .flex;
+        @extend .flex-direction-column;
+    }
+}
