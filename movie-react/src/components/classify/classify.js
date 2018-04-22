@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {fadeInLeftBig} from 'react-animations';
+import {fadeInRightBig} from 'react-animations';
 import Radium,{StyleRoot} from 'radium';
 import Types from './../classify-types/types'
 import CommonList from './../list/commonList';
@@ -8,9 +8,9 @@ import {HOT_SERIES_LIST} from '../../server/api';
 import PropTypes from 'prop-types';
 
 const styles = {
-    fadeInLeftBig:{
+    fadeInRightBig:{
         animation: 'x .3s',
-        animationName: Radium.keyframes(fadeInLeftBig, 'fadeInLeftBig')
+        animationName: Radium.keyframes(fadeInRightBig, 'fadeInRightBig')
     }
 }
 class Classify extends Component{
@@ -57,7 +57,7 @@ class Classify extends Component{
         })
         return(
             <StyleRoot className = "cssRoot">
-                <div className='classify-container'style={styles.fadeInLeftBig}>
+                <div className='classify-container'style={styles.fadeInRightBig}>
                     <div className='classify-header'>
                         <span onClick={this.backToLastEvent.bind(this)}></span>
                         <span>电视剧</span>

@@ -17,7 +17,7 @@ class Swiper extends Component{
             continuous: true,
             transitionEnd: ((index, elem)=>{
                this.transitionEndCallback(index,elem);
-            })
+            }),
         };
         let divList = [],spanList=[];
         this.state.swiperList.map((item,index)=>{
@@ -40,6 +40,7 @@ class Swiper extends Component{
            currentIndex:index
        });
     }
+
 };
 
 export default Swiper;

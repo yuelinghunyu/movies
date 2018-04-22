@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Route,BrowserRouter as Router,Switch} from 'react-router-dom';
 import Home from './pages/home/home';
-import List from './pages/list/list';
+import Classical from './pages/classical/classical';
 import Person from './pages/person/person';
 import Select from './components/select/select';
 import Classify from './components/classify/classify';
@@ -17,7 +17,7 @@ class App extends Component {
         <div className='container'>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/list" component={List}/>
+            <Route path="/classical" component={Classical}/>
             <Route path="/person" component={Person}/>
           </Switch> 
           <Footer></Footer>

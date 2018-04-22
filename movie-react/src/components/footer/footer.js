@@ -24,7 +24,7 @@ class Footer extends Component{
                     </Link>
                 </p>
                 <p className="competitive-page">
-                    <Link to="/list" onClick={this.pageHandle.bind(this,'competitive')}>
+                    <Link to="/classical" onClick={this.pageHandle.bind(this,'competitive')}>
                         <span className={this.state.status==="competitive"?"competitive-active":"competitive-normal"}></span>
                         <span className={this.state.status==="competitive"?"active":"normal"}>精品</span>
                     </Link>

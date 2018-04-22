@@ -21,6 +21,25 @@ export const MOVIE_TYPES=[
         title:'综艺',
     }
 ]
+
+export const CLASSICAL_TYPES=[
+    {
+        id:Math.random()+"1",
+        type:'1',
+        title:'全部',
+    },
+    {
+        id:Math.random()+"2",
+        type:'2',
+        title:'最爱电影',
+    },
+    {
+        id:Math.random()+"6",
+        type:'6',
+        title:'最爱电视剧',
+    }
+]
+
 //轮播图数据;
 export const SWIPER_LIST = [
     {

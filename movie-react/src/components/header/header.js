@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { MOVIE_TYPES } from '../../server/api';
 import './header.scss';
+import CommonHeader from './commonHeader'
 
 class Header extends Component{
     static contextTypes = {
@@ -10,15 +10,7 @@ class Header extends Component{
     }
     constructor(props){
         super(props);
-        this.state = {
-            movie_types:MOVIE_TYPES,
-            currentType:1,//当前选项
-        }
-    }
-    selectTypeItem(type){
-        this.setState({
-            currentType:type,
-        })
+       
     }
     skipRouteEvent(event){//跳转到搜索组件
         event.preventDefault();
@@ -31,27 +23,9 @@ class Header extends Component{
         this.context.router.history.push(path);
     }
     render(){
-        let listType = null;
-        listType = this.state.movie_types.map((item)=>{
-            return(
-                <li 
-                    key={item.id}
-                    className={
-                        `${this.state.currentType == item.type?'active':''}`
-                    }
-                    onClick={
-                        this.selectTypeItem.bind(this,item.type)
-                    }
-                >
-                    {item.title}
-                </li>
-            )
-        });
         return(
             <div className="header-container">
-                <div className="header-types">
-                    <ul>{listType}</ul>
-                </div>
+                <CommonHeader list={this.props.types}></CommonHeader>
                 <div className={`header-select ${this.props.scrollTop<290?'nor':'cur'}`}>
                     <p className="select-movie" onClick={this.skipRouteEvent.bind(this)}>
                         <span className="select-logo"></span>

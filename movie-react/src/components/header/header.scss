@@ -8,31 +8,6 @@
     height: 140px;
     font-size: 30px;
     z-index: 1000;
-    .header-types{
-        width: 100%;
-        height: 80px;
-        background-color: #362b25;
-        overflow-x: auto;
-        @extend .flex;
-        @extend .justify-content-center;
-        ul{
-            display: inline;
-            white-space: nowrap;
-            overflow-x:scroll;
-            overflow-y:hidden;
-            li{
-                display:inline-block;
-                height: 80px;
-                padding: 0 30px;
-                line-height: 80px;
-                color: #928886;
-            }
-            .active{
-                color: #fff;
-                font-weight: bold;
-            }
-        }
-    }
     .header-select{
         width: 100%;
         height: 60px;
