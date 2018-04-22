@@ -1,0 +1,49 @@
+@import '../../static/css/base.scss';
+.content-list{
+    @extend .flex;
+    @extend .flex-wrap;
+    li{
+        @extend .flex;
+        @extend .flex-direction-column;
+        width: 32.8%;
+        height: 485px;
+        .logo-container{
+            position: relative;
+            img{
+                width: 100%;
+                height:368px;
+            }
+            span{
+                position: absolute;
+                right: 14px;
+                bottom: 14px;
+                z-index: 10;
+                color: #fff;
+                font-size:20px;
+            }
+        }
+        .logo-content{
+            @extend .flex-1;
+            padding-left: 20px;
+            position: relative;
+            .logo-title{
+                color: #000;
+                font-size:28px;
+                line-height: 40px;
+            }
+            .logo-discription{
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: #979797;
+                font-size:24px;
+                line-height: 36px;
+            }
+            
+        }
+    }
+    .list-item-center{
+        margin:  0 0.8%;
+    }
+}

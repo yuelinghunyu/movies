@@ -1,0 +1,24 @@
+@import '../../static/css/base.scss';
+.types-container{
+    padding: 0 20px 24px;
+    font-size:24px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 25px;
+    .type-item-list{
+        @extend .flex;
+        @extend .flex-direction-r;
+        @extend .align-items-center;
+        overflow: auto;
+        white-space:nowrap;//处理块元素中的空白符和换行      
+        .type-item{
+            padding: 14px 26px;
+            list-style: none;
+            display: inline-block;//使li对象显示为一行
+            margin: 9px 2px;
+        }
+        .type-item-active{
+            background-color: #f0f0f0;
+            @include radius(30px);
+        }
+    }
+}

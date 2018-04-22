@@ -4,6 +4,7 @@ import Home from './pages/home/home';
 import List from './pages/list/list';
 import Person from './pages/person/person';
 import Select from './components/select/select';
+import Classify from './components/classify/classify';
 import Footer from './components/footer/footer';
 import './App.scss';
 import initReactFastclick from 'react-fastclick';
@@ -21,6 +22,7 @@ class App extends Component {
           </Switch> 
           <Footer></Footer>
           <Route path="/select" component={Select}/>
+          <Route path="/classify" component={Classify}/>
         </div>
       </Router>
     );

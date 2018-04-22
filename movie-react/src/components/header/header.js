@@ -22,7 +22,12 @@ class Header extends Component{
     }
     skipRouteEvent(event){//跳转到搜索组件
         event.preventDefault();
-        const path = '/select'
+        const path = '/select';
+        this.context.router.history.push(path);
+    }
+    skipClassifyEvent(event){//跳转到分类界面
+        event.preventDefault();
+        const path = '/classify';
         this.context.router.history.push(path);
     }
     render(){
@@ -52,7 +57,7 @@ class Header extends Component{
                         <span className="select-logo"></span>
                         <span>权利的游戏</span>
                     </p>
-                    <p className="select-child-type">
+                    <p className="select-child-type" onClick={this.skipClassifyEvent.bind(this)}>
                         <span>史诗</span>
                         <span>惊悚</span>
                         <span className="select-all"></span>
