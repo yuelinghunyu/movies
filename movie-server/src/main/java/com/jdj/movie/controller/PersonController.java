@@ -17,18 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/person")
 public class PersonController {
-//    private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
-//    @Autowired
-//    private PersonBll personBll;
-//    /**
-//     * @content:根据id对应的person
-//     * @param id=1;
-//     * @return returnModel
-//     */
-//    @RequestMapping(value = "/list",method = RequestMethod.GET)
-//    public ReturnModel<Person> list(
-//            @RequestParam(value = "id") Integer id
-//    ){
-//        return new ReturnModel<Person>(personBll.getPersonList(id));
-//    }
+    private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
+    @Autowired
+    private PersonBll personBll;
+    /**
+     * @content:根据id对应的person
+     * @param id=1;
+     * @return returnModel
+     */
+    @RequestMapping(value = "/exsit",method = RequestMethod.GET)
+    public ReturnModel list(
+            @RequestParam(value = "userName") String userName,
+            @RequestParam(value = "passWord") String passWord
+    ){
+        String id = personBll.getPersonExist(userName,passWord);
+        if(id!=null||id.length()<0){
+            return new ReturnModel(-1,null);
+        }else {
+            return new ReturnModel(0,id);
+        }
+    }
 }

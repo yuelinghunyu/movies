@@ -14,7 +14,7 @@ public class PersonBll {
     private PersonMapper personMapper;
 
     //查询所有用户
-    public Person getPersonList(Integer id) {
-        return personMapper.selectByPrimaryKey(id);
+    public String getPersonExist(String userName,String passWord) {
+        return personMapper.selectExist(userName,passWord);
     }
 }

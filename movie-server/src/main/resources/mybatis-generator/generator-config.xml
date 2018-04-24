@@ -49,7 +49,11 @@
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->
-        <!--<table tableName="users" domainObjectName="Users"-->
+        <!--<table tableName="types" domainObjectName="Types"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <!--<table tableName="areas" domainObjectName="Areas"-->
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->

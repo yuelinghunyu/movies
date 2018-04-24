@@ -1,16 +1,9 @@
 package com.jdj.movie.mapper;
 
 import com.jdj.movie.model.Person;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-
+@Mapper
 public interface PersonMapper {
     @Delete({
         "delete from person",
@@ -41,6 +34,19 @@ public interface PersonMapper {
         @Result(column="pass_word", property="passWord", jdbcType=JdbcType.VARCHAR)
     })
     Person selectByPrimaryKey(Integer id);
+
+    //查询用户是否存在;
+    @Select({
+            "select id",
+            "from person",
+            "where user_name=#{userName,jdbcType=VARCHAR}",
+            "and pass_word=#{passWord,jdbcType=VARCHAR}"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true)
+    })
+    String selectExist(@Param("userName") String userName,@Param("passWord")String passWord);
+
 
     @UpdateProvider(type=PersonSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Person record);
