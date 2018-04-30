@@ -1,0 +1,63 @@
+.person-container{
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}
+.breadcrumb{
+    font-size:20px; 
+}
+/* 个人详细信息 */
+.person-detail{
+    padding: 20px;
+    box-shadow: 5px 5px 5px #999;
+    border-radius: 8px;
+    margin-bottom: 20px; 
+}
+.detail-left{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.detail-left>img{
+    display: block;
+    border: 2px solid #ddd;
+    width: 196px;
+    height: 196px;
+    border-radius: 50%;
+}
+.detail-left>ul{
+    min-width: 300px;
+    padding: 0 0 0 50px;
+    font-size: 20px;
+}
+.detail-left>ul>li{
+    line-height: 50px;
+}
+.detail-left>ul>li>span:nth-child(1){
+    color: #6859b6;
+}
+.person-list{
+    padding: 20px;
+}
+.person-list>ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.person{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 2px #999;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    margin:0 20px 20px 0px;
+}
+.person>img{
+    display: block;
+    width: 120px;
+    height: 120px;
+}

@@ -43,14 +43,43 @@
     position: relative;
 }
 .body-left{
-    width: 20%;
+    width: 300px;
     height: 100%;
     border-right: 2px solid gray;
     position: absolute;
     left: 0px;
+    overflow-y: auto;
+    background-color:#fff;
+    z-index: 100; 
 }
 .body-right{
     width: 100%;
-    padding-left: 20%;
+    padding-left: 300px;
     height: 100%;
+    overflow: auto;
+}
+/* 侧边栏样式 */
+.body-list{
+    padding: 30px 50px;
+}
+.list-item{
+    padding: 5px 0;
+}
+.nav-header{
+    text-decoration: none;
+    font-size: 20px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.icon-dashboard{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+.nav-list>li{
+    font-size:20px;
+    padding-left: 15px;
 }
