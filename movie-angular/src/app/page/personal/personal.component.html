@@ -6,42 +6,27 @@
 
   <div class="person-detail">
     <div class="detail-left">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="人物图像">
+        <img [src]="person.img" alt="人物图像">
         <ul class="detail-info">
           <li>
             <span>姓名：</span>
-            <span>蒋大钧</span>
+            <span>{{person.userName}}</span>
           </li>
           <li>
             <span>密码：</span>
-            <span>jdj12345</span>
+            <span>{{person.passWord}}</span>
           </li>
           <li>
             <span>创建时间：</span>
-            <span>2018年5月30日</span>
+            <span>{{person.createDate}}</span>
           </li>
         </ul>
     </div>
   </div>
   <div class="person-list">
     <ul>
-      <li class="person">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="个人图片" title="蒋大钧">
-      </li>
-      <li class="person">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="个人图片" title="蒋大钧">
-      </li>
-      <li class="person">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="个人图片" title="蒋大钧">
-      </li>
-      <li class="person">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="个人图片" title="蒋大钧">
-      </li>
-      <li class="person">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="个人图片" title="蒋大钧">
-      </li>
-      <li class="person">
-        <img src="http://i0.sinaimg.cn/dy/slidenews/26_img/2018_17/18496_643212_606522.jpg" alt="个人图片" title="蒋大钧">
+      <li class="person" *ngFor="let person of personList; let i = index;" (click)="changePerson(i)">
+        <img [src]="person.img" alt="个人图片" [title]="person.userName">
       </li>
     </ul>
   </div>

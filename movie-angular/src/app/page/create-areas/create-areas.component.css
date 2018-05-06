@@ -1,0 +1,8 @@
+.areas-container{
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}
+.breadcrumb{
+    font-size:20px; 
+}

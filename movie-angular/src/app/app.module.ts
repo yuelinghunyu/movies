@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {HttpModule, Jsonp} from "@angular/http";
+import { ServiceService } from "./service/service.service";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './page/login/login.component';
@@ -9,6 +10,7 @@ import { HomeComponent } from './page/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { FrameComponent } from './component/frame/frame.component';
 import { PersonalComponent } from './page/personal/personal.component';
+import { CreateAreasComponent } from './page/create-areas/create-areas.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { PersonalComponent } from './page/personal/personal.component';
     LoginComponent,
     HomeComponent,
     FrameComponent,
-    PersonalComponent
+    PersonalComponent,
+    CreateAreasComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { PersonalComponent } from './page/personal/personal.component';
     BrowserAnimationsModule,
     HttpModule,
   ],
-  providers: [],
+  providers: [ServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

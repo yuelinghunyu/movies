@@ -4,6 +4,7 @@ import { FrameComponent } from './component/frame/frame.component';
 import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { PersonalComponent } from './page/personal/personal.component';
+import { CreateAreasComponent } from './page/create-areas/create-areas.component';
 
 const routes:Routes = [
   {
@@ -17,6 +18,10 @@ const routes:Routes = [
       {
         path:'personel',
         component:PersonalComponent
+      },
+      {
+        path:'create-area',
+        component:CreateAreasComponent
       }
     ]
   },

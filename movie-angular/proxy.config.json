@@ -1,6 +1,6 @@
 {
   "/movies":{
-    "target":"http://192.168.1.14:8888",
+    "target":"http://localhost:8888",
     "secure": false,
     "changeOrigin":true
   }
