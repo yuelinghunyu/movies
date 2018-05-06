@@ -6,3 +6,13 @@
 .breadcrumb{
     font-size:20px; 
 }
+.areas-content{
+    padding: 20px;
+    font-size: 20px;
+}
+.areas-content>table{
+    cursor: pointer;
+}
+.pagination-container{
+   padding: 20px 0px;
+}
