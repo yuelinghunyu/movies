@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by jdj on 2018/4/23.
  */
@@ -26,7 +28,7 @@ public class PersonController {
      * @return returnModel
      */
     @RequestMapping(value = "/exsit",method = RequestMethod.GET)
-    public ReturnModel list(
+    public ReturnModel exsit(
             @RequestParam(value = "userName") String userName,
             @RequestParam(value = "passWord") String passWord
     ){
@@ -35,6 +37,20 @@ public class PersonController {
             return new ReturnModel(-1,null);
         }else {
             return new ReturnModel(0,id);
+        }
+    }
+    /**
+     * @content:list
+     * @param null;
+     * @return returnModel
+     */
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public ReturnModel list(){
+        List<Person> list = personBll.selectAll();
+        if(list.size()==0){
+            return new ReturnModel(-1,null);
+        }else {
+            return new ReturnModel(1,list);
         }
     }
 }

@@ -1,11 +1,17 @@
 package com.jdj.movie.model;
 
+import java.util.Date;
+
 public class Person {
     private Integer id;
 
     private String userName;
 
     private String passWord;
+
+    private String img;
+
+    private Date createDate;
 
     public Integer getId() {
         return id;
@@ -29,5 +35,21 @@ public class Person {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord == null ? null : passWord.trim();
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }
