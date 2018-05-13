@@ -6,6 +6,12 @@
 
   <div class="areas-content">
     <table class="table table-bordered table-hover">
+      <caption>区域列表
+        <button type="button" 
+          class="btn btn-info pull-right"
+          (click)="addPanel()"
+        >新增区域</button>
+      </caption>
       <thead>
         <tr>
           <th>序号</th>
@@ -62,4 +68,9 @@
      </nav>
     </div>
   </div>
+
+  <div class="areas-add" [@panel-left]='state'>
+      <button type="button" class="btn btn-danger pull-right"  (click)="addPanel()">X</button>
+  </div>
+  <div class="lay-hide" *ngIf="state=='active'?true:false"></div>
 </div>
