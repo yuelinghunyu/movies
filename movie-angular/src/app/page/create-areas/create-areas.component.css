@@ -1,5 +1,5 @@
 .areas-container{
-    font-size:20px; 
+    font-size:16px; 
     padding: 20px;
     min-width: 1024px;
     overflow: auto;
@@ -23,6 +23,12 @@
     left: -400px;
     top: 0px;
     z-index: 100;
+}
+.areas-add>h4{
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    color: blueviolet;
 }
 .lay-hide{
     position: absolute;

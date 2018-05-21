@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {HttpModule, Jsonp} from "@angular/http";
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { HttpModule, Jsonp} from "@angular/http";
 import { ServiceService } from "./service/service.service";
 
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { CreateAreasComponent } from './page/create-areas/create-areas.component
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpModule,
+    ReactiveFormsModule,
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

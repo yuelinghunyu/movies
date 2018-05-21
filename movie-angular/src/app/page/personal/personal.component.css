@@ -2,9 +2,7 @@
     padding: 20px;
     min-width: 1024px;
     overflow: auto;
-}
-.breadcrumb{
-    font-size:20px; 
+    font-size:16px; 
 }
 /* 个人详细信息 */
 .person-detail{
@@ -30,7 +28,6 @@
 .detail-left>ul{
     min-width: 600px;
     padding: 0 0 0 50px;
-    font-size: 20px;
 }
 .detail-left>ul>li{
     line-height: 50px;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger,state,style,animate,transition} from '@angular/animations';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-areas',
@@ -20,8 +21,18 @@ import { trigger,state,style,animate,transition} from '@angular/animations';
 })
 export class CreateAreasComponent implements OnInit {
   private state:string;
-  constructor() { }
-
+  areasForm: FormGroup;
+  constructor(
+    private fb: FormBuilder
+  ) {
+    this.createAreasForm();
+   }
+  
+  createAreasForm(){
+    this.areasForm = this.fb.group({
+      
+    })
+  }
   ngOnInit() {
     this.state = 'inactive';
   }
