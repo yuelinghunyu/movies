@@ -1,5 +1,7 @@
 package com.jdj.movie.model;
 
+import com.jdj.movie.enums.StaticTypes;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -20,9 +22,9 @@ public class Movie {
 
     private Integer count;
 
-    private Byte movieType;
+    private StaticTypes movieType;
 
-    private Byte isFree;
+    private Integer isFree;
 
     private Date createTime;
 
@@ -94,19 +96,19 @@ public class Movie {
         this.count = count;
     }
 
-    public Byte getMovieType() {
+    public StaticTypes getMovieType() {
         return movieType;
     }
 
-    public void setMovieType(Byte movieType) {
+    public void setMovieType(StaticTypes movieType) {
         this.movieType = movieType;
     }
 
-    public Byte getIsFree() {
+    public Integer getIsFree() {
         return isFree;
     }
 
-    public void setIsFree(Byte isFree) {
+    public void setIsFree(Integer isFree) {
         this.isFree = isFree;
     }
 

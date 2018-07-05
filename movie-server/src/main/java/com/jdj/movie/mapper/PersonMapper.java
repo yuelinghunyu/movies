@@ -64,6 +64,7 @@ public interface PersonMapper {
             @Result(column="create_date", property="createDate", jdbcType=JdbcType.TIMESTAMP)
     })
     List<Person> selectAll();
+
     @UpdateProvider(type=PersonSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Person record);
 
