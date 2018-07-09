@@ -65,11 +65,29 @@ public interface MovieMapper {
      * @return movieList
      */
     @Select({
+            "<script>",
             "select",
             "id, area, pic_url, content, title, type, price, count, movie_type, is_free, ",
             "create_time, modify_time, description",
             "from movie",
-            "limit #{skip},#{limit}"
+            "where 1=1",
+            "<if test='id!=null and id!= &apos;&apos;'>",
+            "and id = #{id,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='area!=-1'>",
+            "and area = #{area,jdbcType=INTEGER}",
+            "</if>",
+            "<if test='title!=null and title!= &apos;&apos;'>",
+            "and title = #{title,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='type!= -1'>",
+            "and type = #{type,jdbcType=INTEGER}",
+            "</if>",
+            "<if test='movieType!= -1'>",
+            "and movie_type = #{movieType,jdbcType=VARCHAR}",
+            "</if>",
+            "limit #{skip},#{limit}",
+            "</script>"
     })
     @Results({
             @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
@@ -86,7 +104,15 @@ public interface MovieMapper {
             @Result(column="modify_time", property="modifyTime", jdbcType=JdbcType.TIMESTAMP),
             @Result(column="description", property="description", jdbcType=JdbcType.LONGVARCHAR)
     })
-    List<Movie> movieList(@Param("skip") int skip,@Param("limit") int limit);
+    List<Movie> movieList(
+            @Param("id") String id,
+            @Param("area") int area,
+            @Param("title") String title,
+            @Param("type") int type,
+            @Param("movieType") int movieType,
+            @Param("skip") int skip,
+            @Param("limit") int limit
+    );
 
     /**
      *
@@ -95,10 +121,34 @@ public interface MovieMapper {
      */
 
     @Select({
+            "<script>",
             "select count(0)",
-            "from movie"
+            "from movie",
+            "where 1=1",
+            "<if test='id!=null and id!= &apos;&apos;'>",
+            "and id = #{id,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='area!=-1'>",
+            "and area = #{area,jdbcType=INTEGER}",
+            "</if>",
+            "<if test='title!=null and title!= &apos;&apos;'>",
+            "and title = #{title,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='type!= -1'>",
+            "and type = #{type,jdbcType=INTEGER}",
+            "</if>",
+            "<if test='movieType!= -1'>",
+            "and movie_type = #{movieType,jdbcType=VARCHAR}",
+            "</if>",
+            "</script>"
     })
-    int getMoviesCount();
+    int getMoviesCount(
+            @Param("id") String id,
+            @Param("area") int area,
+            @Param("title") String title,
+            @Param("type") int type,
+            @Param("movieType") int movieType
+    );
     @UpdateProvider(type=MovieSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Movie record);
 

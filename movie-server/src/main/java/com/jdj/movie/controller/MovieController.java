@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by jiangdajun on 2018/7/5.
@@ -33,16 +30,41 @@ public class MovieController {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ReturnModel getMovieList(
+            @RequestParam(value = "flag",required = false,defaultValue = "") String flag,
+            @RequestParam(value = "val",required = false,defaultValue = "") String val,
             @RequestParam(value = "page",required = false,defaultValue = "1") int page,
             @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
     ){
         int skip = (page-1)*limit;
-        List<Movie> list =  movieBll.getMovieList(skip,limit);
+        List<Movie> list = new ArrayList<>();
+        String id = "";
+        int area =  -1;
+        String title = "";
+        int type =  -1;
+        int movieType =  -1;
+        //根据flag作为判断条件（id\area\title\type|movieType）
+        if(flag.equals("id")){
+            id = val;
+        }
+        if(flag.equals("area")){
+            area = Integer.parseInt(val);
+        }
+        if(flag.equals("title")){
+            title = val;
+        }
+        if(flag.equals("type")){
+            type = Integer.parseInt(val);
+        }
+        if(flag.equals("movieType")){
+            movieType = Integer.parseInt(val);
+        }
+
+        list =  movieBll.getMovieList(id,area,title,type,movieType,skip,limit);
         if(list.size()==0){
             logger.info("list的长度",list.size());
-            return new ReturnModel(0,null);
+            return new ReturnModel(0,0);
         }
-        int total = movieBll.getTotal();
+        int total = movieBll.getTotal(id,area,title,type,movieType);
         Map map = new HashMap<>();
         map.put("total",total);
         map.put("list",list);
@@ -80,8 +102,9 @@ public class MovieController {
         movie.setMovieType(StaticTypes.valueOf(movieType));
         movie.setIsFree(isFree);
         int flag = 0;
-        if(id == ""){
-            movie.setId(UUID.randomUUID().toString().replace("-","").toLowerCase());
+        if(id.isEmpty()){
+            id = UUID.randomUUID().toString().replace("-","").toLowerCase();
+            movie.setId(id);
             logger.info("id值","：空，执行插入数据库操作");
             flag = movieBll.insertMovie(movie);
         }else {
@@ -89,9 +112,10 @@ public class MovieController {
             logger.info("id值","："+id+";执行更新数据库操作");
             flag = movieBll.updateMovie(movie);
         }
+        int total = movieBll.getTotal("",-1,"",-1,-1);
         if(flag>0){
             logger.info("return","：插入成功");
-            return new ReturnModel(0,true);
+            return new ReturnModel(0,total);
         }else {
             logger.info("return","：插入失败");
             return new ReturnModel(-1,flag);

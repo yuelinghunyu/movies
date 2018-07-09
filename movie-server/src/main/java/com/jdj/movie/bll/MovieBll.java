@@ -18,8 +18,16 @@ public class MovieBll {
      * @content 返回所有的movieList
      * @param null;
      */
-    public List<Movie> getMovieList(int skip,int limit){
-        return movieMapper.movieList(skip,limit);
+    public List<Movie> getMovieList(
+            String id,
+            int area,
+            String title,
+            int type,
+            int movieType,
+            int skip,
+            int limit
+    ){
+        return movieMapper.movieList(id,area,title,type,movieType,skip,limit);
     }
     /**
      * @content 插入数据
@@ -32,8 +40,14 @@ public class MovieBll {
     /**
      * @result count
      */
-    public int getTotal(){
-        return movieMapper.getMoviesCount();
+    public int getTotal(
+            String id,
+            int area,
+            String title,
+            int type,
+            int movieType
+    ){
+        return movieMapper.getMoviesCount(id,area,title,type,movieType);
     }
     /**
      * @param movie
