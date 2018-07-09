@@ -18,7 +18,7 @@ export class PersonalComponent implements OnInit {
   _getPersonList(){
     this.service.getPersonList().subscribe(res=>{
       let data = JSON.parse(res["_body"]);
-      if(data.code == 1){
+      if(data.code == 0){
         let list = data.data;
         this.personList = list;
         this.person = this.personList[0];//第一个

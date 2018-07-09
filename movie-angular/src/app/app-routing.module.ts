@@ -5,6 +5,7 @@ import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { PersonalComponent } from './page/personal/personal.component';
 import { CreateAreasComponent } from './page/create-areas/create-areas.component';
+import { CreateTypesComponent } from './page/create-types/create-types.component';
 
 const routes:Routes = [
   {
@@ -22,6 +23,10 @@ const routes:Routes = [
       {
         path:'create-area',
         component:CreateAreasComponent
+      },
+      {
+        path:'create-type',
+        component:CreateTypesComponent
       }
     ]
   },

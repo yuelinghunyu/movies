@@ -18,60 +18,110 @@
           <th>类型</th>
           <th>名称</th>
           <th>创建时间</th>
+          <th>修改时间</th>
           <th>操作</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>1</td>
-          <td>大陆</td>
-          <td>2018年5月6日</td>
+        <tr *ngFor="let area of areaList;let i=index" [attr.id]="area.id">
+          <th scope="row">{{i+1}}</th>
+          <td>{{area.area}}</td>
+          <td>{{area.title}}</td>
+          <td>{{area.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+          <td>{{area.modifyTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
           <td>
-            <button type="button" class="btn btn-danger btn-sm">删除</button>
-            <button type="button" class="btn btn-primary btn-sm">修改</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>2</td>
-          <td>欧美</td>
-          <td>2018年5月6日</td>
-          <td>
-            <button type="button" class="btn btn-danger btn-sm">删除</button>
-            <button type="button" class="btn btn-primary btn-sm">修改</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>3</td>
-          <td>日韩</td>
-          <td>2018年5月6日</td>
-          <td>
-            <button type="button" class="btn btn-danger btn-sm">删除</button>
-            <button type="button" class="btn btn-primary btn-sm">修改</button>
+            <button 
+              type="button" 
+              class="btn btn-danger btn-sm"
+              data-toggle="modal"
+              data-target=".bs-example-modal-sm"
+              (click)="alertModalItem(area.id)"
+            >
+              删除
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-primary btn-sm"
+              (click)="updatePanel(area.id)"
+            >修改</button>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="pagination-container">
-      <nav aria-label="...">
-        <ul class="pagination">
-          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-          <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-       </ul>
-     </nav>
+      <app-pagination [pagination] = "pagination"></app-pagination>
     </div>
   </div>
 
   <div class="areas-add" [@panel-left]='state'>
-      <h4>新增地区<button type="button" class="btn btn-danger pull-right"  (click)="addPanel()">X</button></h4>
-      
+      <h4>新增地区
+        <button 
+          type="button" 
+          class="btn btn-danger pull-right"  
+          (click)="closePanel()"
+        >X</button></h4>
+      <hr/>
+      <form [formGroup]="areasForm" (submit)="createArea(area.id)">
+        <div class="form-group">
+          <label for="areaType">地区类型</label>
+          <input 
+                type="text" 
+                class="form-control" 
+                id="areaType" 
+                placeholder="areaType"
+                formControlName="areaType"
+                required
+                [(ngModel)]="area.area"
+          >
+          <div 
+              *ngIf="areasForm.get('areaType').invalid && (areasForm.get('areaType').dirty || areasForm.get('areaType').touched)"
+               class="alert alert-danger"
+              >
+              <div 
+                *ngIf="areasForm.get('areaType').errors.required"
+              >
+                区域类型必填
+              </div>
+              <div 
+                *ngIf="areasForm.get('areaType').errors.forbiddenName"
+              >
+                区域类型是数字
+              </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="areaTitle">地区名称</label>
+          <input 
+                type="text" 
+                class="form-control" 
+                id="areaTitle" 
+                placeholder="areaTitle"
+                formControlName="areaTitle"
+                required
+                [(ngModel)]="area.title"
+          >
+          <div 
+          *ngIf="areasForm.get('areaTitle').invalid && (areasForm.get('areaTitle').dirty || areasForm.get('areaTitle').touched)"
+           class="alert alert-danger"
+          >
+          <div 
+            *ngIf="areasForm.get('areaTitle').errors.required"
+          >
+            区域类型必填
+          </div>
+      </div>
+        </div>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="areasForm.invalid"
+          >
+          提交
+        </button>
+      </form>
   </div>
   <div class="lay-hide" *ngIf="state=='active'?true:false"></div>
+
+  <!-- 弹框组件 -->
+  <app-modal [modal]="modal"></app-modal> 
 </div>

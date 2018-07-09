@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<div class="login-container">
+    <div class="container-box">
+      <div class="container-left">
+        <div class="logo"></div>
+      </div>
+      <form class="container-right" [formGroup]="loginForm">
+        <h3>Welcome</h3>
+        <div class="username-container">
+          <input type="text" id="username" formControlName="userName" placeholder="请输入用户名称"
+                 (focus)="inputFocus($event)"
+                 (blur)="inputBlur($event)"
+                 (keyup)="inputKeyU($event)"
+          >
+          <span class="scale-span" [@scaleX]="userNameState"></span>
+          <span class="login-judge" [@judgeU] = "userNameJudge"></span>
+        </div>
+        <div class="password-container">
+          <input type="password" id="password" formControlName="password" placeholder="请输入用户密码"
+                 (focus)="inputFocus($event)"
+                 (blur)="inputBlur($event)"
+                 (keyup)="inputKeyP($event)"
+          >
+          <span class="scale-span" [@scaleX]="passWordState"></span>
+          <span class="login-judge" [@judgeP] = "passWordJudge"></span>
+        </div>
+        <div class="login-btn" (click)="login($event)" [@logining]="loginingState">登 录</div>
+      </form>
+    </div>
+  </div>
+  

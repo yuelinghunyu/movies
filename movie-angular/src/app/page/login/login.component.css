@@ -1,0 +1,95 @@
+.login-container{
+    width: 100%;
+    height: 100%;
+    background: url("../../../assets/imgs/login.png") no-repeat center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+  }
+  .container-box{
+    position: absolute;
+    width: 1065px;
+    height: 600px;
+    background: rgba(101, 140, 200, 0.5);
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-flow:row
+  }
+  .container-left{
+    width: 600px;
+    height: 100%;
+    position: relative;
+  }
+  .logo{
+    position: absolute;
+    width:400px;
+    height: 400px;
+    background: url('../../../assets/imgs/logo.png') no-repeat center;
+    background-size: cover;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+  }
+  .container-right{
+    flex:1;
+    background-color: #fff;
+    padding: 140px 100px;
+  }
+  h3{font-size: 22px;
+    text-align: center;
+    margin-bottom: 55px;}
+  .username-container,.password-container{
+    width: 100%;
+    margin-top: 30px;
+    border-bottom: 2px solid #dddddd;
+    position: relative;
+  }
+  .username-container input,.password-container input{
+    display: block;
+    border: none;
+    width: 80%;
+    height: 30px;
+    line-height:30px;
+    font-size: 14px;
+    outline: none;
+    margin: 0 auto;
+    padding-right: 30px;
+  }
+  input::placeholder{
+    color: #dddddd;
+    text-align: center;
+  }
+  .login-btn{
+    width: 100%;
+    height: 39px;
+    font-size: 17px;
+    color: #fff;
+    margin: 37px auto;
+    text-align: center;
+    line-height: 39px;
+    border-radius: 39px;
+    cursor: pointer;
+    background-color: #658cc8;
+  
+  }
+  .scale-span{
+    display: block;
+    position: absolute;
+    width: 0px;
+    left: 50%;
+    height:2px;
+    bottom:-2px;
+    transform: translate(-50%,0);
+    background: linear-gradient(to left,#bebebe,#bebebe,#bebebe)
+  }
+  .login-judge{
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 0px;
+    right: 0px;
+  }
+  

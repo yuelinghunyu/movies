@@ -1,0 +1,23 @@
+<nav aria-label="...">
+  <ul class="pagination">
+    <li [ngClass]="{disabled:pagination.currentPage === 1}">
+      <a href="javascript:void(0)" aria-label="Previous" (click)="prePage()">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li 
+      *ngFor="let item of pageList;trackBy:index"
+      [ngClass]="{active:item === pagination.currentPage}"
+    >
+      <a href="javascript:void(0)" (click)="changeCurrentPage(item)">
+        {{item}}
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li [ngClass]="{disabled:pagination.currentPage === pageNum}">
+      <a href="javascript:void(0)" aria-label="Next" (click)="nextPage()">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+ </ul>
+</nav>

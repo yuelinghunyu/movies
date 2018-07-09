@@ -12,6 +12,10 @@ import { AppRoutingModule } from './/app-routing.module';
 import { FrameComponent } from './component/frame/frame.component';
 import { PersonalComponent } from './page/personal/personal.component';
 import { CreateAreasComponent } from './page/create-areas/create-areas.component';
+import { ForbiddenNameDirective } from './shared/forbidden-name.directive';
+import { PaginationComponent } from './common/pagination/pagination.component';
+import { ModalComponent } from './common/modal/modal.component';
+import { CreateTypesComponent } from './page/create-types/create-types.component';
 
 
 @NgModule({
@@ -21,7 +25,11 @@ import { CreateAreasComponent } from './page/create-areas/create-areas.component
     HomeComponent,
     FrameComponent,
     PersonalComponent,
-    CreateAreasComponent
+    CreateAreasComponent,
+    ForbiddenNameDirective,
+    PaginationComponent,
+    ModalComponent,
+    CreateTypesComponent
   ],
   imports: [
     BrowserModule,

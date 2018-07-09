@@ -1,0 +1,128 @@
+<div class="types-contaier">
+    <ol class="breadcrumb">
+      <li><a href="javascript:void(0)">类型展示</a></li>
+      <li class="active">类型模块</li>
+    </ol>
+  
+    <div class="types-content">
+      <table class="table table-bordered table-hover">
+        <caption>类型列表
+          <button 
+            type="button" 
+            class="btn btn-info pull-right"
+            (click)="addPanel()"
+          >新增类型</button>
+        </caption>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>类型</th>
+            <th>名称</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let type of typeList;let i=index" [attr.id]="type.id">
+                <th scope="row">{{i+1}}</th>
+                <td>{{type.type}}</td>
+                <td>{{type.title}}</td>
+                <td>{{type.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td>{{type.modifyTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger btn-sm"
+                    data-toggle="modal"
+                    data-target=".bs-example-modal-sm"
+                    (click)="alertModalItem(type.id)"
+                  >
+                    删除
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-primary btn-sm"
+                    (click)="updatePanel(type.id)"
+                  >修改</button>
+                </td>
+              </tr>
+        </tbody>
+      </table>
+      <div class="pagination-container">
+        <app-pagination [pagination] = "pagination"></app-pagination>
+      </div>
+    </div>
+    <div class="types-add" [@panel-left]='state'>
+        <h4>新增类型
+          <button 
+            type="button" 
+            class="btn btn-danger pull-right"  
+            (click)="closePanel()"
+          >X</button></h4>
+        <hr/>
+        <form [formGroup]="typesForm" (submit)="createType(type.id)">
+          <div class="form-group">
+            <label for="typeType">类型</label>
+            <input 
+                  type="text" 
+                  class="form-control" 
+                  id="typeType" 
+                  placeholder="typeType"
+                  formControlName="typeType"
+                  required
+                  [(ngModel)]="type.tp"
+            >
+            <div 
+                *ngIf="typesForm.get('typeType').invalid && (typesForm.get('typeType').dirty || typesForm.get('typeType').touched)"
+                 class="alert alert-danger"
+                >
+                <div 
+                  *ngIf="typesForm.get('typeType').errors.required"
+                >
+                  类型必填
+                </div>
+                <div 
+                  *ngIf="typesForm.get('typeType').errors.forbiddenName"
+                >
+                  类型是数字
+                </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="typeTitle">名称</label>
+            <input 
+                  type="text" 
+                  class="form-control" 
+                  id="typeTitle" 
+                  placeholder="typeTitle"
+                  formControlName="typeTitle"
+                  required
+                  [(ngModel)]="type.title"
+            >
+            <div 
+            *ngIf="typesForm.get('typeTitle').invalid && (typesForm.get('typeTitle').dirty || typesForm.get('typeTitle').touched)"
+             class="alert alert-danger"
+            >
+            <div 
+              *ngIf="typesForm.get('typeTitle').errors.required"
+            >
+              类型必填
+            </div>
+        </div>
+          </div>
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="typesForm.invalid"
+            >
+            提交
+          </button>
+        </form>
+    </div>
+    <div class="lay-hide" *ngIf="state=='active'?true:false"></div>
+  
+    <!-- 弹框组件 -->
+    <app-modal [modal]="modal"></app-modal> 
+  </div>
+  
