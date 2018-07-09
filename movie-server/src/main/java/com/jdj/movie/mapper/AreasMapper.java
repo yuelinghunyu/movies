@@ -81,7 +81,6 @@ public interface AreasMapper {
         "update areas",
         "set area = #{area,jdbcType=INTEGER},",
           "title = #{title,jdbcType=VARCHAR},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
           "modify_time = now()",
         "where id = #{id,jdbcType=VARCHAR}"
     })

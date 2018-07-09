@@ -51,4 +51,7 @@ public class AreasBll {
         return areasMapper.deleteByPrimaryKey(id);
     }
 
+    public Areas getItemById(String id){
+        return areasMapper.selectByPrimaryKey(id);
+    }
 }

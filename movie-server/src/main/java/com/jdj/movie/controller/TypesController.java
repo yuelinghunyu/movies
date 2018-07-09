@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by jiangdajun on 2018/7/5.
@@ -35,7 +32,7 @@ public class TypesController {
         List<Types> list = typesBll.getTypeList(skip,limit);
         if(list.size()==0){
             logger.info("list的长度",list.size());
-            return new ReturnModel(0,null);
+            return new ReturnModel(0,new ArrayList<>());
         }
         int total = typesBll.getTotal();
         Map map = new HashMap<>();
@@ -51,8 +48,10 @@ public class TypesController {
             @RequestParam(value = "title") String title
     ){
         Types types = new Types();
+        types.setType(type);
+        types.setTitle(title);
         int flag = 0;
-        if(id == ""){
+        if(id.isEmpty()){
             types.setId(UUID.randomUUID().toString().replace("-","").toLowerCase());
             logger.info("id值","：空，执行插入数据库操作");
             flag = typesBll.insertTypes(types);
@@ -61,9 +60,10 @@ public class TypesController {
             logger.info("id值","："+id+";执行更新数据库操作");
             flag = typesBll.updateTypes(types);
         }
+        int total = typesBll.getTotal();
         if(flag>0){
             logger.info("return","：插入成功");
-            return new ReturnModel(0,true);
+            return new ReturnModel(0,total);
         }else {
             logger.info("return","：插入失败");
             return new ReturnModel(-1,flag);
@@ -79,5 +79,15 @@ public class TypesController {
         }else {
             return new ReturnModel(-1,flag);
         }
+    }
+    /**
+     * @content 查询一条记录
+     */
+    @RequestMapping(value = "/getItem",method = RequestMethod.GET)
+    public ReturnModel getAreaItem(
+            @RequestParam(value = "id") String id
+    ){
+        Types types = typesBll.getItemById(id);
+        return new ReturnModel(0,types);
     }
 }

@@ -6,15 +6,9 @@ import com.jdj.movie.model.ReturnModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by jiangdajun on 2018/7/5.
@@ -39,7 +33,7 @@ public class AreasController {
         List<Areas> list = areasBll.getAreasList(skip,limit);
         if(list.size()==0){
             logger.info("list的长度",list.size());
-            return new ReturnModel(0,null);
+            return new ReturnModel(0,new ArrayList<>());
         }
         int total = areasBll.getTotal();
         Map map = new HashMap<>();
@@ -60,18 +54,21 @@ public class AreasController {
     ){
         Areas areas = new Areas();
         int flag = 0;
-        if(id == ""){
+        areas.setArea(area);
+        areas.setTitle(title);
+        if(id.isEmpty()){
             areas.setId(UUID.randomUUID().toString().replace("-","").toLowerCase());
             logger.info("id值","：空，执行插入数据库操作");
             flag = areasBll.insertArea(areas);
         }else {
-           areas.setId(id);
+            areas.setId(id);
             logger.info("id值","："+id+";执行更新数据库操作");
             flag = areasBll.updateArea(areas);
         }
+        int total = areasBll.getTotal();
         if(flag>0){
             logger.info("return","：插入成功");
-            return new ReturnModel(0,true);
+            return new ReturnModel(0,total);
         }else {
             logger.info("return","：插入失败");
             return new ReturnModel(-1,flag);
@@ -90,5 +87,15 @@ public class AreasController {
         }else {
             return new ReturnModel(-1,flag);
         }
+    }
+    /**
+     * @content 查询一条记录
+     */
+    @RequestMapping(value = "/getItem",method = RequestMethod.GET)
+    public ReturnModel getAreaItem(
+            @RequestParam(value = "id") String id
+    ){
+        Areas areas = areasBll.getItemById(id);
+        return new ReturnModel(0,areas);
     }
 }

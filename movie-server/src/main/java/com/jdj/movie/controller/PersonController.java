@@ -50,7 +50,7 @@ public class PersonController {
         if(list.size()==0){
             return new ReturnModel(-1,null);
         }else {
-            return new ReturnModel(1,list);
+            return new ReturnModel(0,list);
         }
     }
 }

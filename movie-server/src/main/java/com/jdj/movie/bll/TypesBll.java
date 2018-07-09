@@ -30,5 +30,7 @@ public class TypesBll {
     public int deleteType(String id){
         return typesMapper.deleteByPrimaryKey(id);
     }
-
+    public Types getItemById(String id){
+        return typesMapper.selectByPrimaryKey(id);
+    }
 }
