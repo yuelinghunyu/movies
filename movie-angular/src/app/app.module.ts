@@ -16,6 +16,8 @@ import { ForbiddenNameDirective } from './shared/forbidden-name.directive';
 import { PaginationComponent } from './common/pagination/pagination.component';
 import { ModalComponent } from './common/modal/modal.component';
 import { CreateTypesComponent } from './page/create-types/create-types.component';
+import { CreateMoviesComponent } from './page/create-movies/create-movies.component';
+import { AddMovieComponent } from './page/add-movie/add-movie.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { CreateTypesComponent } from './page/create-types/create-types.component
     ForbiddenNameDirective,
     PaginationComponent,
     ModalComponent,
-    CreateTypesComponent
+    CreateTypesComponent,
+    CreateMoviesComponent,
+    AddMovieComponent
   ],
   imports: [
     BrowserModule,

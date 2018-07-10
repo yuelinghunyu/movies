@@ -1,0 +1,40 @@
+.add-container{
+    font-size:16px; 
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}
+.add-content{
+    padding: 20px;
+}
+h3{
+    text-align: center;
+    font-size: 18px;
+}
+.form-group{
+    padding: 10px 0px;
+}
+.btn-group{
+    margin: 0  0  0 50px;
+}
+.radio-group{
+    padding: 0 10px;
+}
+
+.pic-display{
+    width: 105px;
+    height: 140px;
+    border: 1px dashed violet;
+    position: relative;
+}
+.pic-display>span{
+    color: springgreen;
+    position: absolute;
+    right: -10px;
+    top:-10px;
+    cursor: pointer;
+    z-index: 8;
+}
+.dropdown-menu{
+    min-width: 80px;
+}

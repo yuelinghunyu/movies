@@ -1,0 +1,165 @@
+<div class="movies-container">
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0)">电影展示</a></li>
+        <li class="active">电影模块</li>
+    </ol>
+   
+    <div class="movies-content">
+        <table class="table table-bordered table-hover">
+          <caption>
+            电影列表
+            <!-- Split button -->
+            <!-- 地区 -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-info">区域</button>
+              <button 
+                type="button" 
+                class="btn btn-info dropdown-toggle" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false"
+              >
+                <span class="caret"></span>
+                <span class="sr-only"></span>
+              </button>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:void(0)">日本</a></li>
+              <li><a href="javascript:void(0)">美国</a></li>
+              <li><a href="javascript:void(0)">韩国</a></li>
+            </ul>
+          </div>
+          <!-- 影片类型 -->
+          <div class="btn-group">
+              <button type="button" class="btn btn-info">类型</button>
+              <button 
+                type="button" 
+                class="btn btn-info dropdown-toggle" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false"
+              >
+                <span class="caret"></span>
+                <span class="sr-only"></span>
+              </button>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:void(0)">科幻</a></li>
+              <li><a href="javascript:void(0)">惊悚</a></li>
+              <li><a href="javascript:void(0)">青春</a></li>
+              <li><a href="javascript:void(0)">武侠</a></li>
+              <li><a href="javascript:void(0)">剧情</a></li>
+              <li><a href="javascript:void(0)">其他</a></li>
+            </ul>
+          </div>
+
+            <!-- 影片分类 -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-info">分类</button>
+                <button 
+                  type="button" 
+                  class="btn btn-info dropdown-toggle" 
+                  data-toggle="dropdown" 
+                  aria-haspopup="true" 
+                  aria-expanded="false"
+                >
+                  <span class="caret"></span>
+                  <span class="sr-only"></span>
+                </button>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:void(0)">最新</a></li>
+                <li><a href="javascript:void(0)">最热</a></li>
+                <li><a href="javascript:void(0)">经典</a></li>
+              </ul>
+            </div>
+            <button 
+              type="button" 
+              class="btn btn-info pull-right"
+              (click)="addMovieUrl()"
+            >新增影片
+            </button>
+            <div class="search-container">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="电影名称查询">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="button">搜索</button>
+                    </span>
+                  </div><!-- /input-group -->
+            </div><!-- /.row -->
+        
+          </caption>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>区域</th>
+              <th>图片</th>
+              <th>云盘地址</th>
+              <th>描述</th>
+              <th>标题</th>
+              <th>影片类型</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>电影分类</th>
+              <th>是否免费</th>
+              <th>创建时间</th>
+              <th>修改时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>美国</td>
+              <td>
+                <img 
+                  class="movie-pic"
+                  src="http://n.sinaimg.cn/ent/transform/487/w210h277/20180628/U-Sx-heqpwqy3257323.jpg" 
+                  alt="动物世界" 
+                  title="动物世界">
+              </td>
+              <td>
+                <span 
+                  class="movie-url"
+                  title="http://n.sinaimg.cn/ent/transform/487/w210h277/20180628/U-Sx-heqpwqy3257323"
+                >
+                    http://n.sinaimg.cn/ent/transform/487/w210h277/20180628/U-Sx-heqpwqy3257323
+                </span>
+              </td>
+              <td>
+                <span 
+                  class="movie-description"
+                  title="一事无成的郑开司，参加了一场游轮上的神秘游戏来偿还巨款借款，游戏参与者要用“石头，剪刀，布”扑克为道具，夺取对手的星星标志。局中局、计中计"
+                  >
+                    一事无成的郑开司，参加了一场游轮上的神秘游戏来偿还巨款借款，游戏参与者要用“石头，剪刀，布”扑克为道具，夺取对手的星星标志。局中局、计中计
+                </span>
+              </td>
+              <td>动物世界</td>
+              <td>科幻</td>
+              <td>2.01￥</td>
+              <td>10</td>
+              <td>最新</td>
+              <td>否</td>
+              <td>2018-07-05 16:58:16</td>
+              <td>2018-07-05 16:58:16</td>
+              <td>
+                  <button 
+                  type="button" 
+                  class="btn btn-danger btn-sm"
+                  data-toggle="modal"
+                  data-target=".bs-example-modal-sm"
+                >
+                  删除
+                </button>
+                <button 
+                  type="button" 
+                  class="btn btn-primary btn-sm"
+                >修改</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination-container">
+          <!-- <app-pagination ></app-pagination> -->
+        </div>
+    </div>
+
+  
+</div>

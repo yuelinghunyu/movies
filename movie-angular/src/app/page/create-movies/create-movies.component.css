@@ -1,0 +1,47 @@
+.movies-container{
+    font-size:16px; 
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}
+.btn-group{
+    margin: 0  0  0 50px;
+}
+.dropdown-menu{
+    min-width: 80px;
+}
+.search-container{
+    width: 250px;
+    float: right;
+    margin-right: 50px;
+}
+.movies-content{
+    padding: 20px;
+}
+.movies-content>table{
+    cursor: pointer;
+}
+th{
+    text-align: center;
+}
+td{
+   text-align: center;
+   display: table-cell;
+   vertical-align: middle !important;
+}
+.movie-pic{
+    display: block;
+    width: 80px;
+    height: 115px;
+    border: none;
+}
+.movie-url,.movie-description{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    width: 100px;
+}
+.pagination-container{
+   padding: 20px 0px;
+}
