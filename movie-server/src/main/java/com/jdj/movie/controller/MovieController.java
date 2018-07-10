@@ -30,36 +30,16 @@ public class MovieController {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ReturnModel getMovieList(
-            @RequestParam(value = "flag",required = false,defaultValue = "") String flag,
-            @RequestParam(value = "val",required = false,defaultValue = "") String val,
+            @RequestParam(value = "id",required = false,defaultValue = "") String id,
+            @RequestParam(value = "area",required = false,defaultValue = "-1") int area,
+            @RequestParam(value = "title",required = false,defaultValue = "") String title,
+            @RequestParam(value = "type",required = false,defaultValue = "-1") int type,
+            @RequestParam(value = "movieType",required = false,defaultValue = "-1") int movieType,
             @RequestParam(value = "page",required = false,defaultValue = "1") int page,
             @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
     ){
         int skip = (page-1)*limit;
-        List<Movie> list = new ArrayList<>();
-        String id = "";
-        int area =  -1;
-        String title = "";
-        int type =  -1;
-        int movieType =  -1;
-        //根据flag作为判断条件（id\area\title\type|movieType）
-        if(flag.equals("id")){
-            id = val;
-        }
-        if(flag.equals("area")){
-            area = Integer.parseInt(val);
-        }
-        if(flag.equals("title")){
-            title = val;
-        }
-        if(flag.equals("type")){
-            type = Integer.parseInt(val);
-        }
-        if(flag.equals("movieType")){
-            movieType = Integer.parseInt(val);
-        }
-
-        list =  movieBll.getMovieList(id,area,title,type,movieType,skip,limit);
+        List<Movie> list =  movieBll.getMovieList(id,area,title,type,movieType,skip,limit);
         if(list.size()==0){
             logger.info("list的长度",list.size());
             return new ReturnModel(0,0);
