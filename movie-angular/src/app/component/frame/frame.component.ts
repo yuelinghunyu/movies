@@ -8,7 +8,7 @@ import { trigger,state,style,animate,transition} from '@angular/animations';
   animations:[
     trigger('expend-left',[
       state('inactive', style({
-        left:'-300px'
+        left:'-250px'
       })),
       state('active',   style({
         left:'0px'
@@ -21,7 +21,7 @@ import { trigger,state,style,animate,transition} from '@angular/animations';
         paddingLeft:'0px'
       })),
       state('active',   style({
-        paddingLeft:'300px'
+        paddingLeft:'250px'
       })),
       transition('inactive => active', animate('200ms ease-in')),
       transition('active => inactive', animate('200ms ease-out'))

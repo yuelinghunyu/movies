@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { HttpModule, Jsonp} from "@angular/http";
 import { ServiceService } from "./service/service.service";
+import { CommonModule } from "@angular/common";
+import { FileUploadModule } from "ng2-file-upload";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './page/login/login.component';
@@ -41,6 +43,8 @@ import { AddMovieComponent } from './page/add-movie/add-movie.component';
     BrowserAnimationsModule,
     HttpModule,
     ReactiveFormsModule,
+    CommonModule,
+    FileUploadModule,
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

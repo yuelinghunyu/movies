@@ -17,15 +17,41 @@ h3{
 .btn-group{
     margin: 0  0  0 50px;
 }
+.warn-btn-group,.warn-alert{
+    margin: 0px;
+}
+.warn-alert{
+    padding: 10px;
+}
+.price-group{
+    margin: 0;
+    color:blue;
+}
 .radio-group{
     padding: 0 10px;
 }
-
+.movie-input{
+    width: 450px;
+}
+#movie-pics{
+    width: 200px;
+}
+#movie-description{
+    width: 450px;
+    height: 100px;
+    resize: none;
+}
 .pic-display{
     width: 105px;
     height: 140px;
     border: 1px dashed violet;
     position: relative;
+}
+.pic-display>img{
+    display: block;
+    border: none;
+    width: 105px;
+    height: 140px;
 }
 .pic-display>span{
     color: springgreen;
