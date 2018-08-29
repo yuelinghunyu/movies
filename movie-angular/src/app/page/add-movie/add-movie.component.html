@@ -11,7 +11,10 @@
                 <label for="type-select">类型组别：</label>
                 <!-- 区域 -->
                 <div class="btn-group">
-                    <button type="button" class="btn btn-info">区域</button>
+                    <button 
+                        type="button" 
+                        class="btn btn-info"
+                    >{{movieAreaTitle}}</button>
                     <button 
                       type="button" 
                       class="btn btn-info dropdown-toggle" 
@@ -23,14 +26,27 @@
                       <span class="sr-only"></span>
                     </button>
                   <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0)">日本</a></li>
-                    <li><a href="javascript:void(0)">美国</a></li>
-                    <li><a href="javascript:void(0)">韩国</a></li>
+                    <li
+                        *ngFor="let area of areaList;let i=index" [attr.id]="area.id"
+                        (click)="areaEvent(area.title,area.area)"
+                    >
+                        <a href="javascript:void(0)">{{area.title}}</a>
+                    </li>
                   </ul>
+
+                  <input 
+                    type="hidden" 
+                    name="movieArea" 
+                    formControlName="movieArea"
+                    [(ngModel)]="movieAreaArea"
+                  >
                 </div>
                 <!-- 类型 -->
                 <div class="btn-group">
-                    <button type="button" class="btn btn-info">类型</button>
+                    <button 
+                        type="button" 
+                        class="btn btn-info"
+                    >{{movieTypeTitle}}</button>
                     <button 
                       type="button" 
                       class="btn btn-info dropdown-toggle" 
@@ -42,42 +58,191 @@
                       <span class="sr-only"></span>
                     </button>
                   <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0)">科幻</a></li>
-                    <li><a href="javascript:void(0)">惊悚</a></li>
-                    <li><a href="javascript:void(0)">青春</a></li>
-                    <li><a href="javascript:void(0)">武侠</a></li>
-                    <li><a href="javascript:void(0)">剧情</a></li>
-                    <li><a href="javascript:void(0)">其他</a></li>
+                        <li
+                        *ngFor="let type of typeList;let i=index" [attr.id]="type.id"
+                        (click)="typeEvent(type.title,type.type)"
+                        >
+                        <a href="javascript:void(0)">{{type.title}}</a>
+                    </li>
                   </ul>
+                  <input 
+                    type="hidden" 
+                    name="movieType" 
+                    formControlName="movieType"
+                    [(ngModel)]="movieTypeType"
+                  >
                 </div>
             </div>
 
             <div class="form-group">
               <label for="movie-pics">影片图片：</label>
               <div class="btn-group">
-                  <input type="file" id="movie-pics">
+                  <input 
+                    type="file" 
+                    id="movie-pics"
+                    ng2FileSelect
+                    [uploader]="uploader"
+                    (change)="fileChange($event)"
+                    [disabled]="picDisabled"
+                    [style.display]="picUploaded?'none':'block'"
+                  >
+                  <div 
+                    class="alert alert-danger warn-alert" 
+                    *ngIf="jpgWarn"
+                  >请上传图片</div>
               </div>
+              <input 
+                type="hidden" 
+                name="moviePic" 
+                formControlName="moviePic" 
+                [(ngModel)]="movieModel.picUrl"
+                >
               <div class="btn-group">
                   <div class="pic-display">
-                    <span class="glyphicon glyphicon-remove-sign"></span>
+                    <img [src]="movieModel.picUrl" alt="" srcset="">
+                    <span 
+                        class="glyphicon glyphicon-remove-sign"
+                        [style.display]="picUploaded?'block':'none'"
+                        (click)="delMoviePic()"
+                    ></span>
                   </div>
               </div>
+              
+               
             </div>
 
             <div class="form-group">
                 <label for="movie-types">影片分类：</label>
                 <div class="btn-group">
-                  <label for="check-one" class="radio-group">最新
-                      <input type="radio" id="check-one" value="1" name="types" checked>
+                  <label for="check-one" class="radio-group">最热
+                      <input 
+                        type="radio" 
+                        id="check-one"
+                        value="1" 
+                        name="types" 
+                        checked
+                        (change)="radioChange($event)"
+                      >
                   </label>
-                  <label for="check-two" class="radio-group">最热
-                      <input type="radio" id="check-two" value="2" name="types">
+                  <label for="check-two" class="radio-group">经典
+                      <input 
+                        type="radio" 
+                        id="check-two" 
+                        value="2" 
+                        name="types"
+                        (change)="radioChange($event)"
+                      >
                   </label>
-                  <label for="check-thr" class="radio-group">经典
-                      <input type="radio" id="check-thr" value="3" name="types">
+                  <label for="check-thr" class="radio-group">最新
+                      <input 
+                        type="radio" 
+                        id="check-thr" 
+                        value="3" 
+                        name="types"
+                        (change)="radioChange($event)"
+                      >
                   </label>
                 </div>
-              </div>
+
+                <input 
+                    type="hidden" 
+                    name="movieTps" 
+                    formControlName="movieTps"
+                    [(ngModel)]="movieTypeVal"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="movie-url">影片地址：</label>
+                <div class="btn-group">
+                  <input 
+                    type="text" 
+                    class="form-control movie-input movie-url" 
+                    placeholder="请输入云盘地址"
+                    formControlName="movieUrl"
+                  >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="movie-title">影片片名：</label>
+                <div class="btn-group">
+                  <input 
+                    type="text" 
+                    class="form-control movie-input movie-title" 
+                    placeholder="请输入电影名称"
+                    formControlName="movieTitle"
+                >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="movie-description">影片描述：</label>
+                <div class="btn-group">
+                  <textarea 
+                    name="movie-description" 
+                    id="movie-description" 
+                    cols="30" rows="10"
+                    formControlName="movieDescription"
+                ></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="movie-isFree">是否免费：</label>
+                <div class="btn-group">
+                    <label for="check-one" class="radio-group">是
+                        <input 
+                            type="radio" 
+                            id="check-one" 
+                            value="1" 
+                            name="isFree" 
+                            checked
+                            (change)="freeChange($event)"
+                        >
+                    </label>
+                    <label for="check-two" class="radio-group">否
+                        <input 
+                            type="radio" 
+                            id="check-two" 
+                            value="0" 
+                            name="isFree"
+                            (change)="freeChange($event)"
+                        >
+                    </label>
+                </div>
+                <input 
+                    type="hidden" 
+                    name="movieIsFree" 
+                    formControlName="movieIsFree"
+                    [(ngModel)]="movieIsFreeVal"
+                >
+            </div>
+
+            <div class="form-group" [style.display]="isFree ? 'none' :'block'">
+                <label for="movie-price">影片价格：</label>
+                <div class="btn-group">
+                  <input 
+                    type="text"
+                    id="movie-price"
+                    class="form-control movie-price" 
+                    placeholder="请输入电影价格"
+                    formControlName="moviePrice"
+                >
+                </div>
+                <div class="btn-group price-group">￥</div>
+            </div>
+
+            <hr/>
+
+            <button 
+            type="submit" 
+            class="btn btn-primary"
+            >
+            提交
+          </button>
         </form>
     </div>
+    <!-- 弹框组件 -->
+    <app-modal [modal]="modal"></app-modal> 
 </div>

@@ -11,7 +11,9 @@
             <!-- Split button -->
             <!-- 地区 -->
             <div class="btn-group">
-              <button type="button" class="btn btn-info">区域</button>
+              <button type="button" class="btn btn-info">
+                  {{movieAreaTitle}}
+              </button>
               <button 
                 type="button" 
                 class="btn btn-info dropdown-toggle" 
@@ -23,14 +25,17 @@
                 <span class="sr-only"></span>
               </button>
             <ul class="dropdown-menu">
-              <li><a href="javascript:void(0)">日本</a></li>
-              <li><a href="javascript:void(0)">美国</a></li>
-              <li><a href="javascript:void(0)">韩国</a></li>
+                <li
+                    *ngFor="let area of areaList;let i=index" [attr.id]="area.id"
+                    (click)="areaEvent(area.title,area.area)"
+                >
+                    <a href="javascript:void(0)">{{area.title}}</a>
+                </li>
             </ul>
           </div>
           <!-- 影片类型 -->
           <div class="btn-group">
-              <button type="button" class="btn btn-info">类型</button>
+              <button type="button" class="btn btn-info">{{movieTypeTitle}}</button>
               <button 
                 type="button" 
                 class="btn btn-info dropdown-toggle" 
@@ -42,18 +47,17 @@
                 <span class="sr-only"></span>
               </button>
             <ul class="dropdown-menu">
-              <li><a href="javascript:void(0)">科幻</a></li>
-              <li><a href="javascript:void(0)">惊悚</a></li>
-              <li><a href="javascript:void(0)">青春</a></li>
-              <li><a href="javascript:void(0)">武侠</a></li>
-              <li><a href="javascript:void(0)">剧情</a></li>
-              <li><a href="javascript:void(0)">其他</a></li>
+                <li
+                *ngFor="let type of typeList;let i=index" [attr.id]="type.id"
+                (click)="typeEvent(type.title,type.type)"
+                >
+                <a href="javascript:void(0)">{{type.title}}</a>
             </ul>
           </div>
 
             <!-- 影片分类 -->
             <div class="btn-group">
-                <button type="button" class="btn btn-info">分类</button>
+                <button type="button" class="btn btn-info">{{movieTypeType}}</button>
                 <button 
                   type="button" 
                   class="btn btn-info dropdown-toggle" 
@@ -65,9 +69,11 @@
                   <span class="sr-only"></span>
                 </button>
               <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">最新</a></li>
-                <li><a href="javascript:void(0)">最热</a></li>
-                <li><a href="javascript:void(0)">经典</a></li>
+                <li
+                  *ngFor="let movieType of movieTypeList"  
+                  [attr.id]="movieType.type"
+                  (click)="movieTypeEvent(movieType.title,movieType.type)"
+                ><a href="javascript:void(0)">{{movieType.title}}</a></li>
               </ul>
             </div>
             <button 
@@ -105,40 +111,40 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>美国</td>
+            <tr *ngFor="let movie of movieList;let i = index" [attr.id]="movie.id">
+              <td>{{i+1}}</td>
+              <td>{{movie.area}}</td>
               <td>
                 <img 
                   class="movie-pic"
-                  src="http://n.sinaimg.cn/ent/transform/487/w210h277/20180628/U-Sx-heqpwqy3257323.jpg" 
-                  alt="动物世界" 
-                  title="动物世界">
+                  [src]="movie.picUrl" 
+                  [attr.alt]="movie.title" 
+                  [attr.title]="movie.title">
               </td>
               <td>
                 <span 
                   class="movie-url"
-                  title="http://n.sinaimg.cn/ent/transform/487/w210h277/20180628/U-Sx-heqpwqy3257323"
+                  [attr.title]="movie.content"
                 >
-                    http://n.sinaimg.cn/ent/transform/487/w210h277/20180628/U-Sx-heqpwqy3257323
+                    {{movie.content}}
                 </span>
               </td>
               <td>
                 <span 
                   class="movie-description"
-                  title="一事无成的郑开司，参加了一场游轮上的神秘游戏来偿还巨款借款，游戏参与者要用“石头，剪刀，布”扑克为道具，夺取对手的星星标志。局中局、计中计"
+                  [attr.title]="movie.description"
                   >
-                    一事无成的郑开司，参加了一场游轮上的神秘游戏来偿还巨款借款，游戏参与者要用“石头，剪刀，布”扑克为道具，夺取对手的星星标志。局中局、计中计
+                   {{movie.description}}
                 </span>
               </td>
-              <td>动物世界</td>
-              <td>科幻</td>
-              <td>2.01￥</td>
-              <td>10</td>
-              <td>最新</td>
-              <td>否</td>
-              <td>2018-07-05 16:58:16</td>
-              <td>2018-07-05 16:58:16</td>
+              <td>{{movie.title}}</td>
+              <td>{{movie.type}}</td>
+              <td>{{movie.price}}￥</td>
+              <td>{{movie.count}}</td>
+              <td>{{movie.movieType}}</td>
+              <td>{{movie.isFree}}</td>
+              <td>{{movie.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+              <td>{{movie.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
               <td>
                   <button 
                   type="button" 
@@ -157,7 +163,7 @@
           </tbody>
         </table>
         <div class="pagination-container">
-          <!-- <app-pagination ></app-pagination> -->
+            <app-pagination [pagination] = "pagination"></app-pagination>
         </div>
     </div>
 

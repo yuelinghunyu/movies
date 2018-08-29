@@ -61,23 +61,28 @@ public class MovieController {
             @RequestParam(value = "id",required = false,defaultValue = "") String id,
             @RequestParam(value = "area") int area,
             @RequestParam(value = "picUrl") String picUrl,
+            @RequestParam(value = "OSSAccessKeyId") String keyId,
+            @RequestParam(value = "Signature") String sign,
             @RequestParam(value = "content") String content,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "title") String title,
             @RequestParam(value = "type") int type,
-            @RequestParam(value = "price") String price,
-            @RequestParam(value = "count") int count,
+            @RequestParam(value = "price",required = false,defaultValue = "") String price,
+            @RequestParam(value = "count" ,required = false,defaultValue = "0") int count,
             @RequestParam(value = "movieType") int movieType,
             @RequestParam(value = "isFree") int isFree
     ){
         Movie movie = new Movie();
         movie.setArea(area);
-        movie.setPicUrl(picUrl);
+        String url = picUrl + "&OSSAccessKeyId="+keyId+"&Signature="+sign;
+        movie.setPicUrl(url);
         movie.setContent(content);
         movie.setDescription(description);
         movie.setTitle(title);
         movie.setType(type);
-        movie.setPrice(new BigDecimal(price));
+        if(!price.isEmpty()){
+            movie.setPrice(new BigDecimal(price));
+        }
         movie.setCount(count);
         movie.setMovieType(StaticTypes.valueOf(movieType));
         movie.setIsFree(isFree);

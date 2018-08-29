@@ -98,4 +98,12 @@ public class AreasController {
         Areas areas = areasBll.getItemById(id);
         return new ReturnModel(0,areas);
     }
+    /**
+     * @content 查询总共条数
+     */
+    @RequestMapping(value = "/getTotal",method = RequestMethod.GET)
+    public ReturnModel totalCount(){
+        int total = areasBll.getTotal();
+        return new ReturnModel(0,total);
+    }
 }

@@ -90,4 +90,13 @@ public class TypesController {
         Types types = typesBll.getItemById(id);
         return new ReturnModel(0,types);
     }
+
+    /**
+     * @content 查询总共条数
+     */
+    @RequestMapping(value = "/getTotal",method = RequestMethod.GET)
+    public ReturnModel totalCount(){
+        int total = typesBll.getTotal();
+        return new ReturnModel(0,total);
+    }
 }

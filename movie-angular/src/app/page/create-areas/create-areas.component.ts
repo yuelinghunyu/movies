@@ -50,6 +50,7 @@ export class CreateAreasComponent implements OnInit {
   }
   //弹框出现;
   private alertModalItem(id:string){
+    this.modal.close = true;
     this.modal.tips = "是否删除该项？";
     this.modal.id = id;
     this.modal.changeEvent=((id:string)=>{

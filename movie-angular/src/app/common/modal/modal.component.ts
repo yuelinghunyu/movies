@@ -18,4 +18,7 @@ export class ModalComponent implements OnInit {
   confirmEvent(id:string){
     this.modal.changeEvent(id);
   }
+  refuseEvent(){
+    this.modal.closeEvent();
+  }
 }

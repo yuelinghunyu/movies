@@ -47,6 +47,11 @@ export class ServiceService {
     const url = this.movies+"/areas/getItem";
     return this.http.get(url,{params:param});
   }
+  //获取地域总数
+  getAreaTotal(){
+    const url =  this.movies+"/areas/getTotal";
+    return this.http.get(url);
+  }
   /**地域模块结束 */
 
   /**类型模块开始 */
@@ -66,6 +71,11 @@ export class ServiceService {
     const url = this.movies+"/types/getItem";
     return this.http.get(url,{params:param});
   }
+  //获取类型总数
+  getTypeTotal(){
+    const url =  this.movies+"/types/getTotal";
+    return this.http.get(url);
+  }
   //创建类型
   createTypeItem(body){
     const url =  this.movies+"/types/addOrUpdate";
@@ -73,4 +83,31 @@ export class ServiceService {
     return this.http.post(url,param,this.httpOptions);
   }
   /**类型模块结束 */
+
+  /**电影模块开始 */
+  //创建单个电影
+  createMovieItem(body){
+    const url = this.movies+"/movie/addOrUpdate";
+    const param = 
+          "id="+body.id+
+          "&area="+body.area+
+          "&picUrl="+body.picUrl+
+          "&content="+body.content+
+          "&description="+body.description+
+          "&title="+body.title+
+          "&type="+body.type+
+          "&price="+body.price+
+          "&movieType="+body.movieType+
+          "&isFree="+body.isFree;
+    console.log(body.picUrl);
+    return this.http.post(url,param,this.httpOptions);
+  }
+  //查询影片列表
+  getMovieList(param){
+    const url = this.movies + "/movie/list"
+    return this.http.get(url,{params:param});
+  }
+
+  /**电影模块结束 */
+  
 }
