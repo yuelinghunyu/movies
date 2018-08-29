@@ -1,9 +1,11 @@
 package com.jdj.movie.controller;
 
+import com.jdj.movie.bll.AreasBll;
 import com.jdj.movie.bll.MovieBll;
+import com.jdj.movie.bll.TypesBll;
 import com.jdj.movie.enums.StaticTypes;
-import com.jdj.movie.model.Movie;
-import com.jdj.movie.model.ReturnModel;
+import com.jdj.movie.model.*;
+import com.jdj.movie.utils.CovertUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ public class MovieController {
     private final static Logger logger = LoggerFactory.getLogger(MovieController.class);
     @Autowired
     private MovieBll movieBll;
+    @Autowired
+    private AreasBll areasBll;
+    @Autowired
+    private TypesBll typesBll;
     /**
      * @param null
      * @return movie list
@@ -40,6 +46,17 @@ public class MovieController {
     ){
         int skip = (page-1)*limit;
         List<Movie> list =  movieBll.getMovieList(id,area,title,type,movieType,skip,limit);
+        List<MovieConvert> mList = new ArrayList<>();
+        int areaTotal = areasBll.getTotal();
+        int typesTotal = typesBll.getTotal();
+
+        List<Areas> areasList = areasBll.getAreasList(0,areaTotal);
+        List<Types> typesList = typesBll.getTypeList(0,typesTotal);
+
+        for (int i=0;i<list.size();i++){
+            MovieConvert movieConvert = CovertUtils.covertMovie(list.get(i),areasList,typesList);
+            mList.add(movieConvert);
+        }
         if(list.size()==0){
             logger.info("list的长度",list.size());
             return new ReturnModel(0,0);
@@ -47,7 +64,7 @@ public class MovieController {
         int total = movieBll.getTotal(id,area,title,type,movieType);
         Map map = new HashMap<>();
         map.put("total",total);
-        map.put("list",list);
+        map.put("list",mList);
         logger.info("返回成功",true);
         return new ReturnModel(0,map);
     }

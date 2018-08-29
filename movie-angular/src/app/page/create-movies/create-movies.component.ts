@@ -69,6 +69,7 @@ export class CreateMoviesComponent implements OnInit {
         let typeList = this.service.getTypesList(typeParam);
 
         Observable.forkJoin([areaList,typeList]).subscribe(res=>{
+          
           this.areaList = JSON.parse(res[0]["_body"]).data.list;
           this.typeList = JSON.parse(res[1]["_body"]).data.list;
         })

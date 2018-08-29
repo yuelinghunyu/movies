@@ -113,7 +113,7 @@
           <tbody>
             <tr *ngFor="let movie of movieList;let i = index" [attr.id]="movie.id">
               <td>{{i+1}}</td>
-              <td>{{movie.area}}</td>
+              <td>{{movie.areaTitle}}</td>
               <td>
                 <img 
                   class="movie-pic"
@@ -138,11 +138,11 @@
                 </span>
               </td>
               <td>{{movie.title}}</td>
-              <td>{{movie.type}}</td>
+              <td>{{movie.typeTitle}}</td>
               <td>{{movie.price}}￥</td>
               <td>{{movie.count}}</td>
               <td>{{movie.movieType}}</td>
-              <td>{{movie.isFree}}</td>
+              <td>{{movie.isFreeTitle}}</td>
               <td>{{movie.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
               <td>{{movie.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
               <td>
