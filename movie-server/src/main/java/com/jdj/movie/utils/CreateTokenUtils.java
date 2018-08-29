@@ -34,7 +34,7 @@ public class CreateTokenUtils {
                 b = parseJWT(auth,base64Secret) != null?true:false;
             }
         }
-        if(b == false){
+        if(b == null){
             logger.error("getUserInfoByRequest:"+ auth);
             return new ReturnModel(-1,b);
         }

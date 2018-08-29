@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,20 +20,17 @@ public class HTTPBasicAuthorizeHandler implements Filter {
 
     private static Logger logger = LoggerFactory.getLogger(HTTPBasicAuthorizeHandler.class);
     @Autowired
-    private Token token;
-    @Autowired
     private Audience audience;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         logger.info("filter is init");
-        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,filterConfig.getServletContext());
-
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         logger.info("filter is start");
         try {
+            logger.info("audience:"+audience.getBase64Secret());
             ReturnModel returnModel = CreateTokenUtils.getUserInfoByRequest((HttpServletRequest)servletRequest,audience.getBase64Secret());
             if(returnModel.getCode() != 0){
                 HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;

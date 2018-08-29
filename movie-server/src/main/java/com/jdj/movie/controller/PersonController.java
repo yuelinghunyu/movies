@@ -25,8 +25,6 @@ public class PersonController {
     private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
     @Autowired
     private PersonBll personBll;
-    @Autowired
-    private Audience audience;
     /**
      * @content:根据id对应的person
      * @param id=1;
@@ -37,10 +35,12 @@ public class PersonController {
             @RequestParam(value = "userName") String userName,
             @RequestParam(value = "passWord") String passWord
     ){
+        Audience audience = new Audience();
         String id = personBll.getPersonExist(userName,passWord);
         if(id!=null||id.length()<0){
             return new ReturnModel(-1,null);
         }else {
+
             String accessToken = CreateTokenUtils
                     .createJWT(userName,audience.getClientId(), audience.getName(),audience.getExpiresSecond() * 1000, audience.getBase64Secret());
             AccessToken accessTokenEntity = new AccessToken();
