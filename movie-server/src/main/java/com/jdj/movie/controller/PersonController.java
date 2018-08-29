@@ -1,8 +1,11 @@
 package com.jdj.movie.controller;
 
 import com.jdj.movie.bll.PersonBll;
+import com.jdj.movie.model.AccessToken;
+import com.jdj.movie.model.Audience;
 import com.jdj.movie.model.Person;
 import com.jdj.movie.model.ReturnModel;
+import com.jdj.movie.utils.CreateTokenUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,8 @@ public class PersonController {
     private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
     @Autowired
     private PersonBll personBll;
+    @Autowired
+    private Audience audience;
     /**
      * @content:根据id对应的person
      * @param id=1;
@@ -36,6 +41,12 @@ public class PersonController {
         if(id!=null||id.length()<0){
             return new ReturnModel(-1,null);
         }else {
+            String accessToken = CreateTokenUtils
+                    .createJWT(userName,audience.getClientId(), audience.getName(),audience.getExpiresSecond() * 1000, audience.getBase64Secret());
+            AccessToken accessTokenEntity = new AccessToken();
+            accessTokenEntity.setAccess_token(accessToken);
+            accessTokenEntity.setExpires_in(audience.getExpiresSecond());
+            accessTokenEntity.setToken_type("bearer");
             return new ReturnModel(0,id);
         }
     }
