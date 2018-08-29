@@ -18,7 +18,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "history": "^4.7.2",
     "lib-flexible": "^0.3.2",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "postcss-px2rem": "^0.3.0",
     "pubsub-js": "^1.6.0",
     "radium": "^0.24.0",
