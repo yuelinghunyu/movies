@@ -31,7 +31,7 @@ public class CreateTokenUtils {
             String HeadStr = auth.substring(0,5).toLowerCase();
             if(HeadStr.compareTo("basic") == 0){
                 auth = auth.substring(6,auth.length());
-                b = parseJWT(auth,base64Secret) != null);
+                b = parseJWT(auth,base64Secret) != null?true:false;
             }
         }
         if(b == false){
