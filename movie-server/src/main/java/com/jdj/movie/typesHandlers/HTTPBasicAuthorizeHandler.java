@@ -3,22 +3,26 @@ package com.jdj.movie.typesHandlers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jdj.movie.model.Audience;
 import com.jdj.movie.model.ReturnModel;
-import com.jdj.movie.model.Token;
 import com.jdj.movie.utils.CreateTokenUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
+@WebFilter(filterName = "basicFilter",urlPatterns = "/*")
 public class HTTPBasicAuthorizeHandler implements Filter {
 
     private static Logger logger = LoggerFactory.getLogger(HTTPBasicAuthorizeHandler.class);
+    private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("/person/exsit")));
     @Autowired
     private Audience audience;
     @Override
@@ -31,17 +35,24 @@ public class HTTPBasicAuthorizeHandler implements Filter {
         logger.info("filter is start");
         try {
             logger.info("audience:"+audience.getBase64Secret());
-            ReturnModel returnModel = CreateTokenUtils.getUserInfoByRequest((HttpServletRequest)servletRequest,audience.getBase64Secret());
-            if(returnModel.getCode() != 0){
-                HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-                httpServletResponse.setCharacterEncoding("UTF-8");
-                httpServletResponse.setContentType("application/json; charset=utf-8");
-                httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-
-                ObjectMapper mapper = new ObjectMapper();
-                httpServletResponse.getWriter().write(mapper.writeValueAsString(returnModel));
-            }else {
+            HttpServletRequest request = (HttpServletRequest) servletRequest;
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            String path = request.getRequestURI().substring(request.getContextPath().length()).replaceAll("[/]+$", "");
+            logger.info("url:"+path);
+            Boolean allowedPath = ALLOWED_PATHS.contains(path);
+            if(allowedPath){
                 filterChain.doFilter(servletRequest,servletResponse);
+            }else {
+                ReturnModel returnModel = CreateTokenUtils.checkJWT((HttpServletRequest)servletRequest,audience.getBase64Secret());
+                if(returnModel.getCode() != 0){
+                    response.setCharacterEncoding("UTF-8");
+                    response.setContentType("application/json; charset=utf-8");
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    ObjectMapper mapper = new ObjectMapper();
+                    response.getWriter().write(mapper.writeValueAsString(returnModel));
+                }else {
+                    filterChain.doFilter(servletRequest,servletResponse);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

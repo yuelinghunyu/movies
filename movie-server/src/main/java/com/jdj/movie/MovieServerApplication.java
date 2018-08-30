@@ -14,20 +14,11 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableConfigurationProperties(Audience.class)
+@ServletComponentScan
 public class MovieServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MovieServerApplication.class, args);
 	}
 
-    @Bean
-    public FilterRegistrationBean setFilter(){
-
-        FilterRegistrationBean filterBean = new FilterRegistrationBean();
-        filterBean.setFilter(new HTTPBasicAuthorizeHandler());
-        filterBean.setName("HTTPBasicAuthorizeHandler");
-        filterBean.addUrlPatterns("/*");
-        filterBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico");
-        return filterBean;
-    }
 }

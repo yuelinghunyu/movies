@@ -6,19 +6,19 @@
 
   <div class="person-detail">
     <div class="detail-left">
-        <img [src]="person.img" alt="人物图像">
+        <img [src]="persons.img" alt="人物图像">
         <ul class="detail-info">
           <li>
             <span>姓名：</span>
-            <span>{{person.userName}}</span>
+            <span>{{persons.userName}}</span>
           </li>
           <li>
             <span>密码：</span>
-            <span>{{person.passWord}}</span>
+            <span>{{persons.passWord}}</span>
           </li>
           <li>
             <span>创建时间：</span>
-            <span>{{person.createDate}}</span>
+            <span>{{persons.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</span>
           </li>
         </ul>
     </div>

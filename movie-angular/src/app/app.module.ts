@@ -6,6 +6,7 @@ import { HttpModule, Jsonp} from "@angular/http";
 import { ServiceService } from "./service/service.service";
 import { CommonModule } from "@angular/common";
 import { FileUploadModule } from "ng2-file-upload";
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './page/login/login.component';
@@ -45,6 +46,7 @@ import { AddMovieComponent } from './page/add-movie/add-movie.component';
     ReactiveFormsModule,
     CommonModule,
     FileUploadModule,
+    LazyLoadImageModule,
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

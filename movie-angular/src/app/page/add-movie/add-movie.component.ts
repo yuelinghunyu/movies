@@ -23,10 +23,12 @@ export class AddMovieComponent implements OnInit {
   modal:Modal = Modal.modal;
   areaList:Array<any>;
   typeList:Array<any>;
+  authorization:string;
 
   uploader:FileUploader = new FileUploader({
     url:"/movies/file/toOssServer",
     method:"post",
+    headers:[{name:'Authorization',value:this.authorization = "mso " + localStorage.getItem("accessToken")}],
     itemAlias:"uploader",
     autoUpload:false
   });
@@ -184,7 +186,7 @@ export class AddMovieComponent implements OnInit {
       this.picDisabled = false;
     }
     const isJpg = ev.target.files[0].name.split(".")[1];
-    const exg = "(png|jpg|gif|PNG|JPG|GIF)";
+    const exg = "(png|jpg|gif|jpeg|PNG|JPG|GIF|JPEG)";
     this.jpgValid = new RegExp(exg).test(isJpg);
     if(this.jpgValid){
       this.uploader.queue[0].upload();//开始上传;

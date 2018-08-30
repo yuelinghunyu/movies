@@ -25,19 +25,20 @@ public class PersonController {
     private final static Logger logger = LoggerFactory.getLogger(PersonController.class);
     @Autowired
     private PersonBll personBll;
+    @Autowired
+    private Audience audience;
     /**
      * @content:根据id对应的person
      * @param id=1;
      * @return returnModel
      */
-    @RequestMapping(value = "/exsit",method = RequestMethod.GET)
+    @RequestMapping(value = "/exsit",method = RequestMethod.POST)
     public ReturnModel exsit(
             @RequestParam(value = "userName") String userName,
             @RequestParam(value = "passWord") String passWord
     ){
-        Audience audience = new Audience();
         String id = personBll.getPersonExist(userName,passWord);
-        if(id!=null||id.length()<0){
+        if(id ==null||id.length()<0){
             return new ReturnModel(-1,null);
         }else {
 
@@ -47,7 +48,7 @@ public class PersonController {
             accessTokenEntity.setAccess_token(accessToken);
             accessTokenEntity.setExpires_in(audience.getExpiresSecond());
             accessTokenEntity.setToken_type("bearer");
-            return new ReturnModel(0,id);
+            return new ReturnModel(0,accessTokenEntity);
         }
     }
     /**

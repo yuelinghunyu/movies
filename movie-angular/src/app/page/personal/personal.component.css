@@ -12,8 +12,8 @@
     margin-bottom: 20px; 
 }
 .detail-left{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,8 +21,8 @@
 .detail-left>img{
     display: block;
     border: 2px solid #ddd;
-    width: 196px;
-    height: 196px;
+    width: 146px;
+    height: 146px;
     border-radius: 50%;
 }
 .detail-left>ul{
@@ -55,6 +55,6 @@
 }
 .person>img{
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }

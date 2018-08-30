@@ -27,13 +27,11 @@
     color: #FFF;
     cursor: pointer;
     display: block;
-    font-family: Courier New;
-    font-weight: bold;
-    width: 50px;
+    width: 55px;
     height: 50px;
     line-height: 55px;
     text-align: center;
-    text-shadow: 0 -8px;
+    text-shadow: 0 -11px;
     font-size: 50px;
 }
 .body-container{

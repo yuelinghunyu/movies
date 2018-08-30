@@ -8,7 +8,8 @@ import { ServiceService } from '../../service/service.service';
 })
 export class PersonalComponent implements OnInit {
   private personList = [];
-  private person = {};
+  private persons = {};
+  private defaultImage = "../../../assets/imgs/tiger.gif";
   constructor(public service:ServiceService) {}
 
   ngOnInit() {
@@ -20,12 +21,12 @@ export class PersonalComponent implements OnInit {
       let data = JSON.parse(res["_body"]);
       if(data.code == 0){
         let list = data.data;
+        this.persons = list[0];//第一个
         this.personList = list;
-        this.person = this.personList[0];//第一个
       }
     })
   }
   changePerson(i){
-    this.person = this.personList[i];
+    this.persons = this.personList[i];
   }
 }

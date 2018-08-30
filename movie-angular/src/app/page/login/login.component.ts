@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public service:ServiceService
   ) {
     this.createForm();
    }
@@ -77,8 +78,10 @@ export class LoginComponent implements OnInit {
   // 创建响应式表单初始化;
   createForm() {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, ForbiddenNameValidor(/^[a-zA-Z0-9_-]{4,16}$/i)]], // iFat3
-      password: ['', [Validators.required, ForbiddenNameValidor(/^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/)]] // iFat3#
+      // userName: ['', [Validators.required, ForbiddenNameValidor(/^[a-zA-Z0-9_-]{4,16}$/i)]], // iFat3
+      // password: ['', [Validators.required, ForbiddenNameValidor(/^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/)]] // iFat3#
+      userName: ['', Validators.required], // iFat3
+      password: ['', Validators.required] // iFat3#
     });
   }
   ngOnInit() {
@@ -126,7 +129,18 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       ev.target.innerHTML = '';
       this.loginingState = 'activing';
-      this.router.navigateByUrl('/home');
+      this.service.loginMovies(this.loginForm.value).subscribe((res)=>{
+        let data = JSON.parse(res["_body"]);
+        if(data.code == 0){
+          if(localStorage.getItem("accessToken") !== undefined){
+            localStorage.removeItem("accessToken");
+          }
+          localStorage.setItem("accessToken",data.data.access_token);
+          if(localStorage.getItem("accessToken") !== ""){
+            this.router.navigateByUrl('/home');
+          }
+        }
+      })
     }
   }
 }
