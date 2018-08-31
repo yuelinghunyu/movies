@@ -132,13 +132,14 @@ export class LoginComponent implements OnInit {
       this.service.loginMovies(this.loginForm.value).subscribe((res)=>{
         let data = JSON.parse(res["_body"]);
         if(data.code == 0){
-          if(localStorage.getItem("accessToken") !== undefined){
-            localStorage.removeItem("accessToken");
+          localStorage.setItem("accessToken",data.data.accessToken.access_token);
+          localStorage.setItem("person",JSON.stringify(data.data.person));
+          if(localStorage.getItem("accessToken") !== null && localStorage.getItem("person")!= null){
+             this.router.navigateByUrl("/home");
           }
-          localStorage.setItem("accessToken",data.data.access_token);
-          if(localStorage.getItem("accessToken") !== ""){
-            this.router.navigateByUrl('/home');
-          }
+        }else{
+          this.loginingState = 'initial';
+          ev.target.innerHTML = '登 录';
         }
       })
     }

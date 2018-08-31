@@ -3,7 +3,7 @@ package com.jdj.movie.model;
 import java.util.Date;
 
 public class Person {
-    private Integer id;
+    private String id;
 
     private String userName;
 
@@ -13,11 +13,11 @@ public class Person {
 
     private Date createDate;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

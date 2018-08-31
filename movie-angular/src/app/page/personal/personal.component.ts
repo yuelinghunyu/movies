@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../service/service.service';
+import { Person } from '../../component/frame/person';
 
 @Component({
   selector: 'app-personal',
@@ -8,8 +9,7 @@ import { ServiceService } from '../../service/service.service';
 })
 export class PersonalComponent implements OnInit {
   private personList = [];
-  private persons = {};
-  private defaultImage = "../../../assets/imgs/tiger.gif";
+  persons:Person = Person.personDefault;
   constructor(public service:ServiceService) {}
 
   ngOnInit() {

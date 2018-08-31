@@ -9,14 +9,14 @@ import java.util.List;
 public interface PersonMapper {
     @Delete({
         "delete from person",
-        "where id = #{id,jdbcType=INTEGER}"
+        "where id = #{id,jdbcType=VARCHAR}"
     })
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     @Insert({
         "insert into person (id, user_name, ",
         "pass_word, img, create_date)",
-        "values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, ",
+        "values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, ",
         "#{passWord,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})"
     })
     int insert(Person record);
@@ -31,13 +31,13 @@ public interface PersonMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
         @Result(column="pass_word", property="passWord", jdbcType=JdbcType.VARCHAR),
         @Result(column="img", property="img", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_date", property="createDate", jdbcType=JdbcType.TIMESTAMP)
     })
-    Person selectByPrimaryKey(Integer id);
+    Person selectByPrimaryKey(String id);
     //查询用户是否存在;
     @Select({
             "select id",
@@ -46,7 +46,7 @@ public interface PersonMapper {
             "and pass_word=#{passWord,jdbcType=VARCHAR}"
     })
     @Results({
-            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true)
+            @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true)
     })
     String selectExist(@Param("userName") String userName, @Param("passWord") String passWord);
 
@@ -57,7 +57,7 @@ public interface PersonMapper {
             "from person"
     })
     @Results({
-            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
             @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
             @Result(column="pass_word", property="passWord", jdbcType=JdbcType.VARCHAR),
             @Result(column="img", property="img", jdbcType=JdbcType.VARCHAR),
@@ -74,7 +74,7 @@ public interface PersonMapper {
           "pass_word = #{passWord,jdbcType=VARCHAR},",
           "img = #{img,jdbcType=VARCHAR},",
           "create_date = #{createDate,jdbcType=TIMESTAMP}",
-        "where id = #{id,jdbcType=INTEGER}"
+        "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Person record);
 }

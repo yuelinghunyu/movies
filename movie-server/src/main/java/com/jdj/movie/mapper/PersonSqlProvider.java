@@ -10,7 +10,7 @@ public class PersonSqlProvider {
         sql.INSERT_INTO("person");
         
         if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
+            sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
         
         if (record.getUserName() != null) {
@@ -52,7 +52,7 @@ public class PersonSqlProvider {
             sql.SET("create_date = #{createDate,jdbcType=TIMESTAMP}");
         }
         
-        sql.WHERE("id = #{id,jdbcType=INTEGER}");
+        sql.WHERE("id = #{id,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

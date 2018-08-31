@@ -29,6 +29,13 @@ export class ServiceService {
   }
   /**登录模块结束*/
   /**首页模块开始 */
+  //首页;
+  getPersonItem(param){
+    this.refreshHeader();
+    const url = this.movies+"/person/item";
+    this.httpOptions["params"] = param;
+    return this.http.get(url,this.httpOptions);
+  }
   //个人中心
   getPersonList(){
     this.refreshHeader();

@@ -1,5 +1,5 @@
 .types-container{
-    font-size:16px; 
+    font-size:14px; 
     padding: 20px;
     min-width: 1024px;
     overflow: auto;
@@ -29,7 +29,7 @@
 .areas-add>h4{
     text-align: center;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 14px;
     color: blueviolet;
 }
 .lay-hide{
