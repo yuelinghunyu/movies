@@ -1,8 +1,16 @@
 <div class="frame-container">
   <nav class="header">
      <div class="btn-container" (click)="toggleState()">
-      <span class="expend-btn">=</span>
+      <span class="expend-btn glyphicon glyphicon-menu-hamburger"></span>
      </div>
+     <!-- Split button -->
+    <div class="login-logo" (click)="listToggle()">
+        <img [src]="person.img" alt="logo">
+        <ul class="person-list" *ngIf="listNone">
+          <li (click)="$event.stopPropagation();listRedirct('personel')">个人中心</li>
+          <li (click)="$event.stopPropagation();listRedirct('loginOut')">退出</li>
+        </ul>
+    </div>
   </nav>
   <section class="body-container">
       <div 

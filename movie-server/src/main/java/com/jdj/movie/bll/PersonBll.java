@@ -23,4 +23,9 @@ public class PersonBll {
     public List<Person> selectAll(){
         return personMapper.selectAll();
     }
+
+    //根据id查询用户;
+    public Person getPerson(String id){
+        return personMapper.selectByPrimaryKey(id);
+    }
 }

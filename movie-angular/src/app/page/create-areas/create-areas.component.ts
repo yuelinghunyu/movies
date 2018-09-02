@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { trigger,state,style,animate,transition} from '@angular/animations';
-import { FormArray, FormBuilder, FormGroup,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { ForbiddenNameValidor } from '../../shared/forbidden-name.directive';
 import { ServiceService } from '../../service/service.service';
 import { Pagination } from "../../common/pagination/pagination";
@@ -66,8 +66,7 @@ export class CreateAreasComponent implements OnInit {
       "id":id
     }
     this.service.deleteAreaOne(param).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
+      if(res["code"] === 0){
         this.modal.tips = "删除成功！";
         $("#tipModal").modal('hide');
         this.modal.flag = false;
@@ -82,10 +81,9 @@ export class CreateAreasComponent implements OnInit {
       "limit":this.pagination.pageItems
     }
     this.service.getAreasList(param).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
-        this.areaList = data.data.list;
-        this.total = data.data.total;
+      if(res["code"] === 0){
+        this.areaList = res["data"].list;
+        this.total = res["data"].total;
         this.pagination.totalItems = this.total;
       }
     });
@@ -108,11 +106,10 @@ export class CreateAreasComponent implements OnInit {
       'title':title
     }
     this.service.createAreaItem(Area).subscribe(res=>{
-      const body = JSON.parse(res["_body"]);
-      if(body["code"] == 0){
+      if(res["code"] === 0){
         this.closePanel();
         this.areasForm.reset();
-        this.pagination.currentPage = Math.round(body["data"]/this.pagination.pageItems);
+        this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
         this.initList();
       }
     })
@@ -130,9 +127,8 @@ export class CreateAreasComponent implements OnInit {
   }
   updatePanel(id:string){
     this.getAreaItem(id).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
-        const Area = data.data;
+      if(res["code"] === 0){
+        const Area = res["data"];
         this.area.id = Area.id;
         this.area.area = Area.area;
         this.area.title = Area.title;

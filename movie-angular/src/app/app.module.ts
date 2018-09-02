@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms'; 
-import { HttpModule, Jsonp} from "@angular/http";
 import { ServiceService } from "./service/service.service";
+import {InterceptorService} from "./InterceptorService";
+import {HTTP_INTERCEPTORS,HttpClientModule} from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { FileUploadModule } from "ng2-file-upload";
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './page/login/login.component';
@@ -21,6 +23,9 @@ import { CreateTypesComponent } from './page/create-types/create-types.component
 import { CreateMoviesComponent } from './page/create-movies/create-movies.component';
 import { AddMovieComponent } from './page/add-movie/add-movie.component';
 
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+];
 
 @NgModule({
   declarations: [
@@ -41,12 +46,13 @@ import { AddMovieComponent } from './page/add-movie/add-movie.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
     FileUploadModule,
+    LazyLoadImageModule,
   ],
-  providers: [ServiceService],
+  providers: [ServiceService,httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -63,8 +63,7 @@ export class CreateTypesComponent implements OnInit {
       "id":id
     }
     this.service.deleteTypeOne(param).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
+      if(res["code"] === 0){
         this.modal.tips = "删除成功！";
         $("#tipModal").modal('hide');
         this.modal.flag = false;
@@ -79,10 +78,10 @@ export class CreateTypesComponent implements OnInit {
       "limit":this.pagination.pageItems
     }
     this.service.getTypesList(param).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
-        this.typeList = data.data.list;
-        this.total = data.data.total;
+      if(res["code"] == 0){
+        const data = res["data"];
+        this.typeList = data.list;
+        this.total = data.total;
         this.pagination.totalItems = this.total;
       }
     });
@@ -106,11 +105,10 @@ export class CreateTypesComponent implements OnInit {
       'title':title
     }
     this.service.createTypeItem(typeS).subscribe(res=>{
-      const body = JSON.parse(res["_body"]);
-      if(body["code"] == 0){
+      if(res["code"] === 0){
         this.closePanel();
         this.typesForm.reset();
-        this.pagination.currentPage = Math.round(body["data"]/this.pagination.pageItems);
+        this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
         this.initList();
       }
     })
@@ -128,9 +126,8 @@ export class CreateTypesComponent implements OnInit {
   }
   updatePanel(id:string){
     this.getTypeItem(id).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
-        const Type = data.data;
+      if(res["code"] === 0){
+        const Type = res["data"];
         this.type.id = Type.id;
         this.type.tp = Type.type;
         this.type.title = Type.title;

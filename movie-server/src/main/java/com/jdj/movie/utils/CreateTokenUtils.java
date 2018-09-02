@@ -24,17 +24,19 @@ public class CreateTokenUtils {
      * @return s;
      * @throws Exception
      */
-    public static ReturnModel getUserInfoByRequest(HttpServletRequest request,String base64Secret)throws Exception{
+    public static ReturnModel checkJWT(HttpServletRequest request,String base64Secret)throws Exception{
         Boolean b = null;
         String auth = request.getHeader("Authorization");
-        if((auth != null) && (auth.length() > 6)){
-            String HeadStr = auth.substring(0,5).toLowerCase();
-            if(HeadStr.compareTo("basic") == 0){
-                auth = auth.substring(6,auth.length());
-                b = parseJWT(auth,base64Secret) != null?true:false;
+        if((auth != null) && (auth.length() > 4)){
+            String HeadStr = auth.substring(0,3).toLowerCase();
+            if(HeadStr.compareTo("mso") == 0){
+                auth = auth.substring(4,auth.length());
+                logger.info("claims:"+parseJWT(auth,base64Secret));
+                Claims claims = parseJWT(auth,base64Secret);
+                b = claims==null?false:true;
             }
         }
-        if(b == null){
+        if(b == false){
             logger.error("getUserInfoByRequest:"+ auth);
             return new ReturnModel(-1,b);
         }

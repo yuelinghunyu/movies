@@ -3,6 +3,7 @@ package com.jdj.movie;
 import com.jdj.movie.bll.MovieBll;
 import com.jdj.movie.enums.StaticTypes;
 import com.jdj.movie.model.Movie;
+import com.jdj.movie.utils.Md5Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class MovieServerApplicationTests {
 	@Autowired
 	private MovieBll movieBll;
+
 	@Test
 	public void contextLoads() {
 	}
@@ -39,5 +41,19 @@ public class MovieServerApplicationTests {
 		int flag = movieBll.insertMovie(movie);
 
 	}
+	@Test
+	public void testUUID(){
+		String id =  UUID.randomUUID().toString().replace("-", "").toLowerCase();
+		System.out.print(id);
+	}
 
+	@Test
+	public void TestMd5(){
+		String password1 = "Jdj12345";
+		String password2 = "Fxx12345";
+		String md51 = Md5Utils.getMD5(password1);
+		String md52 = Md5Utils.getMD5(password2);
+		System.out.print(md51);
+		System.out.print(md52);
+	}
 }

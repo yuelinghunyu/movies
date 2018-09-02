@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../service/service.service';
+import { Person } from '../../component/frame/person';
 
 @Component({
   selector: 'app-personal',
@@ -8,7 +9,7 @@ import { ServiceService } from '../../service/service.service';
 })
 export class PersonalComponent implements OnInit {
   private personList = [];
-  private person = {};
+  persons:Person = Person.personDefault;
   constructor(public service:ServiceService) {}
 
   ngOnInit() {
@@ -17,15 +18,14 @@ export class PersonalComponent implements OnInit {
   //获取个人列表;
   _getPersonList(){
     this.service.getPersonList().subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
-        let list = data.data;
+      if(res["code"] === 0){
+        let list = res["data"];
+        this.persons = list[0];//第一个
         this.personList = list;
-        this.person = this.personList[0];//第一个
       }
     })
   }
   changePerson(i){
-    this.person = this.personList[i];
+    this.persons = this.personList[i];
   }
 }

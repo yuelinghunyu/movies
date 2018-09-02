@@ -23,10 +23,12 @@ export class AddMovieComponent implements OnInit {
   modal:Modal = Modal.modal;
   areaList:Array<any>;
   typeList:Array<any>;
+  authorization:string;
 
   uploader:FileUploader = new FileUploader({
     url:"/movies/file/toOssServer",
     method:"post",
+    headers:[{name:'Authorization',value:this.authorization = "mso " + localStorage.getItem("accessToken")}],
     itemAlias:"uploader",
     autoUpload:false
   });
@@ -71,30 +73,56 @@ export class AddMovieComponent implements OnInit {
   ngOnInit() {
    //并发请求地域、类型的total值;
    let areasCount = 0,typesCount=0;
-   let areaTotal = this.service.getAreaTotal();
-   let typeTotal = this.service.getTypeTotal();
-   Observable.forkJoin([areaTotal,typeTotal]).subscribe(res=>{
-      areasCount = JSON.parse(res[0]["_body"]).data;
-      typesCount = JSON.parse(res[1]["_body"]).data;
+  //  let areaTotal = this.service.getAreaTotal();
+  //  let typeTotal = this.service.getTypeTotal();
+  //  Observable.forkJoin([areaTotal,typeTotal]).subscribe(res=>{
+  //    console.log(res);
+  //     areasCount = res[0]["data"];
+  //     typesCount = res[1]["data"];
 
-      let areaParam = {
-        "page":1,
-        "limit":areasCount
-      };
-      let typeParam = {
-        "page":1,
-        "limit":typesCount
-      }
-      let areaList = this.service.getAreasList(areaParam);
-      let typeList = this.service.getTypesList(typeParam);
+  //     let areaParam = {
+  //       "page":1,
+  //       "limit":areasCount
+  //     };
+  //     let typeParam = {
+  //       "page":1,
+  //       "limit":typesCount
+  //     }
+  //     let areaList = this.service.getAreasList(areaParam);
+  //     let typeList = this.service.getTypesList(typeParam);
 
-      Observable.forkJoin([areaList,typeList]).subscribe(res=>{
-        this.areaList = JSON.parse(res[0]["_body"]).data.list;
-        this.typeList = JSON.parse(res[1]["_body"]).data.list;
-      })
-   });
+  //     Observable.forkJoin([areaList,typeList]).subscribe(res=>{
+  //       this.areaList = res[0]["data"].list;
+  //       this.typeList = res[1]["data"].list;
+  //     })
+  //  });
+  //以上注释代码与拦截器冲突;
+   //以上注释代码在添加拦截器后无效;
+   $.when(this.service.getAreaTotal(),this.service.getTypeTotal()).done((res1,res2)=>{
+      res1.subscribe(areas=>{
+        areasCount = areas["data"];
+        let areaParam = {
+          "page":1,
+          "limit":areasCount
+        };
+        let areaList = this.service.getAreasList(areaParam);
+        areaList.subscribe(list=>{
+          this.areaList = list["data"].list;
+        });
+      });
+      res2.subscribe(types=>{
+        typesCount = types["data"];
+        let typeParam = {
+          "page":1,
+          "limit":typesCount
+        }
+        let typeList = this.service.getTypesList(typeParam);
+        typeList.subscribe(list=>{
+          this.typeList = list["data"].list;
+        });
+      });
+    })
   }
-
   //创建电影模板;
   addMovie(){
     const formData = this.addMovieForm.value;
@@ -144,8 +172,7 @@ export class AddMovieComponent implements OnInit {
 
     console.log(movieParam);
     this.service.createMovieItem(movieParam).subscribe(res=>{
-      const code = JSON.parse(res["_body"]).code;
-      if(code === 0){
+      if(res["code"] === 0){
         this.modal.tips = "继续提交!";
         $("#tipModal").modal('show');
         this.modal.changeEvent=((id:string)=>{
@@ -184,7 +211,7 @@ export class AddMovieComponent implements OnInit {
       this.picDisabled = false;
     }
     const isJpg = ev.target.files[0].name.split(".")[1];
-    const exg = "(png|jpg|gif|PNG|JPG|GIF)";
+    const exg = "(png|jpg|gif|jpeg|PNG|JPG|GIF|JPEG)";
     this.jpgValid = new RegExp(exg).test(isJpg);
     if(this.jpgValid){
       this.uploader.queue[0].upload();//开始上传;

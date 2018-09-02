@@ -6,14 +6,15 @@
 }
 .header{
     height: 80px;
-    border-bottom: 2px solid blueviolet;
+    border-bottom: 2px solid #dcd9c8;
     display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: #1976d2;
+    background-color: #eae7e0;
+    justify-content: space-between;
 }
 .btn-container{
-    min-width: 150px;
+    min-width: 100px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -21,20 +22,52 @@
     cursor: pointer;
 }
 .btn-container:hover{
-    background-color:#ad58bc; 
+    background-color:#d4d1c0; 
 }
 .expend-btn{
-    color: #FFF;
     cursor: pointer;
     display: block;
-    font-family: Courier New;
-    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    font-size: 25px;
+}
+.login-logo{
     width: 50px;
     height: 50px;
-    line-height: 55px;
-    text-align: center;
-    text-shadow: 0 -8px;
-    font-size: 50px;
+    border-radius: 50%;
+    border: 2px solid #a7a08e;
+    margin-right: 60px;
+    cursor: pointer;
+    position: relative;
+}
+.login-logo:hover{
+    transition: all 1s;
+    box-shadow: 0 0 10px #0CC;
+}
+.login-logo img{
+    display: block;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+}
+.person-list{
+    position: absolute;
+    z-index: 1000;
+    background-color: #fff;
+    font-size: 12px;
+    border-radius: 2px;
+    top: 53px;
+    left: -15px;
+    overflow: hidden;
+}
+.person-list li{
+    width: 80px;
+    padding: 5px 15px;
+}
+.person-list li:hover{
+    background-color: #ebe8e1;
 }
 .body-container{
     flex: 1;
@@ -45,7 +78,7 @@
 .body-left{
     width: 250px;
     height: 100%;
-    border-right: 2px solid gray;
+    border-right: 2px solid #dcd9c8;
     position: absolute;
     left: 0px;
     overflow-y: auto;
@@ -71,7 +104,7 @@
 }
 .nav-header{
     text-decoration: none;
-    font-size:16px;
+    font-size:14px;
     height: 40px;
     display: flex;
     flex-direction: row;
@@ -82,8 +115,9 @@
     width: 25px;
     height: 25px;
     margin-right: 5px;
+    margin-top: 7px;
 }
 .nav-list>li{
-    font-size:16px;
+    font-size:14px;
     padding-left: 15px;
 }

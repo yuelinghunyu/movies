@@ -1,5 +1,5 @@
 .add-container{
-    font-size:16px; 
+    font-size:14px; 
     padding: 20px;
     min-width: 1024px;
     overflow: auto;
@@ -9,7 +9,7 @@
 }
 h3{
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
 }
 .form-group{
     padding: 10px 0px;

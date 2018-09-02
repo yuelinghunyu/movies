@@ -1,6 +1,5 @@
 import { Component, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
 
@@ -51,28 +50,49 @@ export class CreateMoviesComponent implements OnInit {
     this.movieTypeList = newArray;
      //并发请求地域、类型的total值;
     let areasCount = 0,typesCount=0;
-    let areaTotal = this.service.getAreaTotal();
-    let typeTotal = this.service.getTypeTotal();
-    Observable.forkJoin([areaTotal,typeTotal]).subscribe(res=>{
-        areasCount = JSON.parse(res[0]["_body"]).data;
-        typesCount = JSON.parse(res[1]["_body"]).data;
+    // this.service.getForkJoin().subscribe(([areas,types])=>{
+    //     areasCount = areas["data"];
+    //     typesCount = types["data"];
 
+    //     let areaParam = {
+    //       "page":1,
+    //       "limit":areasCount
+    //     };
+    //     let typeParam = {
+    //       "page":1,
+    //       "limit":typesCount
+    //     }
+    //     let areaList = this.service.getAreasList(areaParam);
+    //     let typeList = this.service.getTypesList(typeParam);
+    //     this.service.getForkJoinList(areaParam,typeParam).subscribe(([areaList,typeList])=>{
+    //       this.areaList = areaList["data"].list;
+    //       this.typeList = typeList["data"].list;
+    //     })
+    // });
+    //以上注释代码在添加拦截器后无效;
+    $.when(this.service.getAreaTotal(),this.service.getTypeTotal()).done((res1,res2)=>{
+      res1.subscribe(areas=>{
+        areasCount = areas["data"];
         let areaParam = {
           "page":1,
           "limit":areasCount
         };
+        let areaList = this.service.getAreasList(areaParam);
+        areaList.subscribe(list=>{
+          this.areaList = list["data"].list;
+        });
+      });
+      res2.subscribe(types=>{
+        typesCount = types["data"];
         let typeParam = {
           "page":1,
           "limit":typesCount
         }
-        let areaList = this.service.getAreasList(areaParam);
         let typeList = this.service.getTypesList(typeParam);
-
-        Observable.forkJoin([areaList,typeList]).subscribe(res=>{
-          
-          this.areaList = JSON.parse(res[0]["_body"]).data.list;
-          this.typeList = JSON.parse(res[1]["_body"]).data.list;
-        })
+        typeList.subscribe(list=>{
+          this.typeList = list["data"].list;
+        });
+      });
     });
 
     this.initList();
@@ -88,10 +108,10 @@ export class CreateMoviesComponent implements OnInit {
       "limit":this.pagination.pageItems
     }
     this.service.getMovieList(param).subscribe(res=>{
-      let data = JSON.parse(res["_body"]);
-      if(data.code == 0){
-        this.movieList = data.data.list;
-        this.total = data.data.total;
+      if(res["code"] === 0){
+        const data = res["data"]
+        this.movieList = data.list;
+        this.total = data.total;
         this.pagination.totalItems = this.total;
       }
     })
