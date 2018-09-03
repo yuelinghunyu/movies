@@ -133,7 +133,17 @@ export class ServiceService {
     const url = this.movies + "/movie/list"
     return this.http.get(url,{params:param});
   }
-
+  //模糊查询影片列表
+  getMovieLikeList(param){
+    const url = this.movies + "/movie/listLike"
+    return this.http.get(url,{params:param});
+  }
+  //删除一条电影记录
+  deleteMovieItem(body){
+    const url =  this.movies+"/movie/delete";
+    const param = 'id='+body.id;
+    return this.http.post(url,param,this.httpOptions);
+  }
   /**电影模块结束 */
   
 }

@@ -17,6 +17,7 @@
 }
 .movies-content{
     padding: 20px;
+    min-height: 300px;
 }
 .movies-content>table{
     cursor: pointer;

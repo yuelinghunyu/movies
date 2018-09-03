@@ -138,4 +138,37 @@ public class MovieController {
             return new ReturnModel(-1,flag);
         }
     }
+    /**
+     * @content 模糊查询电影名
+     */
+    @RequestMapping(value = "/listLike",method = RequestMethod.GET)
+    public ReturnModel getMovieListLike(
+            @RequestParam(value = "title",required = false,defaultValue = "") String title,
+            @RequestParam(value = "page",required = false,defaultValue = "1") int page,
+            @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
+    ){
+        int skip = (page-1)*limit;
+        List<Movie> list =  movieBll.getMovieListLike(title,skip,limit);
+        List<MovieConvert> mList = new ArrayList<>();
+        int areaTotal = areasBll.getTotal();
+        int typesTotal = typesBll.getTotal();
+
+        List<Areas> areasList = areasBll.getAreasList(0,areaTotal);
+        List<Types> typesList = typesBll.getTypeList(0,typesTotal);
+
+        for (int i=0;i<list.size();i++){
+            MovieConvert movieConvert = CovertUtils.covertMovie(list.get(i),areasList,typesList);
+            mList.add(movieConvert);
+        }
+        if(list.size()==0){
+            logger.info("list的长度",list.size());
+            return new ReturnModel(0,0);
+        }
+        int total = movieBll.getMovieListLikeCount(title);
+        Map map = new HashMap<>();
+        map.put("total",total);
+        map.put("list",mList);
+        logger.info("返回成功",true);
+        return new ReturnModel(0,map);
+    }
 }

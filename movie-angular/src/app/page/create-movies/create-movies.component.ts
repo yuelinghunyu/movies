@@ -7,6 +7,7 @@ import { ServiceService } from '../../service/service.service';
 import { MovieType } from './movieType';
 import { Pagination } from "../../common/pagination/pagination";
 import { Modal } from '../../common/modal/modal';
+import { ERROR_OK,DEBOUNCE } from "../../config/config";
 
 @Component({
   selector: 'app-create-movies',
@@ -29,20 +30,27 @@ export class CreateMoviesComponent implements OnInit {
   //最新、最热、经典
   movieTypeList:Array<any>;
 
-  total:number
+  total:number;
+
+  //选框插叙参数;
+  movieListBySelect:Object = {
+      area:-1,
+      type:-1,
+      movieType:-1
+  };
   constructor(
     private router:Router,
     private service:ServiceService
-  ) {
-    
-   }
+  ) {}
 
   ngOnInit() {
     let  newArray = [];
+    let  item0 = new MovieType(-1,"分类");
     let  item1 = new MovieType(1,"最热");
     let  item2 = new MovieType(2,"经典");
     let  item3 = new MovieType(3,"最新");
 
+    newArray.push(item0);
     newArray.push(item1);
     newArray.push(item2);
     newArray.push(item3);
@@ -80,6 +88,9 @@ export class CreateMoviesComponent implements OnInit {
         let areaList = this.service.getAreasList(areaParam);
         areaList.subscribe(list=>{
           this.areaList = list["data"].list;
+          let areaItem = {id:"all",area:-1,title:"区域"};
+          this.areaList.unshift(areaItem);
+          console.log(this.areaList);
         });
       });
       res2.subscribe(types=>{
@@ -91,6 +102,9 @@ export class CreateMoviesComponent implements OnInit {
         let typeList = this.service.getTypesList(typeParam);
         typeList.subscribe(list=>{
           this.typeList = list["data"].list;
+          let typeItem = {id:"all",type:-1,title:"类型"};
+          this.typeList.unshift(typeItem);
+          console.log(this.typeList);
         });
       });
     });
@@ -107,14 +121,7 @@ export class CreateMoviesComponent implements OnInit {
       "page":this.pagination.currentPage,
       "limit":this.pagination.pageItems
     }
-    this.service.getMovieList(param).subscribe(res=>{
-      if(res["code"] === 0){
-        const data = res["data"]
-        this.movieList = data.list;
-        this.total = data.total;
-        this.pagination.totalItems = this.total;
-      }
-    })
+    this.getMovieListBySelect(param);
   }
   //跳转到新增影片面板;
   addMovieUrl(){
@@ -123,13 +130,89 @@ export class CreateMoviesComponent implements OnInit {
 
   areaEvent(title:string,area:any){
     this.movieAreaTitle = title;
+    this.movieListBySelect["area"] = area;
     console.log(area);
+    this.getMovieListBySelect(this.movieListBySelect);
   }
   typeEvent(title:string,type:any){
     this.movieTypeTitle = title;
+    this.movieListBySelect["type"] = type;
     console.log(type);
+    this.getMovieListBySelect(this.movieListBySelect);
   }
   movieTypeEvent(title:string,type:any){
     this.movieTypeType = title;
+    this.movieListBySelect["movieType"] = type;
+    console.log(type);
+    this.getMovieListBySelect(this.movieListBySelect);
+  }
+  //获取接口数据，并更新列表渲染数据;
+  getMovieListBySelect(param){
+    this.service.getMovieList(param).subscribe(res=>{
+      if(res["code"] === ERROR_OK){
+        const data = res["data"]
+        this.movieList = data.list;
+        this.total = data.total;
+        this.pagination.totalItems = this.total;
+        
+        //清除searchVal
+        document.getElementById("movie-name")["value"] = "";
+      }
+    })
+  }
+  //模糊查询电影;
+  searchMovie(){
+    const searchVal = document.getElementById("movie-name")["value"];
+    if(searchVal !== ""){
+      const param = {
+        title:searchVal
+      }
+      this.service.getMovieLikeList(param).subscribe(res=>{
+        if(res["code"] === ERROR_OK){
+          const data = res["data"]
+          this.movieList = data.list;
+          this.total = data.total;
+          this.pagination.totalItems = this.total;
+
+          //这里面要清除this.movieListBySelect和恢复下拉框默认值
+          this.movieListBySelect = {
+            area:-1,
+            type:-1,
+            movieType:-1
+          }
+          this.movieAreaTitle = "区域";
+          this.movieTypeTitle = "类型";
+          this.movieTypeType = "分类";
+        }
+      })
+    }
+  }
+  //清空搜索框调用函数;
+  blankMovie(ev:any){
+    if(ev.target.value === ""){
+      const param = {
+        "page":this.pagination.currentPage,
+        "limit":this.pagination.pageItems
+      }
+      this.service.getMovieList(param).subscribe(res=>{
+        if(res["code"] === ERROR_OK){
+          const data = res["data"]
+          this.movieList = data.list;
+          this.total = data.total;
+          this.pagination.totalItems = this.total;
+          
+          //清除searchVal
+          document.getElementById("movie-name")["value"] = "";
+          this.movieListBySelect = {
+            area:-1,
+            type:-1,
+            movieType:-1
+          }
+          this.movieAreaTitle = "区域";
+          this.movieTypeTitle = "类型";
+          this.movieTypeType = "分类";
+        }
+      });
+    }
   }
 }

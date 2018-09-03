@@ -115,11 +115,49 @@ public interface MovieMapper {
     );
 
     /**
+     * @content 查询所有数据，返回list
+     * @param title
+     * @return movieList
+     */
+    @Select({
+            "<script>",
+            "select",
+            "id, area, pic_url, content, title, type, price, count, movie_type, is_free, ",
+            "create_time, modify_time, description",
+            "from movie",
+            "where 1=1",
+            "<if test='title!=null and title!= &apos;&apos;'>",
+            "and title LIKE CONCAT(CONCAT('%',#{title,jdbcType=VARCHAR},'%'))",
+            "</if>",
+            "limit #{skip},#{limit}",
+            "</script>"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="area", property="area", jdbcType=JdbcType.INTEGER),
+            @Result(column="pic_url", property="picUrl", jdbcType=JdbcType.VARCHAR),
+            @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
+            @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="type", property="type", jdbcType=JdbcType.INTEGER),
+            @Result(column="price", property="price", jdbcType=JdbcType.DECIMAL),
+            @Result(column="count", property="count", jdbcType=JdbcType.INTEGER),
+            @Result(column="movie_type", property="movieType", jdbcType=JdbcType.INTEGER,typeHandler = MovieTypeHandler.class),
+            @Result(column="is_free", property="isFree", jdbcType=JdbcType.INTEGER),
+            @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="modify_time", property="modifyTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="description", property="description", jdbcType=JdbcType.LONGVARCHAR)
+    })
+    List<Movie> movieListBySearch(
+            @Param("title") String title,
+            @Param("skip") int skip,
+            @Param("limit") int limit
+    );
+
+    /**
      *
      * @param null
      * @return count
      */
-
     @Select({
             "<script>",
             "select count(0)",
@@ -149,6 +187,25 @@ public interface MovieMapper {
             @Param("type") int type,
             @Param("movieType") int movieType
     );
+    /**
+     * @content 查询所有数据，返回count
+     * @param title
+     * @return int
+     */
+    @Select({
+            "<script>",
+            "select count(0)",
+            "from movie",
+            "where 1=1",
+            "<if test='title!=null and title!= &apos;&apos;'>",
+            "and title LIKE CONCAT(CONCAT('%',#{title,jdbcType=VARCHAR},'%'))",
+            "</if>",
+            "</script>"
+    })
+    int movieListBySearchCount(
+            @Param("title") String title
+    );
+
     @UpdateProvider(type=MovieSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Movie record);
 

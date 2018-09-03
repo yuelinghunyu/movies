@@ -6,6 +6,7 @@ import { ServiceService } from '../../service/service.service';
 import { Pagination } from "../../common/pagination/pagination";
 import { Modal } from '../../common/modal/modal';
 import { Type } from './types';
+import { ERROR_OK,DEBOUNCE } from "../../config/config";
 
 @Component({
   selector: 'app-create-types',
@@ -63,7 +64,7 @@ export class CreateTypesComponent implements OnInit {
       "id":id
     }
     this.service.deleteTypeOne(param).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         this.modal.tips = "删除成功！";
         $("#tipModal").modal('hide');
         this.modal.flag = false;
@@ -78,7 +79,7 @@ export class CreateTypesComponent implements OnInit {
       "limit":this.pagination.pageItems
     }
     this.service.getTypesList(param).subscribe(res=>{
-      if(res["code"] == 0){
+      if(res["code"] === ERROR_OK){
         const data = res["data"];
         this.typeList = data.list;
         this.total = data.total;
@@ -105,7 +106,7 @@ export class CreateTypesComponent implements OnInit {
       'title':title
     }
     this.service.createTypeItem(typeS).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         this.closePanel();
         this.typesForm.reset();
         this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
@@ -126,7 +127,7 @@ export class CreateTypesComponent implements OnInit {
   }
   updatePanel(id:string){
     this.getTypeItem(id).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         const Type = res["data"];
         this.type.id = Type.id;
         this.type.tp = Type.type;

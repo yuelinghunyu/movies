@@ -61,4 +61,14 @@ public class MovieBll {
     public int deleteMovie(String id){
         return movieMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * @param title
+     */
+    public List<Movie> getMovieListLike(String title,int skip,int limit){
+        return movieMapper.movieListBySearch(title,skip,limit);
+    }
+    public int getMovieListLikeCount(String title){
+        return movieMapper.movieListBySearchCount(title);
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @RunWith(SpringRunner.class)
@@ -48,12 +49,18 @@ public class MovieServerApplicationTests {
 	}
 
 	@Test
-	public void TestMd5(){
+	public void testMd5(){
 		String password1 = "Jdj12345";
 		String password2 = "Fxx12345";
 		String md51 = Md5Utils.getMD5(password1);
 		String md52 = Md5Utils.getMD5(password2);
 		System.out.print(md51);
 		System.out.print(md52);
+	}
+	@Test
+	public void testLikeSearchMovie(){
+		String title = "乐";
+		List<Movie> list = movieBll.getMovieListLike(title,0,10);
+		int count = movieBll.getMovieListLikeCount(title);
 	}
 }

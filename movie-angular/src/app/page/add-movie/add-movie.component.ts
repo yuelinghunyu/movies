@@ -9,6 +9,7 @@ import { ServiceService } from '../../service/service.service';
 import { FileUploader } from 'ng2-file-upload';
 import { Movie } from './movie';
 import { Modal } from '../../common/modal/modal';
+import { ERROR_OK,DEBOUNCE } from "../../config/config";
 
 @Component({
   selector: 'app-add-movie',
@@ -172,7 +173,7 @@ export class AddMovieComponent implements OnInit {
 
     console.log(movieParam);
     this.service.createMovieItem(movieParam).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         this.modal.tips = "继续提交!";
         $("#tipModal").modal('show');
         this.modal.changeEvent=((id:string)=>{

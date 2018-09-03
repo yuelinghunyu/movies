@@ -6,6 +6,7 @@ import { ServiceService } from '../../service/service.service';
 import { Pagination } from "../../common/pagination/pagination";
 import { Modal } from '../../common/modal/modal';
 import { Area } from './area';
+import { ERROR_OK,DEBOUNCE } from "../../config/config";
 
 @Component({
   selector: 'app-create-areas',
@@ -66,7 +67,7 @@ export class CreateAreasComponent implements OnInit {
       "id":id
     }
     this.service.deleteAreaOne(param).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         this.modal.tips = "删除成功！";
         $("#tipModal").modal('hide');
         this.modal.flag = false;
@@ -81,7 +82,7 @@ export class CreateAreasComponent implements OnInit {
       "limit":this.pagination.pageItems
     }
     this.service.getAreasList(param).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         this.areaList = res["data"].list;
         this.total = res["data"].total;
         this.pagination.totalItems = this.total;
@@ -106,7 +107,7 @@ export class CreateAreasComponent implements OnInit {
       'title':title
     }
     this.service.createAreaItem(Area).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         this.closePanel();
         this.areasForm.reset();
         this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
@@ -127,7 +128,7 @@ export class CreateAreasComponent implements OnInit {
   }
   updatePanel(id:string){
     this.getAreaItem(id).subscribe(res=>{
-      if(res["code"] === 0){
+      if(res["code"] === ERROR_OK){
         const Area = res["data"];
         this.area.id = Area.id;
         this.area.area = Area.area;

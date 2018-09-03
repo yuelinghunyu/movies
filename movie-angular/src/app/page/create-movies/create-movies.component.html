@@ -84,9 +84,9 @@
             </button>
             <div class="search-container">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="电影名称查询">
+                    <input type="text" id="movie-name" class="form-control" placeholder="电影名称查询" (keyup)="blankMovie($event)">
                     <span class="input-group-btn">
-                      <button class="btn btn-primary" type="button">搜索</button>
+                      <button class="btn btn-primary" type="button" (click)="searchMovie()">搜索</button>
                     </span>
                   </div><!-- /input-group -->
             </div><!-- /.row -->

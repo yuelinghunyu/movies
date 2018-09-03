@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { ForbiddenNameValidor } from '../../shared/forbidden-name.directive';
 import { ServiceService } from '../../service/service.service';
 import {Router} from '@angular/router';
+import { ERROR_OK,DEBOUNCE } from "../../config/config";
 
 @Component({
   selector: 'app-login',
@@ -130,7 +131,7 @@ export class LoginComponent implements OnInit {
       ev.target.innerHTML = '';
       this.loginingState = 'activing';
       this.service.loginMovies(this.loginForm.value).subscribe((res)=>{
-        if(res["code"] == 0){
+        if(res["code"] == ERROR_OK){
           localStorage.setItem("accessToken",res["data"].accessToken.access_token);
           localStorage.setItem("person",JSON.stringify(res["data"].person));
           if(localStorage.getItem("accessToken") !== null && localStorage.getItem("person")!= null){
