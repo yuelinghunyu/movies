@@ -80,7 +80,7 @@ export class FrameComponent implements OnInit {
   }
   listRedirct(flag){
     if(flag == "personel"){
-      this.router.navigateByUrl('/personel');
+      this.router.navigateByUrl('/frame/personel');
     }else{
       if(localStorage.getItem("accessToken") !== null || localStorage.getItem("person")!== null){
         localStorage.removeItem("accessToken");

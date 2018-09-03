@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { ForbiddenNameValidor } from '../../shared/forbidden-name.directive';
 import { ServiceService } from '../../service/service.service';
 import {Router} from '@angular/router';
-import { ERROR_OK,DEBOUNCE } from "../../config/config";
+import { Config} from "../../config/config";
 
 @Component({
   selector: 'app-login',
@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
   passWordJudge: String;
   loginingState: String;
   loginForm: FormGroup;
+  Config:Config = new Config();
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -131,11 +132,11 @@ export class LoginComponent implements OnInit {
       ev.target.innerHTML = '';
       this.loginingState = 'activing';
       this.service.loginMovies(this.loginForm.value).subscribe((res)=>{
-        if(res["code"] == ERROR_OK){
+        if(res["code"] == this.Config.ERROR_OK){
           localStorage.setItem("accessToken",res["data"].accessToken.access_token);
           localStorage.setItem("person",JSON.stringify(res["data"].person));
           if(localStorage.getItem("accessToken") !== null && localStorage.getItem("person")!= null){
-             this.router.navigateByUrl("/home");
+             this.router.navigateByUrl("/frame/home");
           }
         }else{
           this.loginingState = 'initial';

@@ -7,7 +7,7 @@ import { ServiceService } from '../../service/service.service';
 import { MovieType } from './movieType';
 import { Pagination } from "../../common/pagination/pagination";
 import { Modal } from '../../common/modal/modal';
-import { ERROR_OK,DEBOUNCE } from "../../config/config";
+import { Config } from "../../config/config";
 
 @Component({
   selector: 'app-create-movies',
@@ -26,7 +26,7 @@ export class CreateMoviesComponent implements OnInit {
   areaList:Array<any>;
   typeList:Array<any>;
   movieList:Array<any>;
-
+  Config:Config = new Config();
   //最新、最热、经典
   movieTypeList:Array<any>;
 
@@ -123,9 +123,33 @@ export class CreateMoviesComponent implements OnInit {
     }
     this.getMovieListBySelect(param);
   }
+   //弹框出现;
+   private alertModalItem(id:string){
+    this.modal.tips = "是否删除该项？";
+    this.modal.id = id;
+    this.modal.changeEvent=((id:string)=>{
+      this.deleteTypeItem(id);
+    })
+  }
+  //删除一条记录;
+  private deleteTypeItem(id:string){
+    this.modal.flag = true;
+    this.modal.tips = "正在删除，请稍后...";
+    const param = {
+      "id":id
+    }
+    this.service.deleteMovieItem(param).subscribe(res=>{
+      if(res["code"] === this.Config.ERROR_OK){
+        this.modal.tips = "删除成功！";
+        $("#tipModal").modal('hide');
+        this.modal.flag = false;
+        this.initList();
+      }
+    })
+  }
   //跳转到新增影片面板;
   addMovieUrl(){
-    this.router.navigateByUrl("/add-movie");
+    this.router.navigateByUrl("/frame/add-movie");
   }
 
   areaEvent(title:string,area:any){
@@ -149,7 +173,7 @@ export class CreateMoviesComponent implements OnInit {
   //获取接口数据，并更新列表渲染数据;
   getMovieListBySelect(param){
     this.service.getMovieList(param).subscribe(res=>{
-      if(res["code"] === ERROR_OK){
+      if(res["code"] === this.Config.ERROR_OK){
         const data = res["data"]
         this.movieList = data.list;
         this.total = data.total;
@@ -168,7 +192,7 @@ export class CreateMoviesComponent implements OnInit {
         title:searchVal
       }
       this.service.getMovieLikeList(param).subscribe(res=>{
-        if(res["code"] === ERROR_OK){
+        if(res["code"] === this.Config.ERROR_OK){
           const data = res["data"]
           this.movieList = data.list;
           this.total = data.total;
@@ -195,7 +219,7 @@ export class CreateMoviesComponent implements OnInit {
         "limit":this.pagination.pageItems
       }
       this.service.getMovieList(param).subscribe(res=>{
-        if(res["code"] === ERROR_OK){
+        if(res["code"] === this.Config.ERROR_OK){
           const data = res["data"]
           this.movieList = data.list;
           this.total = data.total;

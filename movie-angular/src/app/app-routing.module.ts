@@ -11,7 +11,7 @@ import { AddMovieComponent } from './page/add-movie/add-movie.component';
 
 const routes:Routes = [
   {
-    path:'',
+    path:'frame',
     component:FrameComponent,
     children:[
       {

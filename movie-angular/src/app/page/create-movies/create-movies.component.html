@@ -151,6 +151,7 @@
                   class="btn btn-danger btn-sm"
                   data-toggle="modal"
                   data-target=".bs-example-modal-sm"
+                  (click)="alertModalItem(movie.id)"
                 >
                   删除
                 </button>
@@ -167,5 +168,9 @@
         </div>
     </div>
 
+    <div class="lay-hide" *ngIf="state=='active'?true:false"></div>
+
+    <!-- 弹框组件 -->
+    <app-modal [modal]="modal"></app-modal> 
   
 </div>

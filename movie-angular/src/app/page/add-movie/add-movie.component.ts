@@ -9,7 +9,7 @@ import { ServiceService } from '../../service/service.service';
 import { FileUploader } from 'ng2-file-upload';
 import { Movie } from './movie';
 import { Modal } from '../../common/modal/modal';
-import { ERROR_OK,DEBOUNCE } from "../../config/config";
+import { Config} from "../../config/config";
 
 @Component({
   selector: 'app-add-movie',
@@ -25,6 +25,7 @@ export class AddMovieComponent implements OnInit {
   areaList:Array<any>;
   typeList:Array<any>;
   authorization:string;
+  Config:Config = new Config();
 
   uploader:FileUploader = new FileUploader({
     url:"/movies/file/toOssServer",
@@ -173,7 +174,7 @@ export class AddMovieComponent implements OnInit {
 
     console.log(movieParam);
     this.service.createMovieItem(movieParam).subscribe(res=>{
-      if(res["code"] === ERROR_OK){
+      if(res["code"] === this.Config.ERROR_OK){
         this.modal.tips = "继续提交!";
         $("#tipModal").modal('show');
         this.modal.changeEvent=((id:string)=>{
@@ -187,7 +188,7 @@ export class AddMovieComponent implements OnInit {
           this.modal.tips = "";
           this.modal.close = true;
           $("#tipModal").modal('hide');
-            this.router.navigateByUrl("/create-movie");
+            this.router.navigateByUrl("/frame/create-movie");
         })
       
       }else{
