@@ -33,10 +33,10 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table tableName="person" domainObjectName="Person"
-            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-        >
-        </table>
+        <!--<table tableName="person" domainObjectName="Person"-->
+            <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
         <!--<table tableName="movie" domainObjectName="Movie"-->
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
@@ -57,5 +57,33 @@
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->
+        <!--<table tableName="banner" domainObjectName="Banner"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <!--<table tableName="blog" domainObjectName="Blog"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <!--<table tableName="book_feedback" domainObjectName="BookFeedback"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <!--<table tableName="books" domainObjectName="Books"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <!--<table tableName="chapters" domainObjectName="Chapters"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <!--<table tableName="payers" domainObjectName="Payers"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
+        <table tableName="book_type" domainObjectName="BookType"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
+        >
+        </table>
     </context>
 </generatorConfiguration>
