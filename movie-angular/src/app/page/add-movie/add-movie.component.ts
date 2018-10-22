@@ -28,7 +28,7 @@ export class AddMovieComponent implements OnInit {
   Config:Config = new Config();
 
   uploader:FileUploader = new FileUploader({
-    url:"/movies/file/toOssServer",
+    url:"/mso/file/toOssServer",
     method:"post",
     headers:[{name:'Authorization',value:this.authorization = "mso " + localStorage.getItem("accessToken")}],
     itemAlias:"uploader",

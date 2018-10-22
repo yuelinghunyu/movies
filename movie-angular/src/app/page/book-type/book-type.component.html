@@ -1,0 +1,40 @@
+<div class="book-type-container">
+    <ol class="breadcrumb">
+      <li><a href="javascript:void(0)">小册信息</a></li>
+      <li class="active">小册类型</li>
+    </ol>
+    <div class="book-type-content">
+      <table class="table table-bordered table-hover">
+        <caption>类型列表
+          <button type="button" 
+            class="btn btn-info pull-right"
+          >新增类型</button>
+        </caption>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>类型</th>
+            <th>名称</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+      </table>
+      <div class="pagination-container">
+        <app-pagination [pagination] = "pagination"></app-pagination>
+      </div>
+    </div>
+    <div class="book-type-add" [@panel-left]='state'>
+      <h4>新增类型
+        <button 
+          type="button" 
+          class="btn btn-danger pull-right"  
+          (click)="closePanel()"
+        >X</button></h4>
+      <hr/>
+    </div>
+</div>

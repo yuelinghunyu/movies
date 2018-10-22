@@ -3,6 +3,8 @@
    height: 100%;
    display: flex;
    flex-direction: column;
+   background: url("../../../assets/imgs/bg.jpg") no-repeat center;
+   background-size: cover;
 }
 .header{
     height: 80px;
@@ -10,7 +12,6 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: #eae7e0;
     justify-content: space-between;
 }
 .btn-container{
@@ -82,7 +83,6 @@
     position: absolute;
     left: 0px;
     overflow-y: auto;
-    background-color:#fff;
     z-index: 150; 
 }
 .body-right{

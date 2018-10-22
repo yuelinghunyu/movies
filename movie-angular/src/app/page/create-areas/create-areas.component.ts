@@ -15,7 +15,8 @@ import { Config} from "../../config/config";
   animations:[
     trigger('panel-left',[
       state('inactive', style({
-        left:'-400px'
+        left:'-400px',
+        display:'none'
       })),
       state('active',   style({
         left:'0'

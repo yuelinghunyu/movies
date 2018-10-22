@@ -22,6 +22,7 @@ import { ModalComponent } from './common/modal/modal.component';
 import { CreateTypesComponent } from './page/create-types/create-types.component';
 import { CreateMoviesComponent } from './page/create-movies/create-movies.component';
 import { AddMovieComponent } from './page/add-movie/add-movie.component';
+import { BookTypeComponent } from './page/book-type/book-type.component';
 
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
@@ -40,7 +41,8 @@ export const httpInterceptorProviders = [
     ModalComponent,
     CreateTypesComponent,
     CreateMoviesComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    BookTypeComponent
   ],
   imports: [
     BrowserModule,

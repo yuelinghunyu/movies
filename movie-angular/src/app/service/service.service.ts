@@ -6,10 +6,10 @@ import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class ServiceService {
-  movies:string;
+  mso:string;
   httpOptions:Object;
   constructor(public http:HttpClient) {
-    this.movies = "/movies";
+    this.mso = "/mso";
     this.httpOptions = {
       headers:new HttpHeaders({
         'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
@@ -17,8 +17,8 @@ export class ServiceService {
     }
   }
   /**登录模块开始*/
-  loginMovies(body){
-    const url = this.movies+"/person/exsit";
+  loginmso(body){
+    const url = this.mso+"/person/exsit";
     const param = 'userName='+body.userName+"&passWord="+body.password;
     return this.http.post(url,param,this.httpOptions);
   }
@@ -26,12 +26,12 @@ export class ServiceService {
   /**首页模块开始 */
   //首页;
   getPersonItem(param){
-    const url = this.movies+"/person/item";
+    const url = this.mso+"/person/item";
     return this.http.get(url,{params:param});
   }
   //个人中心
   getPersonList(){
-    const url =  this.movies+"/person/list";
+    const url =  this.mso+"/person/list";
     return this.http.get(url);
   }
   /**首页模块结束 */
@@ -40,29 +40,29 @@ export class ServiceService {
   /**地域模块开始 */
   //创建地域
   createAreaItem(body){
-    const url =  this.movies+"/areas/addOrUpdate";
+    const url =  this.mso+"/areas/addOrUpdate";
     const param = 'id='+body.id+'&area='+body.area+'&title='+body.title;
     return this.http.post(url,param,this.httpOptions);
   }
   //获取地域列表
   getAreasList(param){
-    const url = this.movies+"/areas/list";
+    const url = this.mso+"/areas/list";
     return this.http.get(url,{params:param});
   }
   //删除一条地域记录
   deleteAreaOne(param){
-    const url =  this.movies+"/areas/delete";
+    const url =  this.mso+"/areas/delete";
     const id = 'id='+param.id;
     return this.http.post(url,id,this.httpOptions);
   }
   //获取一条地域记录
   getAreaOne(param){
-    const url = this.movies+"/areas/getItem";
+    const url = this.mso+"/areas/getItem";
     return this.http.get(url,{params:param});
   }
   //获取地域总数
   getAreaTotal():Observable<Object>{
-    const url =  this.movies+"/areas/getTotal";
+    const url =  this.mso+"/areas/getTotal";
     return this.http.get(url).map(res=>{return res});
   }
   /**地域模块结束 */
@@ -70,28 +70,28 @@ export class ServiceService {
   /**类型模块开始 */
   //获取类型列表
   getTypesList(param){
-    const url = this.movies+"/types/list";
+    const url = this.mso+"/types/list";
     return this.http.get(url,{params:param});
   }
   //删除一条类型记录
   deleteTypeOne(param){
-    const url =  this.movies+"/types/delete";
+    const url =  this.mso+"/types/delete";
     const id = 'id='+param.id;
     return this.http.post(url,id,this.httpOptions);
   }
   //获取一条类型记录
   getTypeOne(param){
-    const url = this.movies+"/types/getItem";
+    const url = this.mso+"/types/getItem";
     return this.http.get(url,{params:param});
   }
   //获取类型总数
   getTypeTotal():Observable<Object>{
-    const url =  this.movies+"/types/getTotal";
+    const url =  this.mso+"/types/getTotal";
     return this.http.get(url).map(res=>{return res});
   }
   //创建类型
   createTypeItem(body){
-    const url =  this.movies+"/types/addOrUpdate";
+    const url =  this.mso+"/types/addOrUpdate";
     const param = 'id='+body.id+'&type='+body.type+'&title='+body.title;
     return this.http.post(url,param,this.httpOptions);
   }
@@ -113,7 +113,7 @@ export class ServiceService {
   }
   //创建单个电影
   createMovieItem(body){
-    const url = this.movies+"/movie/addOrUpdate";
+    const url = this.mso+"/movie/addOrUpdate";
     const param = 
           "id="+body.id+
           "&area="+body.area+
@@ -130,20 +130,28 @@ export class ServiceService {
   }
   //查询影片列表
   getMovieList(param){
-    const url = this.movies + "/movie/list"
+    const url = this.mso + "/movie/list"
     return this.http.get(url,{params:param});
   }
   //模糊查询影片列表
   getMovieLikeList(param){
-    const url = this.movies + "/movie/listLike"
+    const url = this.mso + "/movie/listLike"
     return this.http.get(url,{params:param});
   }
   //删除一条电影记录
   deleteMovieItem(body){
-    const url =  this.movies+"/movie/delete";
+    const url =  this.mso+"/movie/delete";
     const param = 'id='+body.id;
     return this.http.post(url,param,this.httpOptions);
   }
   /**电影模块结束 */
   
+
+  /**小册接口开始 */
+  // 小册类型获取
+  getBookTypeList(param){
+    const url = this.mso + "/bookType/list";
+    return this.http.get(url,{params:param})
+  }
+  /**小册接口结束 */
 }

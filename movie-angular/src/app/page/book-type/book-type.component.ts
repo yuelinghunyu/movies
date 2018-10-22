@@ -1,0 +1,78 @@
+import { Component, OnInit, Output } from '@angular/core';
+import { trigger,state,style,animate,transition} from '@angular/animations';
+import { FormArray, FormBuilder, FormGroup,Validators} from '@angular/forms';
+import { ForbiddenNameValidor } from '../../shared/forbidden-name.directive';
+import { ServiceService } from '../../service/service.service';
+import { Pagination } from "../../common/pagination/pagination";
+import { Modal } from '../../common/modal/modal';
+import { Config} from "../../config/config";
+import { BookType } from './bookType';
+
+@Component({
+  selector: 'app-book-type',
+  templateUrl: './book-type.component.html',
+  styleUrls: ['./book-type.component.css'],
+  animations:[
+    trigger('panel-left',[
+      state('inactive', style({
+        left:'-400px',
+        display:'none'
+      })),
+      state('active',   style({
+        left:'0'
+      })),
+      transition('inactive => active', animate('200ms ease-in')),
+      transition('active => inactive', animate('200ms ease-out'))
+    ]),
+  ]
+})
+export class BookTypeComponent implements OnInit {
+  @Output()
+  public pagination:Pagination = Pagination.defaultPagination;
+  public modal:Modal = Modal.modal;
+  public bookType:BookType = BookType.defaultBookType;
+  public bookTypeList:Array<any>
+  private bookTypeFrom:FormGroup
+  public config:Config = new Config()
+  private state:string;
+  private total:number;
+  constructor(
+    private fb: FormBuilder,
+    public service:ServiceService
+  ) {
+
+   }
+
+  ngOnInit() {
+    this.state = 'inactive';
+    this.initList();
+    this.pagination.changePage = (()=>{
+      this.initList();
+    });
+  }
+
+   //获取数据列表;
+   private initList():void{
+    const param = {
+      "page":this.pagination.currentPage,
+      "limit":this.pagination.pageItems
+    }
+    this.service.getBookTypeList(param).subscribe(res=>{
+      if(res["code"] === this.config.ERROR_OK){
+        const data = res["data"];
+        this.bookTypeList = data.list;
+        this.total = data.total;
+        this.pagination.totalItems = this.total;
+      }
+    });
+
+    //新增小册类型;
+    createBookType(){
+
+    }
+
+    closePanel(){
+      
+    }
+  }
+}

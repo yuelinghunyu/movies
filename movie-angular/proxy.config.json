@@ -1,5 +1,5 @@
 {
-  "/movies":{
+  "/mso":{
     "target":"http://localhost:8888",
     "secure": false,
     "changeOrigin":true
