@@ -32,7 +32,7 @@ export class BookTypeComponent implements OnInit {
   public modal:Modal = Modal.modal;
   public bookType:BookType = BookType.defaultBookType;
   public bookTypeList:Array<any>
-  private bookTypeFrom:FormGroup
+  private bookTypeForm:FormGroup
   public config:Config = new Config()
   private state:string;
   private total:number;
@@ -40,7 +40,7 @@ export class BookTypeComponent implements OnInit {
     private fb: FormBuilder,
     public service:ServiceService
   ) {
-
+    this.createBookTypeForm();
    }
 
   ngOnInit() {
@@ -65,14 +65,38 @@ export class BookTypeComponent implements OnInit {
         this.pagination.totalItems = this.total;
       }
     });
+  }
+  //初始化表单
+  createBookTypeForm(){
+    this.bookTypeForm = this.fb.group({
+      bookType:['',[Validators.required,ForbiddenNameValidor(/^[0-9]*$/)]],
+      bookTypeTitle:['',[Validators.required]]
+    })
+  }
+   //新增小册类型;
+  createBookType (id:string) {
+    console.log(id);
+    const typeId = this.bookTypeForm.get('bookType').value
+    const typeTitle = this.bookTypeForm.get('bookTypeTitle').value
 
-    //新增小册类型;
-    createBookType(){
-
+    const body = {
+      id:"",
+      typeId:typeId,
+      typeTitle:typeTitle
     }
 
-    closePanel(){
-      
-    }
+    this.service.createBookType(body).subscribe(res=>{
+      if(res["code"] === this.config.ERROR_OK){
+        this.closePanel();
+        this.bookTypeForm.reset();
+        this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
+        this.initList();
+      })
+  }
+  addPanel(){
+    this.state = this.state === 'active' ? 'inactive' : 'active';
+  }
+  closePanel() {
+    this.state = this.state === 'active' ? 'inactive' : 'active';
   }
 }

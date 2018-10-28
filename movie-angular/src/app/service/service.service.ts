@@ -17,7 +17,7 @@ export class ServiceService {
     }
   }
   /**登录模块开始*/
-  loginmso(body){
+  loginMso(body){
     const url = this.mso+"/person/exsit";
     const param = 'userName='+body.userName+"&passWord="+body.password;
     return this.http.post(url,param,this.httpOptions);
@@ -152,6 +152,11 @@ export class ServiceService {
   getBookTypeList(param){
     const url = this.mso + "/bookType/list";
     return this.http.get(url,{params:param})
+  }
+  createBookType(body){
+    const url = this.mso + "/bookType/addOrUpdate"
+    const param = 'id=' + body.id + '&typeId=' + body.typeId + '&typeTitle=' + body.typeTitle
+    return this.http.post(url,param,this.httpOptions);
   }
   /**小册接口结束 */
 }

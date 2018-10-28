@@ -131,7 +131,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       ev.target.innerHTML = '';
       this.loginingState = 'activing';
-      this.service.loginMovies(this.loginForm.value).subscribe((res)=>{
+      this.service.loginMso(this.loginForm.value).subscribe((res)=>{
         if(res["code"] == this.Config.ERROR_OK){
           localStorage.setItem("accessToken",res["data"].accessToken.access_token);
           localStorage.setItem("person",JSON.stringify(res["data"].person));
