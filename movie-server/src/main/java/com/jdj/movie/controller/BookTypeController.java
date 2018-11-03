@@ -59,7 +59,6 @@ public class BookTypeController {
         bookType.setTypeId(typeId);
         bookType.setTypeTitle(typeTitle);
         int flag = 0;
-        int total = bookTypeBll.getTotalCount();
         if(id.isEmpty()){
             bookType.setId(UUID.randomUUID().toString().replace("-","").toLowerCase());
             logger.info("id值","：空，执行插入数据库操作");
@@ -69,6 +68,7 @@ public class BookTypeController {
             logger.info("id值","："+id+";执行更新数据库操作");
             flag = bookTypeBll.updateBookType(bookType);
         }
+        int total = bookTypeBll.getTotalCount();
         if(flag>0){
             logger.info("插入成功");
             return new ReturnModel(0,total);

@@ -112,7 +112,7 @@ export class CreateAreasComponent implements OnInit {
       if(res["code"] === this.Config.ERROR_OK){
         this.closePanel();
         this.areasForm.reset();
-        this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
+        this.pagination.currentPage = Math.ceil(res["data"]/this.pagination.pageItems);
         this.initList();
       }
     })

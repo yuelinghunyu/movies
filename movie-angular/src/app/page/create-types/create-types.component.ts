@@ -111,7 +111,7 @@ export class CreateTypesComponent implements OnInit {
       if(res["code"] === this.Config.ERROR_OK){
         this.closePanel();
         this.typesForm.reset();
-        this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
+        this.pagination.currentPage = Math.ceil(res["data"]/this.pagination.pageItems);
         this.initList();
       }
     })

@@ -89,14 +89,38 @@ export class BookTypeComponent implements OnInit {
       if(res["code"] === this.config.ERROR_OK){
         this.closePanel();
         this.bookTypeForm.reset();
-        this.pagination.currentPage = Math.round(res["data"]/this.pagination.pageItems);
+        this.pagination.currentPage = Math.ceil(res["data"]/this.pagination.pageItems);
         this.initList();
-      })
+      }
+    })
   }
   addPanel(){
     this.state = this.state === 'active' ? 'inactive' : 'active';
   }
   closePanel() {
     this.state = this.state === 'active' ? 'inactive' : 'active';
+  }
+  //弹框出现;
+  private alertModalItem(id:string){
+    this.modal.tips = "是否删除该项？";
+    this.modal.id = id;
+    this.modal.changeEvent=((id:string)=>{
+      this.deleteItem(id);
+    })
+  }
+  deleteItem(id:string){
+    this.modal.flag = true;
+    this.modal.tips = "正在删除，请稍后...";
+    const body = {
+      id:id
+    }
+    this.service.deleteBookType(body).subscribe(res=>{
+      if(res['code'] === this.config.ERROR_OK){
+        this.modal.tips = "删除成功！";
+        $("#tipModal").modal('hide');
+        this.modal.flag = false;
+        this.initList();
+      }
+    })
   }
 }

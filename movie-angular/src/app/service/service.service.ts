@@ -158,5 +158,10 @@ export class ServiceService {
     const param = 'id=' + body.id + '&typeId=' + body.typeId + '&typeTitle=' + body.typeTitle
     return this.http.post(url,param,this.httpOptions);
   }
+  deleteBookType(body){
+    const url = this.mso + "/bookType/delete";
+    const param = 'id=' + body.id;
+    return this.http.post(url,param,this.httpOptions);
+  }
   /**小册接口结束 */
 }

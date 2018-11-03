@@ -6,7 +6,7 @@ import CommonHeader from './commonHeader'
 
 class Header extends Component{
     static contextTypes = {
-        router:PropTypes.object.isRequired,
+        router:PropTypes.object,
     }
     constructor(props){
         super(props);
