@@ -6,6 +6,7 @@ import Person from './pages/person/person';
 import Select from './components/select/select';
 import Classify from './components/classify/classify';
 import Footer from './components/footer/footer';
+import FeedBack from './components/feedback/feedback'
 import './App.scss';
 import initReactFastclick from 'react-fastclick';
 
@@ -23,6 +24,7 @@ class App extends Component {
           <Footer></Footer>
           <Route path="/select" component={Select}/>
           <Route path="/classify" component={Classify}/>
+          <Route path="/feed-back" component={FeedBack}/>
         </div>
       </Router>
     );

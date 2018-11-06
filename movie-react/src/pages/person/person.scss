@@ -7,4 +7,38 @@
     @extend .flex-1;
     @extend .flex;
     @extend .flex-direction-column;
+    background-color: #f4f5f5;
+    padding: 50px 0px;
+    font-size: 28px;
+    .logo-container{
+        height: 200px;
+        @extend .flex;
+        @extend .flex-direction-r;
+        @extend .align-items-center;
+        padding: 0 30px;
+        background-color: #fff;
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        span{
+            margin-left: 30px;
+        }
+    }
+    .feedBack-container{
+        @extend .flex;
+        @extend .flex-direction-r;
+        @extend .align-items-center;
+        @extend .justify-content-between;
+        background-color: #fff;
+        margin-top: 30px;
+        height: 100px;
+        padding: 0 30px;
+        span:nth-child(2){
+            width: 40px;
+            height: 40px;
+            background: url('../../static/image/grey.png') -65px -70px;
+        }
+    }
 }

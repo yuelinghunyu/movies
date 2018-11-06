@@ -1,0 +1,15 @@
+@import '../../static/css/base.scss';
+.cssRoot{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    .feedback-container{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        @extend .flex;
+        @extend.flex-direction-column;
+    }
+}

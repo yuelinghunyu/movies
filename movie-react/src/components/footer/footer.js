@@ -23,12 +23,12 @@ class Footer extends Component{
                         <span className={this.state.status==="home"?"active":"normal"}>首页</span>
                     </Link>
                 </p>
-                <p className="competitive-page">
+                {/* <p className="competitive-page">
                     <Link to="/classical" onClick={this.pageHandle.bind(this,'competitive')}>
                         <span className={this.state.status==="competitive"?"competitive-active":"competitive-normal"}></span>
                         <span className={this.state.status==="competitive"?"active":"normal"}>精品</span>
                     </Link>
-                </p>
+                </p> */}
                 <p className="person-page">
                     <Link to="/person" onClick={this.pageHandle.bind(this,'person')}>
                         <span className={this.state.status==="person"?"person-active":"person-normal"}></span>
