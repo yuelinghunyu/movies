@@ -9,7 +9,80 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
+        height: auto;
         @extend .flex;
-        @extend.flex-direction-column;
+        @extend .flex-direction-column;
+        @extend .justify-content-center;
+        @extend .align-items-center;
+        padding-top: 1.5rem;
+        textarea{
+            resize: none;
+            outline:none;
+            width: 90%;
+            height: 5rem;
+            display: block;
+            border: 1px solid #888;
+            box-sizing: border-box;
+            @include radius();
+            font-size: 28px;
+            line-height: 0.8rem;
+        }
+        .select-type-container{
+            width: 90%;
+            font-size: 28px;
+            border: 1px solid #888;
+            box-sizing: border-box;
+            padding: 0 0.2rem 0.5rem 0.2rem;
+            @include radius();
+            margin-top: 0.4rem;
+            h4{
+                line-height: 1rem;
+                padding-left: 0.4rem;
+                font-size: 26px;
+            }
+            .select-type-group{
+                @extend .flex;
+                @extend .flex-direction-r;
+                @extend .align-items-center;
+                @extend .justify-content-between;
+                .select-type-item{
+                    @extend .flex;
+                    @extend .flex-direction-r;
+                    @extend .align-items-center;
+                    margin: 0 0.4rem;
+                    .select-circle{
+                        display: inline-block;
+                        width: 0.4rem;
+                        height: 0.4rem;
+                        @include radius(50%);
+                        border: 1px solid #777;
+                        box-sizing: border-box;
+                        margin-right: 0.2rem;
+                    }
+                    .select-active{
+                        background-color: cornflowerblue;
+                    }
+                    .select-text{
+                        display: inline-block;
+                        line-height: 0.4rem;
+                    }
+                }
+            }
+        }
+        .submit-btn{
+            width: 90%;
+            height: 1rem;
+            border: 1px solid #888;
+            box-sizing: border-box;
+            font-size: 28px;
+            @extend .flex;
+            @extend .flex-direction-r;
+            @extend .align-items-center;
+            @extend .justify-content-center;
+            color: #fff;
+            background-color: cornflowerblue;
+            margin-top: 1rem;
+            @include radius();
+        }
     }
 }

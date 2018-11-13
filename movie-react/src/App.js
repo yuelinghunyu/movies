@@ -7,6 +7,7 @@ import Select from './components/select/select';
 import Classify from './components/classify/classify';
 import Footer from './components/footer/footer';
 import FeedBack from './components/feedback/feedback'
+import Movie from './components/movie/movie'
 import './App.scss';
 import initReactFastclick from 'react-fastclick';
 
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/select" component={Select}/>
           <Route path="/classify" component={Classify}/>
           <Route path="/feed-back" component={FeedBack}/>
+          <Route path='/movie-detail' component={Movie} />
         </div>
       </Router>
     );

@@ -23,6 +23,8 @@ import { CreateTypesComponent } from './page/create-types/create-types.component
 import { CreateMoviesComponent } from './page/create-movies/create-movies.component';
 import { AddMovieComponent } from './page/add-movie/add-movie.component';
 import { BookTypeComponent } from './page/book-type/book-type.component';
+import { BannerListComponent } from './page/banner-list/banner-list.component';
+import { BannerAddOrUpdateComponent } from './page/banner-add-or-update/banner-add-or-update.component';
 
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
@@ -42,7 +44,9 @@ export const httpInterceptorProviders = [
     CreateTypesComponent,
     CreateMoviesComponent,
     AddMovieComponent,
-    BookTypeComponent
+    BookTypeComponent,
+    BannerListComponent,
+    BannerAddOrUpdateComponent
   ],
   imports: [
     BrowserModule,

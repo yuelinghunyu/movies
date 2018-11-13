@@ -1,0 +1,107 @@
+<div class="banner-list-container">
+  <ol class="breadcrumb">
+    <li><a href="javascript:void(0)">轮播列表</a></li>
+    <li class="active">混合列表</li>
+  </ol>
+  <div class="banner-list-content">
+    <div class="list-and-add">
+      <span>轮播列表</span>
+      <button type="button" 
+          class="btn btn-info pull-right"
+          (click)="addPanel()"
+      >新增图片</button>
+    </div>
+    <div class="banner-type-list">
+        <div class="banner-tab" (click)="tabEvent($event)">
+          <span class="span-tab-active" type-name="1">电影轮播</span>
+          <span type-name="2">小册轮播</span>
+        </div>
+        <div class="banner-table-list">
+          <div *ngIf='tabShow'>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>标题</th>
+                  <th>类型</th>
+                  <th>图片路径</th>
+                  <th>跳转链接</th>
+                  <th>创建时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody class="movie-table-scroll">
+                <tr *ngFor="let bannerOne of bannerOneList;let i=index" [attr.id]="bannerOne.id">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{bannerOne.title}}</td>
+                  <td>{{bannerOne.type===1?'电影':'小册'}}</td>
+                  <td>
+                    <img class="thumbnail" [src]="bannerOne.href" alt="图片">
+                  </td>
+                  <td>{{bannerOne.redirect}}</td>
+                  <td>{{bannerOne.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                  <td>
+                      <button
+                      type="button" 
+                      class="btn btn-danger btn-sm"  
+                    >
+                      删除
+                    </button>
+                    <button 
+                      type="button" 
+                      class="btn btn-primary btn-sm"
+                    >修改</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination-container">
+                <app-pagination [pagination] = "pagination1"></app-pagination>
+            </div>
+          </div>
+          <div *ngIf='!tabShow'>
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>序号</th>
+                      <th>标题</th>
+                      <th>类型</th>
+                      <th>图片路径</th>
+                      <th>跳转链接</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody class="movie-table-scroll">
+                    <tr *ngFor="let bannerTwo of bannerTwoList;let i=index" [attr.id]="bannerTwo.id">
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{bannerTwo.title}}</td>
+                      <td>{{bannerTwo.type===1?'电影':'小册'}}</td>
+                      <td>
+                        <img class="thumbnail" [src]="bannerTwo.href" alt="图片">
+                      </td>
+                      <td>{{bannerTwo.redirect}}</td>
+                      <td>{{bannerTwo.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                      <td>
+                          <button
+                          type="button" 
+                          class="btn btn-danger btn-sm"  
+                        >
+                          删除
+                        </button>
+                        <button 
+                          type="button" 
+                          class="btn btn-primary btn-sm"
+                        >修改</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="pagination-container">
+                    <app-pagination [pagination] = "pagination2"></app-pagination>
+                </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -164,4 +164,16 @@ export class ServiceService {
     return this.http.post(url,param,this.httpOptions);
   }
   /**小册接口结束 */
+
+  /**轮播图列表开始*/
+  getBannerList(param){
+    const url = this.mso + '/banner/list';
+    return this.http.get(url,{params:param})
+  }
+  setBanner(body){
+    const url = this.mso + '/banner/addOrUpdate';
+    const param = 'id='+body.id+"&title="+body.title+"&type="+body.type+"&href="+body.href+"&redirect="+body.redirect;
+    return this.http.post(url,param,this.httpOptions);
+  }
+  /**轮播图列表结束*/
 }

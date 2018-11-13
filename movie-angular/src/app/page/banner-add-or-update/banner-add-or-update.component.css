@@ -1,0 +1,58 @@
+.banner-add-update-container{
+    font-size:14px; 
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}
+h3{
+   font-size: 14px;
+   line-height: 40px;
+   width: 200px;
+   padding-left: 60px;
+   font-weight: bold;
+}
+.banner-form-container{
+    width: 600px;
+    padding:10px 0px 10px 60px;
+}
+.div-box{
+    padding-bottom: 10px;
+}
+.banner-form-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.banner-form-item>label{
+    width: 200px;
+    text-align: right;
+    padding-right: 10px;
+}
+.banner-pic-select{
+    width: 550px;
+}
+.banner-menu{
+    min-width: 100px !important; 
+}
+.banner-menu > li{
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+.pic-href{
+    display: inline-block;
+    line-height: 30px;
+    width: 300px;
+    color: cornflowerblue;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+}
+.submit-container{
+    display: flex;
+    justify-content: center;
+}
+.warning-container{
+    padding-left: 150px;
+    color: red;
+}

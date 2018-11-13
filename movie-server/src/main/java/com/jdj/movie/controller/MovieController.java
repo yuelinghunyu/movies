@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.util.*;
 
 /**
@@ -88,10 +89,10 @@ public class MovieController {
             @RequestParam(value = "count" ,required = false,defaultValue = "0") int count,
             @RequestParam(value = "movieType") int movieType,
             @RequestParam(value = "isFree") int isFree
-    ){
+    )throws Exception{
         Movie movie = new Movie();
         movie.setArea(area);
-        String url = picUrl + "&OSSAccessKeyId="+keyId+"&Signature="+sign;
+        String url = picUrl + "&OSSAccessKeyId="+keyId+"&Signature="+ URLEncoder.encode(sign, "utf-8");
         movie.setPicUrl(url);
         movie.setContent(content);
         movie.setDescription(description);

@@ -12,6 +12,10 @@ import { AddMovieComponent } from './page/add-movie/add-movie.component';
 //小册
 import { BookTypeComponent } from './page/book-type/book-type.component';
 
+//轮播图
+import { BannerListComponent } from './page/banner-list/banner-list.component';
+import { BannerAddOrUpdateComponent } from './page/banner-add-or-update/banner-add-or-update.component';
+
 
 const routes:Routes = [
   {
@@ -45,6 +49,14 @@ const routes:Routes = [
       {
         path:'book-type',
         component:BookTypeComponent
+      },
+      {
+        path:'banner-list',
+        component:BannerListComponent
+      },
+      {
+        path:'banner-add-update',
+        component:BannerAddOrUpdateComponent
       }
     ]
   },

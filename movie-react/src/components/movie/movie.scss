@@ -1,0 +1,88 @@
+@import '../../static/css/base.scss';
+.cssRoot{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    .movie-detail-container{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        @extend .flex;
+        @extend.flex-direction-column;
+        .movie-header{
+            height: 76px;
+            padding:  0 24px;
+            @extend .flex;
+            @extend .justify-content-between;
+            @extend .align-items-center;
+            span:nth-child(1){
+                width: 40px;
+                height: 40px;
+                background: url('../../static/image/black.png') -10px -70px no-repeat;
+            }
+            span:nth-child(2){
+                font-size: 33px;
+                font-weight: bold;
+                color: #333;
+            }
+            span:nth-child(3){
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .movie-detail{
+            @extend .flex;
+            @extend .flex-direction-column;
+            padding-top: 50px;
+            font-size: 26px;
+            .movie-detail-top{
+                @extend .flex;
+                @extend .flex-direction-r;
+                img{
+                    width: 250px;
+                    height: 350px;
+                }
+                .movie-other{
+                    @extend .flex;
+                    @extend .flex-direction-column;
+                    padding-left: 50px;
+                    label{
+                        display: inline-block;
+                        line-height: 60px;
+                    }
+                }
+            }
+            .movie-detail-description{
+                padding: 50px 0px;
+                label{
+                    display: inline-block;
+                    font-weight: bold;
+                    padding-bottom: 10px;
+                }
+                span{
+                    display: inline-block;
+                    line-height: 45px;
+                }
+            }
+        }
+        .cloud-href{
+            font-size: 26px;
+            label{
+                display: inline-block;
+                font-weight: bold;
+                padding-bottom: 10px;
+            }
+            .movie-link{
+                label{
+                    font-weight: normal;
+                    margin-right: 50px;
+                    span{
+                        color: blueviolet
+                    }
+                }
+            }
+        }
+    }
+}
