@@ -175,5 +175,10 @@ export class ServiceService {
     const param = 'id='+body.id+"&title="+body.title+"&type="+body.type+"&href="+body.href+"&redirect="+body.redirect;
     return this.http.post(url,param,this.httpOptions);
   }
+  deleteBanner(body){
+    const url = this.mso + "/banner/delete";
+    const param = 'id=' + body.id;
+    return this.http.post(url,param,this.httpOptions);
+  }
   /**轮播图列表结束*/
 }

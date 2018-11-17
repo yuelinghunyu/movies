@@ -89,4 +89,24 @@ public class BannerController {
             return new ReturnModel(-1,flag);
         }
     }
+    /**
+     * @param id
+     * @deprecated 删除一条记录
+     */
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public ReturnModel deleteBanner(
+            @RequestParam(value = "id",required = true) String id
+    ){
+        Banner banner = bannerBll.getBanner(id);
+        int flag = bannerBll.deleteBanner(id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("type",banner.getType());
+        if(flag>0){
+            map.put("status",true);
+            return new ReturnModel(0,map);
+        }else {
+            map.put("status",false);
+            return new ReturnModel(-1,map);
+        }
+    }
 }

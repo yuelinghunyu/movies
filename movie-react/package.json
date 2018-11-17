@@ -13,6 +13,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8888",
   "devDependencies": {
     "animated": "^0.2.2",
     "axios": "^0.18.0",

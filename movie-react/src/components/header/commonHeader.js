@@ -6,7 +6,7 @@ class CommonHeader extends Component{
     constructor(props){
         super(props)
         this.state = {
-            currentType:1,//当前选项
+            currentType:0,//当前选项
         }
     }
     selectTypeItem(type){
@@ -21,10 +21,10 @@ class CommonHeader extends Component{
                 <li 
                     key={item.id}
                     className={
-                        `${this.state.currentType == item.type?'active':''}`
+                        `${this.state.currentType == item.area?'active':''}`
                     }
                     onClick={
-                        this.selectTypeItem.bind(this,item.type)
+                        this.selectTypeItem.bind(this,item.area)
                     }
                 >
                     {item.title}

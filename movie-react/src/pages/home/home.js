@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { SWIPER_LIST,HOT_SERIES_LIST,CLASSICAL_SERIES_LIST,MOVIE_TYPES } from '../../server/api';
+import {getBannerList,getAreaList,funcGetBannerList,funcGetAreaList,getMovieList,funcGetMovieList} from '../../server/server'
+import { ERROR_OK } from '../../plugin/utils'
+import axios from 'axios'
+
 import { HOME_FLAG } from "../../common/content";
 import './home.scss';
 import Header from '../../components/header/header';
@@ -12,16 +16,28 @@ class Home  extends Component{
         this.state = {
             swiperList:[],
             scrollTopVal:0,
-            flag:HOME_FLAG
+            flag:HOME_FLAG,
+            movie_types:[],
+            movieList:[]
         }
     }
     componentWillMount(){
-        this.setState({
-            swiperList:SWIPER_LIST,
-            hotSeriesList:HOT_SERIES_LIST,//最热的剧
-            classicalSeriesList:CLASSICAL_SERIES_LIST,//经典的剧
-            movie_types:MOVIE_TYPES,
-        })
+        axios.all([funcGetBannerList({type:1}),funcGetAreaList({}),funcGetMovieList({})]).then(
+            axios.spread((banner, area,movie)=>{
+                const all = {
+                    id:'all',
+                    area:0,
+                    title:'全部'
+                }
+                let list = area.data.data.list
+                list.unshift(all)
+                this.setState({
+                    swiperList:banner.data.data.list,
+                    movie_types:list,
+                    movieList:movie.data.data.list
+                })
+            })
+        )
     }
     render(){
         return (
@@ -35,8 +51,7 @@ class Home  extends Component{
                         <Swiper swiperList={this.state.swiperList}></Swiper> 
                     </div>
                     <div className="common-content-container">
-                        <ContentList list={this.state.hotSeriesList} flag={this.state.flag}></ContentList>
-                        <ContentList list={this.state.classicalSeriesList} flag={this.state.flag}></ContentList>
+                        <ContentList list={this.state.movieList} flag={this.state.flag}></ContentList>
                     </div>
                 </div>
             </div>

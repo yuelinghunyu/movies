@@ -22,7 +22,13 @@ public class BannerBll {
     public List<Banner> getBannerList(int type,int skip,int limit){
         return bannerMapper.getBannerList(type,skip,limit);
     }
-
+    /**
+     * @param id
+     * @deprecated 一条记录
+     */
+    public Banner getBanner(String id){
+        return bannerMapper.selectByPrimaryKey(id);
+    }
     /**
      * @param type
      * @deprecated 返回数量
@@ -45,6 +51,14 @@ public class BannerBll {
      */
     public int updateBanner(Banner banner){
         return bannerMapper.updateByPrimaryKey(banner);
+    }
+
+    /**
+     * @param id
+     * @deprecated  删除一条记录
+     */
+    public int deleteBanner(String id){
+        return bannerMapper.deleteByPrimaryKey(id);
     }
 
 }

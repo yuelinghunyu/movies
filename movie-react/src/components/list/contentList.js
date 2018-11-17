@@ -5,10 +5,6 @@ import CommonList from './commonList';
 class ContentList extends Component{
     constructor(props){
         super(props);
-        this.state={
-            flag:this.props.list[0].flag,
-            FLAG:this.props.flag
-        }
     }
     render(){
         let length = this.props.list.length;
@@ -21,7 +17,7 @@ class ContentList extends Component{
                 <div className="content-list-title">
                     <p className="content-list-type">
                         <span className="dot"></span>
-                        <span className="list-title">{this.state.FLAG[this.state.flag]}</span>
+                        <span className="list-title">电影列表</span>
                     </p>
                     {p}
                 </div>

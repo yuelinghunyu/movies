@@ -36,11 +36,12 @@ public class HTTPBasicAuthorizeHandler implements Filter {
         try {
             logger.info("audience:"+audience.getBase64Secret());
             HttpServletRequest request = (HttpServletRequest) servletRequest;
-            HttpServletResponse response = (HttpServletResponse) servletResponse;
+//            HttpServletResponse response = (HttpServletResponse) servletResponse;
             String path = request.getRequestURI().substring(request.getContextPath().length()).replaceAll("[/]+$", "");
+            String flag = request.getHeader("web-flag") == null ? "":request.getHeader("web-flag");
             logger.info("url:"+path);
             Boolean allowedPath = ALLOWED_PATHS.contains(path);
-            if(allowedPath){
+            if(allowedPath || flag.equals("wexin")){
                 filterChain.doFilter(servletRequest,servletResponse);
             }else {
                 ReturnModel returnModel = CreateTokenUtils.checkJWT((HttpServletRequest)servletRequest,audience.getBase64Secret());

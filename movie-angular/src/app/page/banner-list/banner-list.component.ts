@@ -3,6 +3,7 @@ import { ServiceService } from '../../service/service.service';
 import { Router } from '@angular/router';
 import { Config} from "../../config/config";
 import { Pagination } from "../../common/pagination/pagination";
+import { Modal } from '../../common/modal/modal';
 
 @Component({
   selector: 'app-banner-list',
@@ -13,11 +14,13 @@ export class BannerListComponent implements OnInit {
 
   private tabShow:Boolean = true;
   private Config:Config = new Config();
-  private bannerOneList:[];
-  private bannerTwoList:[];
+  private bannerOneList:any = [];
+  private bannerTwoList:any = [];
+  public modal:Modal = Modal.modal;
   public type: any = 1;
   private total1:any = 0;
   private total2:any = 0;
+  private state:string;
   public pagination1:Pagination = Pagination.defaultPagination;
   public pagination2:Pagination = Pagination.defaultPagination;
   constructor(
@@ -26,6 +29,7 @@ export class BannerListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.state = 'inactive';
     const param1 = {
       "type":1,
       "page":this.pagination1.currentPage,
@@ -85,5 +89,42 @@ export class BannerListComponent implements OnInit {
   }
   addPanel(){
     this.router.navigateByUrl("/frame/banner-add-update")
+  }
+   //弹框出现;
+   private alertModalItem(id:string){
+    this.modal.tips = "是否删除该项？";
+    this.modal.id = id;
+    this.modal.changeEvent=((id:string)=>{
+      this.deleteItem(id);
+    })
+  }
+  deleteItem(id:string){
+    this.modal.flag = true;
+    this.modal.tips = "正在删除，请稍后...";
+    const body = {
+      id:id
+    }
+    this.service.deleteBanner(body).subscribe(res=>{
+      if(res['code'] === this.Config.ERROR_OK){
+        this.modal.tips = "删除成功！";
+        $("#tipModal").modal('hide');
+        this.modal.flag = false;
+        if(res['data'].type === 1){
+          const param1 = {
+            "type":1,
+            "page":this.pagination1.currentPage,
+            "limit":this.pagination1.pageItems
+          }
+          this.getBannerList(param1)
+        }else{
+          const param2 = {
+            "type":2,
+            "page":this.pagination1.currentPage,
+            "limit":this.pagination1.pageItems
+          }
+          this.getBannerList(param2)
+        }
+      }
+    })
   }
 }

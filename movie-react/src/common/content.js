@@ -1,5 +1,5 @@
 export const HOME_FLAG = {
-    1:"最热剧集",
+    1:"电影列表",
     2:"经典忆剧"
 }
 export const CLASSICAL_FLAG = {
