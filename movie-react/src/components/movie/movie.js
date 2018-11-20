@@ -14,7 +14,7 @@ class Movie extends Component{
     constructor(props){
         super(props)
         this.state = {
-            logo:require('../../static/image/b.jpg')
+            logo:''
         }
     }
     backToLastEvent(event){//返回上一层

@@ -8,6 +8,8 @@ import { ERROR_OK } from '../../plugin/utils'
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import {getAreaList,funcGetAreaList,getMovieList,funcGetMovieList,funcGetTotal} from '../../server/server';
+import Loading from '../../components/loading/loading';
+import NoData from '../../components/noData/noData'
 
 const styles = {
     fadeInRightBig:{
@@ -30,7 +32,8 @@ class Classify extends Component{
                 area:-1,
                 type:-1,
                 movieType:-1
-            }
+            },
+            loading:false
         }
     }
     backToLastEvent(event){//返回上一层
@@ -38,6 +41,9 @@ class Classify extends Component{
         window.history.go(-1);
     }
     classifyTypeActiveEvent(item){//选中改变样式
+        this.setState({
+            loading:false
+        })
         let totalParam = {}
         if(item.id !== "all"){
             totalParam={
@@ -91,6 +97,10 @@ class Classify extends Component{
                     if(res.code === ERROR_OK){
                         this.setState({
                             movieList:res.data.list
+                        },()=>{
+                            this.setState({
+                                loading:true
+                            })
                         })
                     }
                 })
@@ -120,6 +130,10 @@ class Classify extends Component{
                         this.setState({
                             classifyType:list,
                             movieList:res.data.list
+                        },()=>{
+                            this.setState({
+                                loading:true
+                            })
                         })
                     }
                 })
@@ -129,6 +143,9 @@ class Classify extends Component{
 
     //父子组件通信业务
     selectTypeCallback(item){
+        this.setState({
+            loading:false
+        })
         let totalParam = {}
         const flag = item.type === undefined ? 'movieType':'type'
         if(item.id !== "all"){
@@ -234,6 +251,10 @@ class Classify extends Component{
                     if(res.code === ERROR_OK){
                         this.setState({
                             movieList:res.data.list
+                        },()=>{
+                            this.setState({
+                                loading:true
+                            })
                         })
                     }
                 })
@@ -253,6 +274,16 @@ class Classify extends Component{
                 </li>
             );
         })
+        let content = null
+        if(this.state.loading){
+            if(this.state.movieList.length>0){
+                content = <CommonList contentList={this.state.movieList}></CommonList>
+            }else{
+                content = <NoData></NoData>
+            }
+        }else{
+            content = <Loading></Loading>
+        }
         return(
             <StyleRoot className = "cssRoot">
                 <div className='classify-container'style={styles.fadeInRightBig}>
@@ -266,7 +297,7 @@ class Classify extends Component{
                     </ul>
                     <div className='classify-content'>
                         <Types selectTypeCallback = {this.selectTypeCallback.bind(this)}></Types>
-                        <CommonList contentList={this.state.movieList}></CommonList>
+                        {content}
                     </div>
                 </div>
             </StyleRoot>        

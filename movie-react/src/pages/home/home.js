@@ -10,6 +10,8 @@ import './home.scss';
 import Header from '../../components/header/header';
 import Iswiper from '../../components/swiper/iswiper';
 import ContentList from '../../components/list/contentList';
+import Loading from '../../components/loading/loading';
+import NoData from '../../components/noData/noData'
 
 class Home  extends Component{
     constructor(){
@@ -19,7 +21,8 @@ class Home  extends Component{
             scrollTopVal:0,
             flag:HOME_FLAG,
             movie_types:[],
-            movieList:[]
+            movieList:[],
+            loading:false
         }
     }
     componentWillMount(){
@@ -36,11 +39,25 @@ class Home  extends Component{
                     swiperList:banner.data.data.list,
                     movie_types:list,
                     movieList:movie.data.data.list
+                },()=>{
+                    this.setState({
+                        loading:true
+                    })
                 })
             })
         )
     }
     render(){
+        let content = null
+        if(this.state.loading){
+            if(this.state.movieList.length>0){
+                content = <ContentList list={this.state.movieList} flag={this.state.flag}></ContentList>
+            }else{
+                content = <NoData></NoData>
+            }
+        }else{
+            content = <Loading></Loading>
+        }
         return (
             <div className="home-container">
                 <Header 
@@ -52,7 +69,7 @@ class Home  extends Component{
                         <Iswiper swiperList={this.state.swiperList}></Iswiper>
                     </div>
                     <div className="common-content-container">
-                        <ContentList list={this.state.movieList} flag={this.state.flag}></ContentList>
+                        {content}
                     </div>
                 </div>
             </div>
@@ -68,6 +85,9 @@ class Home  extends Component{
         });
 
         this.eventEmitter  =  emitter.addListener("selectArea",(area) =>{
+            this.setState({
+                loading:false
+            })
             let param = {}
             if(area !== 0){
                 param = {
@@ -78,6 +98,10 @@ class Home  extends Component{
                 if(res.code === ERROR_OK){
                     this.setState({
                         movieList:res.data.list
+                    },()=>{
+                        this.setState({
+                            loading:true
+                        })
                     })
                 }
             })
