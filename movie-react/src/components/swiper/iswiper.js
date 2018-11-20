@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import ReactSwipe from 'react-swipe'
-import './swiper.scss'
+import './iswiper.scss'
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-class Swiper extends Component{
+class Iswiper extends Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             currentIndex:0,
-            option:{
-                speed: 400,
-                auto: 3000,
-                continuous: true,
-                transitionEnd: ((index, elem)=>{
-                   this.transitionEndCallback(index,elem);
-                }),
-            }
         }
     }
+    handleChangeIndex(index){
+        this.setState({
+            currentIndex:index
+        });
+    }
     render(){
+        const { currentIndex } = this.state;
         let divList = [],spanList=[];
         this.props.swiperList.map((item,index)=>{
             divList.push(
@@ -27,21 +27,17 @@ class Swiper extends Component{
             );
             spanList.push(<span className={this.state.currentIndex==index?"active":"normal"} key={index}></span>);
         })
-        return (
+        return(
             <div className = "swiper-container">
-                <ReactSwipe className="carousel" swipeOptions={this.state.option}>
+                <AutoPlaySwipeableViews
+                   index={currentIndex} onChangeIndex={this.handleChangeIndex.bind(this)}
+                >
                     {divList}
-                </ReactSwipe>
+                </AutoPlaySwipeableViews>
                 <p className="dot">{spanList}</p>
             </div>
-        );
+        )
     }
-    transitionEndCallback(index, elem){
-       this.setState({
-           currentIndex:index
-       });
-    }
+}
 
-};
-
-export default Swiper;
+export default Iswiper

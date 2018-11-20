@@ -25,7 +25,16 @@ const getAreaList = (param) => {
         return Promise.resolve(res.data)
     })
 }
-
+//获取类型列表
+const getTypeList = (param) => {
+    const url = baseUrl + '/types/list'
+    return axios.get(url,{
+        headers:headers,
+        params:param
+    }).then((res)=>{
+        return Promise.resolve(res.data)
+    })
+}
 //获取电影列表
 const getMovieList = (param) => {
     const url = baseUrl + '/movie/list'
@@ -53,8 +62,24 @@ const funcGetAreaList = (param) => {
     })
 }
 
+const funcGetTypeList = (param) => {
+    const url = baseUrl + '/types/list'
+    return axios.get(url,{
+        headers:headers,
+        params:param
+    })
+}
+
 const funcGetMovieList = (param) => {
     const url = baseUrl + '/movie/list'
+    return axios.get(url,{
+        headers:headers,
+        params:param
+    })
+}
+
+const funcGetTotal = (param) => {
+    const url = baseUrl + '/movie/getTotal'
     return axios.get(url,{
         headers:headers,
         params:param
@@ -63,8 +88,11 @@ const funcGetMovieList = (param) => {
 export {
     getBannerList,
     getAreaList,
+    getTypeList,
     getMovieList,
     funcGetBannerList,
     funcGetAreaList,
-    funcGetMovieList
+    funcGetMovieList,
+    funcGetTypeList,
+    funcGetTotal
 }

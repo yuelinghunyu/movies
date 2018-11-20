@@ -44,7 +44,7 @@
             overflow: auto;
             white-space:nowrap;//处理块元素中的空白符和换行     
             li{
-                margin: 0 20px;
+                padding: 0 20px;
                 font-size: 32px;
                 list-style: none;
                 display: inline-block;//使li对象显示为一行

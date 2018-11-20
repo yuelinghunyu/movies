@@ -3,7 +3,6 @@ import './classical.scss';
 import Header from '../../components/header/header';
 import { CLASSICAL_TYPES,SWIPER_LIST,HOT_SERIES_LIST,CLASSICAL_SERIES_LIST} from '../../server/api';
 import { CLASSICAL_FLAG } from "../../common/content";
-import Swiper from '../../components/swiper/swiper';
 import ContentList from '../../components/list/contentList';
 class Classical extends Component{
     constructor(){
@@ -29,7 +28,7 @@ class Classical extends Component{
                 </Header>
                 <div className="classical-scroll">
                     <div className="classical-banner">
-                        <Swiper swiperList={this.state.swiperList}></Swiper> 
+                        {/* <Swiper swiperList={this.state.swiperList}></Swiper>  */}
                     </div>
                     <div className="common-content-container">
                         <ContentList list={this.state.hotSeriesList} flag={this.state.flag}></ContentList>

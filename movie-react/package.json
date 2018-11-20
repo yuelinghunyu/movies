@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-swipeable": "^4.3.0",
+    "react-swipeable-views": "^0.13.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,6 +21,7 @@
     "axios": "^0.18.0",
     "babel-preset-stage-0": "^6.24.1",
     "history": "^4.7.2",
+    "iswiper": "^1.4.1",
     "lib-flexible": "^0.3.2",
     "node-sass": "^4.9.0",
     "postcss-px2rem": "^0.3.0",

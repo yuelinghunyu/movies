@@ -1,19 +1,46 @@
 import React,{Component} from 'react';
 import './types.scss';
 import { CLASSIFY_TYPES } from '../../server/api';
+import {getTypeList} from '../../server/server'
+import { ERROR_OK } from '../../plugin/utils'
 import { TYPES } from "../../common/content";
 class Types extends Component{
     constructor(props){
         super(props)
         this.state={
-            typesList:CLASSIFY_TYPES,
+            typesList:[],
             typesItemList:TYPES
         }
     }
     typesEvent(index,item){
-        TYPES.splice(index,1,item);
+        this.props.selectTypeCallback(item)
+        TYPES.splice(index,1,item.title);
         this.setState({
             typesItemList:TYPES
+        })
+    }
+    componentWillMount(){
+        getTypeList({}).then(res=>{
+            if(res.code === ERROR_OK){
+                let array = []
+                const all = {
+                    id:'all',
+                    type:0,
+                    title:'全部类型'
+                }
+                let list = res.data.list
+                list.unshift(all)
+
+                const typeItem = {
+                    types:1,
+                    list:list
+                }
+                array.push(typeItem);
+                array.push(CLASSIFY_TYPES)
+                this.setState({
+                    typesList:array
+                })
+            }
         })
     }
     render(){
@@ -24,11 +51,11 @@ class Types extends Component{
             list.map((item)=>{
                 listItem.push(
                     <li 
-                        className={`type-item ${this.state.typesItemList[index]===item.typeVal?'type-item-active':''}`} 
-                        key={item.type}
-                        onClick={this.typesEvent.bind(this,index,item.typeVal)}
+                        className={`type-item ${this.state.typesItemList[index]===item.title?'type-item-active':''}`} 
+                        key={item.type || item.movieType}
+                        onClick={this.typesEvent.bind(this,index,item)}
                     >
-                    {item.typeVal}
+                    {item.title}
                     </li>
                 )
             });

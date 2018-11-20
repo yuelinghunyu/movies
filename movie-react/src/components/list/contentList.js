@@ -17,7 +17,7 @@ class ContentList extends Component{
                 <div className="content-list-title">
                     <p className="content-list-type">
                         <span className="dot"></span>
-                        <span className="list-title">电影列表</span>
+                        <span className="list-title">资源列表</span>
                     </p>
                     {p}
                 </div>

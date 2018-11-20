@@ -58,10 +58,6 @@ public class MovieController {
             MovieConvert movieConvert = CovertUtils.covertMovie(list.get(i),areasList,typesList);
             mList.add(movieConvert);
         }
-        if(list.size()==0){
-            logger.info("list的长度",list.size());
-            return new ReturnModel(0,0);
-        }
         int total = movieBll.getTotal(id,area,title,type,movieType);
         Map map = new HashMap<>();
         map.put("total",total);
@@ -170,6 +166,22 @@ public class MovieController {
         map.put("total",total);
         map.put("list",mList);
         logger.info("返回成功",true);
+        return new ReturnModel(0,map);
+    }
+    /**
+     * @deprecated 获取不同情况下的总数
+     */
+    @RequestMapping(value = "/getTotal",method = RequestMethod.GET)
+    public ReturnModel total(
+            @RequestParam(value = "id",required = false,defaultValue = "") String id,
+            @RequestParam(value = "area",required = false,defaultValue = "-1") int area,
+            @RequestParam(value = "title",required = false,defaultValue = "") String title,
+            @RequestParam(value = "type",required = false,defaultValue = "-1") int type,
+            @RequestParam(value = "movieType",required = false,defaultValue = "-1") int movieType
+    ){
+        int total = movieBll.getTotal(id,area,title,type,movieType);
+        Map map = new HashMap<>();
+        map.put("total",total);
         return new ReturnModel(0,map);
     }
 }

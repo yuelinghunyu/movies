@@ -12,12 +12,13 @@
             @extend .flex;
             @extend .flex-direction-column;
             @extend .align-items-center;
-            span:nth-child(1){
+            i:nth-child(1){
                 width: 40px;
                 height: 40px;
+                font-size: 40px;
             }
             span:nth-child(2){
-                font-size: 18px;
+                font-size: 20px;
                 line-height: 40px;
             }
         }

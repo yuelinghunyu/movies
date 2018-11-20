@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { SWIPER_LIST,HOT_SERIES_LIST,CLASSICAL_SERIES_LIST,MOVIE_TYPES } from '../../server/api';
-import {getBannerList,getAreaList,funcGetBannerList,funcGetAreaList,getMovieList,funcGetMovieList} from '../../server/server'
+import {funcGetBannerList,funcGetAreaList,getMovieList,funcGetMovieList} from '../../server/server'
 import { ERROR_OK } from '../../plugin/utils'
 import axios from 'axios'
+import emitter from "../../plugin/ev"
+
 
 import { HOME_FLAG } from "../../common/content";
 import './home.scss';
 import Header from '../../components/header/header';
-import Swiper from '../../components/swiper/swiper';
+import Iswiper from '../../components/swiper/iswiper';
 import ContentList from '../../components/list/contentList';
 
 class Home  extends Component{
@@ -48,7 +49,7 @@ class Home  extends Component{
                 ></Header>
                 <div className="home-scroll">
                     <div className="home-banner">
-                        <Swiper swiperList={this.state.swiperList}></Swiper> 
+                        <Iswiper swiperList={this.state.swiperList}></Iswiper>
                     </div>
                     <div className="common-content-container">
                         <ContentList list={this.state.movieList} flag={this.state.flag}></ContentList>
@@ -65,6 +66,25 @@ class Home  extends Component{
                scrollTopVal:scrollTop
            })
         });
+
+        this.eventEmitter  =  emitter.addListener("selectArea",(area) =>{
+            let param = {}
+            if(area !== 0){
+                param = {
+                    area:area
+                }
+            }
+            getMovieList(param).then(res=>{
+                if(res.code === ERROR_OK){
+                    this.setState({
+                        movieList:res.data.list
+                    })
+                }
+            })
+        })
+    }
+    componentWillUnmount(){
+        emitter.removeAllListeners(this.eventEmitter);
     }
 };
 export default Home;

@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import './footer.scss';
+import "../../static/fonts/iconfont.css"
 
 class Footer extends Component{
     constructor(props){
@@ -19,7 +20,8 @@ class Footer extends Component{
             <div className="footer-container">
                 <p className="home-page">
                     <Link to="/"  onClick={this.pageHandle.bind(this,'home')}>
-                        <span className={this.state.status==="home"?"home-active":"home-normal"}></span>
+                        <i className={this.state.status==="home"?"icon iconfont icon-shouye active":"icon iconfont icon-shouye normal"}></i>
+                        {/* <span className={this.state.status==="home"?"home-active":"home-normal"}></span> */}
                         <span className={this.state.status==="home"?"active":"normal"}>首页</span>
                     </Link>
                 </p>
@@ -31,7 +33,8 @@ class Footer extends Component{
                 </p> */}
                 <p className="person-page">
                     <Link to="/person" onClick={this.pageHandle.bind(this,'person')}>
-                        <span className={this.state.status==="person"?"person-active":"person-normal"}></span>
+                        <i className={this.state.status==="person"?"icon iconfont icon-geren active":"icon iconfont icon-geren normal"}></i>
+                        {/* <span className={this.state.status==="person"?"person-active":"person-normal"}></span> */}
                         <span className={this.state.status==="person"?"active":"normal"}>我的</span>
                     </Link>
                 </p>

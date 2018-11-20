@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import './commonHeader.scss';
-
+import emitter from "../../plugin/ev"
 
 class CommonHeader extends Component{
     constructor(props){
@@ -10,6 +10,7 @@ class CommonHeader extends Component{
         }
     }
     selectTypeItem(type){
+        emitter.emit("selectArea",type)
         this.setState({
             currentType:type,
         })
@@ -20,6 +21,7 @@ class CommonHeader extends Component{
             return(
                 <li 
                     key={item.id}
+                    id={item.id}
                     className={
                         `${this.state.currentType == item.area?'active':''}`
                     }
