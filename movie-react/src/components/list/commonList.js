@@ -10,7 +10,6 @@ class CommonList extends Component{
     }
     constructor(props){
         super(props)
-        this.movieDetailEvent = this.movieDetailEvent.bind(this)
     }
     render(){
         let liList = [];
@@ -19,7 +18,8 @@ class CommonList extends Component{
                 <li 
                     className={(index%3===1)?"list-item-center":"list-item "} 
                     key={item.id}
-                    onClick={this.movieDetailEvent}
+                    id={item.id}
+                    onClick={this.movieDetailEvent.bind(this,item)}
                 >
                     <div className="logo-container">
                         <LazyLoad height={368}>
@@ -40,8 +40,8 @@ class CommonList extends Component{
             </ul>
         )
     }
-    movieDetailEvent(){
-        const path = '/movie-detail';
+    movieDetailEvent(movie){
+        const path = '/movie-detail/'+movie.id;
         this.context.router.history.push(path);
     }
 }

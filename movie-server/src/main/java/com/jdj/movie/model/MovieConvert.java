@@ -21,6 +21,8 @@ public class MovieConvert {
 
     private String title;
 
+    private String actor;
+
     private Integer type;
 
     private String typeTitle;
@@ -87,6 +89,14 @@ public class MovieConvert {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
     }
 
     public Integer getType() {

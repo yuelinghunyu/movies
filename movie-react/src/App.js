@@ -26,7 +26,7 @@ class App extends Component {
           <Route path="/select" component={Select}/>
           <Route path="/classify" component={Classify}/>
           <Route path="/feed-back" component={FeedBack}/>
-          <Route path='/movie-detail' component={Movie} />
+          <Route path='/movie-detail/:id' component={Movie} />
         </div>
       </Router>
     );

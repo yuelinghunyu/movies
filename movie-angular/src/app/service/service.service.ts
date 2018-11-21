@@ -121,6 +121,7 @@ export class ServiceService {
           "&content="+body.content+
           "&description="+body.description+
           "&title="+body.title+
+          "&actor="+body.actor+
           "&type="+body.type+
           "&price="+body.price+
           "&movieType="+body.movieType+

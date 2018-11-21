@@ -52,6 +52,7 @@ public class CovertUtils {
         movieConvert.setPicUrl(movie.getPicUrl());
         movieConvert.setContent(movie.getContent());
         movieConvert.setTitle(movie.getTitle());
+        movieConvert.setActor(movie.getActor());
         movieConvert.setType(movie.getType());
         movieConvert.setTypeTitle(getTypeTitle(movie.getType(),typeslist));
         movieConvert.setPrice(movie.getPrice());

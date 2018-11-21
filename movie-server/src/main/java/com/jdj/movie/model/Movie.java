@@ -16,6 +16,8 @@ public class Movie {
 
     private String title;
 
+    private String actor;
+
     private Integer type;
 
     private BigDecimal price;
@@ -70,6 +72,14 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
     }
 
     public Integer getType() {

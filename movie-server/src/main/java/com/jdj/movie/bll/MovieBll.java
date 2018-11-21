@@ -22,12 +22,13 @@ public class MovieBll {
             String id,
             int area,
             String title,
+            String actor,
             int type,
             int movieType,
             int skip,
             int limit
     ){
-        return movieMapper.movieList(id,area,title,type,movieType,skip,limit);
+        return movieMapper.movieList(id,area,title,actor,type,movieType,skip,limit);
     }
     /**
      * @content 插入数据
@@ -44,10 +45,11 @@ public class MovieBll {
             String id,
             int area,
             String title,
+            String actor,
             int type,
             int movieType
     ){
-        return movieMapper.getMoviesCount(id,area,title,type,movieType);
+        return movieMapper.getMoviesCount(id,area,title,actor,type,movieType);
     }
     /**
      * @param movie

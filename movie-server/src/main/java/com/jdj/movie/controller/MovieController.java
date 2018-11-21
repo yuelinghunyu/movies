@@ -40,13 +40,14 @@ public class MovieController {
             @RequestParam(value = "id",required = false,defaultValue = "") String id,
             @RequestParam(value = "area",required = false,defaultValue = "-1") int area,
             @RequestParam(value = "title",required = false,defaultValue = "") String title,
+            @RequestParam(value = "actor",required = false,defaultValue = "") String actor,
             @RequestParam(value = "type",required = false,defaultValue = "-1") int type,
             @RequestParam(value = "movieType",required = false,defaultValue = "-1") int movieType,
             @RequestParam(value = "page",required = false,defaultValue = "1") int page,
             @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
     ){
         int skip = (page-1)*limit;
-        List<Movie> list =  movieBll.getMovieList(id,area,title,type,movieType,skip,limit);
+        List<Movie> list =  movieBll.getMovieList(id,area,title,actor,type,movieType,skip,limit);
         List<MovieConvert> mList = new ArrayList<>();
         int areaTotal = areasBll.getTotal();
         int typesTotal = typesBll.getTotal();
@@ -58,7 +59,7 @@ public class MovieController {
             MovieConvert movieConvert = CovertUtils.covertMovie(list.get(i),areasList,typesList);
             mList.add(movieConvert);
         }
-        int total = movieBll.getTotal(id,area,title,type,movieType);
+        int total = movieBll.getTotal(id,area,title,actor,type,movieType);
         Map map = new HashMap<>();
         map.put("total",total);
         map.put("list",mList);
@@ -80,6 +81,7 @@ public class MovieController {
             @RequestParam(value = "content") String content,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "title") String title,
+            @RequestParam(value = "actor") String actor,
             @RequestParam(value = "type") int type,
             @RequestParam(value = "price",required = false,defaultValue = "") String price,
             @RequestParam(value = "count" ,required = false,defaultValue = "0") int count,
@@ -93,6 +95,7 @@ public class MovieController {
         movie.setContent(content);
         movie.setDescription(description);
         movie.setTitle(title);
+        movie.setActor(actor);
         movie.setType(type);
         if(!price.isEmpty()){
             movie.setPrice(new BigDecimal(price));
@@ -111,9 +114,9 @@ public class MovieController {
             logger.info("id值","："+id+";执行更新数据库操作");
             flag = movieBll.updateMovie(movie);
         }
-        int total = movieBll.getTotal("",-1,"",-1,-1);
+        int total = movieBll.getTotal("",-1,"","",-1,-1);
         if(flag>0){
-            logger.info("return","：插入成功");
+            logger.info("info","：插入成功");
             return new ReturnModel(0,total);
         }else {
             logger.info("return","：插入失败");
@@ -157,10 +160,6 @@ public class MovieController {
             MovieConvert movieConvert = CovertUtils.covertMovie(list.get(i),areasList,typesList);
             mList.add(movieConvert);
         }
-        if(list.size()==0){
-            logger.info("list的长度",list.size());
-            return new ReturnModel(0,0);
-        }
         int total = movieBll.getMovieListLikeCount(title);
         Map map = new HashMap<>();
         map.put("total",total);
@@ -176,10 +175,11 @@ public class MovieController {
             @RequestParam(value = "id",required = false,defaultValue = "") String id,
             @RequestParam(value = "area",required = false,defaultValue = "-1") int area,
             @RequestParam(value = "title",required = false,defaultValue = "") String title,
+            @RequestParam(value = "actor",required = false,defaultValue = "") String actor,
             @RequestParam(value = "type",required = false,defaultValue = "-1") int type,
             @RequestParam(value = "movieType",required = false,defaultValue = "-1") int movieType
     ){
-        int total = movieBll.getTotal(id,area,title,type,movieType);
+        int total = movieBll.getTotal(id,area,title,actor,type,movieType);
         Map map = new HashMap<>();
         map.put("total",total);
         return new ReturnModel(0,map);

@@ -35,7 +35,7 @@
         .movie-detail{
             @extend .flex;
             @extend .flex-direction-column;
-            padding-top: 50px;
+            padding:  50px 24px 0 24px;
             font-size: 26px;
             .movie-detail-top{
                 @extend .flex;
@@ -69,6 +69,7 @@
         }
         .cloud-href{
             font-size: 26px;
+            padding: 0 24px;
             label{
                 display: inline-block;
                 font-weight: bold;

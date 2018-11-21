@@ -1,6 +1,5 @@
 package com.jdj.movie.mapper;
 
-import com.jdj.movie.enums.StaticTypes;
 import com.jdj.movie.model.Movie;
 import com.jdj.movie.typesHandlers.MovieTypeHandler;
 import org.apache.ibatis.annotations.*;
@@ -19,13 +18,13 @@ public interface MovieMapper {
     @Insert({
         "insert into movie (id, area, ",
         "pic_url, content, ",
-        "title, type, price, ",
+        "title, actor, type, price, ",
         "count, movie_type, ",
         "is_free, create_time, ",
         "modify_time, description)",
         "values (#{id,jdbcType=VARCHAR}, #{area,jdbcType=INTEGER}, ",
         "#{picUrl,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, ",
-        "#{title,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, ",
+        "#{title,jdbcType=VARCHAR},#{actor,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, ",
         "#{count,jdbcType=INTEGER}, #{movieType,jdbcType=INTEGER,typeHandler = com.jdj.movie.typesHandlers.MovieTypeHandler}, ",
         "#{isFree,jdbcType=INTEGER}, now(), ",
         "now(), #{description,jdbcType=LONGVARCHAR})"
@@ -37,7 +36,7 @@ public interface MovieMapper {
 
     @Select({
         "select",
-        "id, area, pic_url, content, title, type, price, count, movie_type, is_free, ",
+        "id, area, pic_url, content, title, actor, type, price, count, movie_type, is_free, ",
         "create_time, modify_time, description",
         "from movie",
         "where id = #{id,jdbcType=VARCHAR}"
@@ -48,6 +47,7 @@ public interface MovieMapper {
         @Result(column="pic_url", property="picUrl", jdbcType=JdbcType.VARCHAR),
         @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
         @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+        @Result(column="actor", property="actor", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.INTEGER),
         @Result(column="price", property="price", jdbcType=JdbcType.DECIMAL),
         @Result(column="count", property="count", jdbcType=JdbcType.INTEGER),
@@ -67,7 +67,7 @@ public interface MovieMapper {
     @Select({
             "<script>",
             "select",
-            "id, area, pic_url, content, title, type, price, count, movie_type, is_free, ",
+            "id, area, pic_url, content, title, actor, type, price, count, movie_type, is_free, ",
             "create_time, modify_time, description",
             "from movie",
             "where 1=1",
@@ -80,12 +80,16 @@ public interface MovieMapper {
             "<if test='title!=null and title!= &apos;&apos;'>",
             "and title = #{title,jdbcType=VARCHAR}",
             "</if>",
+            "<if test='actor!=null and actor!= &apos;&apos;'>",
+            "and actor = #{actor,jdbcType=VARCHAR}",
+            "</if>",
             "<if test='type!= -1'>",
             "and type = #{type,jdbcType=INTEGER}",
             "</if>",
             "<if test='movieType!= -1'>",
             "and movie_type = #{movieType,jdbcType=VARCHAR}",
             "</if>",
+            "order by modify_time desc",
             "limit #{skip},#{limit}",
             "</script>"
     })
@@ -95,6 +99,7 @@ public interface MovieMapper {
             @Result(column="pic_url", property="picUrl", jdbcType=JdbcType.VARCHAR),
             @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
             @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="actor", property="actor", jdbcType=JdbcType.VARCHAR),
             @Result(column="type", property="type", jdbcType=JdbcType.INTEGER),
             @Result(column="price", property="price", jdbcType=JdbcType.DECIMAL),
             @Result(column="count", property="count", jdbcType=JdbcType.INTEGER),
@@ -108,6 +113,7 @@ public interface MovieMapper {
             @Param("id") String id,
             @Param("area") int area,
             @Param("title") String title,
+            @Param("actor") String actor,
             @Param("type") int type,
             @Param("movieType") int movieType,
             @Param("skip") int skip,
@@ -122,13 +128,14 @@ public interface MovieMapper {
     @Select({
             "<script>",
             "select",
-            "id, area, pic_url, content, title, type, price, count, movie_type, is_free, ",
+            "id, area, pic_url, content, title, actor, type, price, count, movie_type, is_free, ",
             "create_time, modify_time, description",
             "from movie",
             "where 1=1",
             "<if test='title!=null and title!= &apos;&apos;'>",
             "and title LIKE CONCAT(CONCAT('%',#{title,jdbcType=VARCHAR},'%'))",
             "</if>",
+            "order by modify_time desc",
             "limit #{skip},#{limit}",
             "</script>"
     })
@@ -138,6 +145,7 @@ public interface MovieMapper {
             @Result(column="pic_url", property="picUrl", jdbcType=JdbcType.VARCHAR),
             @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
             @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
+            @Result(column="actor", property="actor", jdbcType=JdbcType.VARCHAR),
             @Result(column="type", property="type", jdbcType=JdbcType.INTEGER),
             @Result(column="price", property="price", jdbcType=JdbcType.DECIMAL),
             @Result(column="count", property="count", jdbcType=JdbcType.INTEGER),
@@ -172,6 +180,9 @@ public interface MovieMapper {
             "<if test='title!=null and title!= &apos;&apos;'>",
             "and title = #{title,jdbcType=VARCHAR}",
             "</if>",
+            "<if test='actor!=null and title!= &apos;&apos;'>",
+            "and actor = #{actor,jdbcType=VARCHAR}",
+            "</if>",
             "<if test='type!= -1'>",
             "and type = #{type,jdbcType=INTEGER}",
             "</if>",
@@ -184,6 +195,7 @@ public interface MovieMapper {
             @Param("id") String id,
             @Param("area") int area,
             @Param("title") String title,
+            @Param("actor") String actor,
             @Param("type") int type,
             @Param("movieType") int movieType
     );
@@ -215,6 +227,7 @@ public interface MovieMapper {
           "pic_url = #{picUrl,jdbcType=VARCHAR},",
           "content = #{content,jdbcType=VARCHAR},",
           "title = #{title,jdbcType=VARCHAR},",
+          "actor = #{actor,jdbcType=VARCHAR},",
           "type = #{type,jdbcType=INTEGER},",
           "price = #{price,jdbcType=DECIMAL},",
           "count = #{count,jdbcType=INTEGER},",
@@ -233,6 +246,7 @@ public interface MovieMapper {
           "pic_url = #{picUrl,jdbcType=VARCHAR},",
           "content = #{content,jdbcType=VARCHAR},",
           "title = #{title,jdbcType=VARCHAR},",
+          "actor = #{actor,jdbcType=VARCHAR},",
           "type = #{type,jdbcType=INTEGER},",
           "price = #{price,jdbcType=DECIMAL},",
           "count = #{count,jdbcType=INTEGER},",

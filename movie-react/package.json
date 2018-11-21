@@ -23,6 +23,7 @@
     "history": "^4.7.2",
     "iswiper": "^1.4.1",
     "lib-flexible": "^0.3.2",
+    "lodash": "^4.17.11",
     "node-sass": "^4.9.0",
     "postcss-px2rem": "^0.3.0",
     "pubsub-js": "^1.6.0",

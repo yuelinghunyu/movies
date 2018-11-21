@@ -38,7 +38,7 @@ export class InterceptorService implements HttpInterceptor{
           case 200:
             if (event instanceof HttpResponse) {
                 const body: any = event.body;
-                if (body === null && event.status !== 200) {
+                if (body === null && event.status === 200) {
                     this.backForLoginOut();
                 }
             }

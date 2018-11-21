@@ -45,7 +45,16 @@ const getMovieList = (param) => {
         return Promise.resolve(res.data)
     })
 }
-
+//模糊查询电影列表
+const getMovieLikeList = (param) => {
+    const url = baseUrl + '/movie/listLike'
+    return axios.get(url,{
+        headers:headers,
+        params:param
+    }).then((res)=>{
+        return Promise.resolve(res.data)
+    })
+}
 const funcGetBannerList = (param) => {
     const url = baseUrl + '/banner/list';
     return axios.get(url,{
@@ -94,5 +103,6 @@ export {
     funcGetAreaList,
     funcGetMovieList,
     funcGetTypeList,
-    funcGetTotal
+    funcGetTotal,
+    getMovieLikeList
 }

@@ -67,6 +67,7 @@ export class AddMovieComponent implements OnInit {
       movieTps:['',[Validators.required,ForbiddenNameValidor(/^[0-9]*$/)]],
       movieUrl:['',Validators.required],
       movieTitle:['',Validators.required],
+      movieActor:['',Validators.required],
       movieDescription:['',Validators.required],
       movieIsFree:['',Validators.required],
       moviePrice:['']
@@ -153,6 +154,11 @@ export class AddMovieComponent implements OnInit {
       $("#tipModal").modal('show');
       return false;
     }
+    if(formData["movieActor"] === ""){
+      this.modal.tips = "请填写影片主演！";
+      $("#tipModal").modal('show');
+      return false;
+    }
     if(formData["movieDescription"] === ""){
       this.modal.tips = "请填写影片简述！";
       $("#tipModal").modal('show');
@@ -166,6 +172,7 @@ export class AddMovieComponent implements OnInit {
       "content":formData["movieUrl"],
       "description":formData["movieDescription"],
       "title":formData["movieTitle"],
+      "actor":formData["movieActor"],
       "type":formData["movieType"],
       "price":formData["moviePrice"],
       "movieType":formData["movieTps"],

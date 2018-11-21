@@ -28,6 +28,9 @@ public class MovieSqlProvider {
         if (record.getTitle() != null) {
             sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
         }
+        if (record.getActor() != null) {
+            sql.VALUES("actor", "#{actor,jdbcType=VARCHAR}");
+        }
         
         if (record.getType() != null) {
             sql.VALUES("type", "#{type,jdbcType=INTEGER}");
@@ -83,7 +86,11 @@ public class MovieSqlProvider {
         if (record.getTitle() != null) {
             sql.SET("title = #{title,jdbcType=VARCHAR}");
         }
-        
+
+        if (record.getActor() != null) {
+            sql.SET("actor = #{actor,jdbcType=VARCHAR}");
+        }
+
         if (record.getType() != null) {
             sql.SET("type = #{type,jdbcType=INTEGER}");
         }
