@@ -2,16 +2,14 @@ package com.jdj.movie.model;
 
 import java.util.Date;
 
-public class Books {
-    private String id;
-
+public class Books extends BooksKey {
     private String title;
 
     private String logo;
 
     private String author;
 
-    private String introurl;
+    private String introUrl;
 
     private Integer bookType;
 
@@ -22,14 +20,6 @@ public class Books {
     private Date modifyTime;
 
     private String description;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
 
     public String getTitle() {
         return title;
@@ -55,12 +45,12 @@ public class Books {
         this.author = author == null ? null : author.trim();
     }
 
-    public String getIntrourl() {
-        return introurl;
+    public String getIntroUrl() {
+        return introUrl;
     }
 
-    public void setIntrourl(String introurl) {
-        this.introurl = introurl == null ? null : introurl.trim();
+    public void setIntroUrl(String introUrl) {
+        this.introUrl = introUrl == null ? null : introUrl.trim();
     }
 
     public Integer getBookType() {

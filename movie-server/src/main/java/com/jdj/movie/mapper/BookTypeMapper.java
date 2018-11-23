@@ -9,18 +9,18 @@ import java.util.List;
 @Mapper
 public interface BookTypeMapper {
     @Delete({
-        "delete from book_type",
-        "where id = #{id,jdbcType=VARCHAR}"
+            "delete from book_type",
+            "where id = #{id,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(String id);
 
     @Insert({
-        "insert into book_type (id, type_id, ",
-        "type_title, create_time, ",
-        "modify_time)",
-        "values (UUID(), #{typeId,jdbcType=INTEGER}, ",
-        "#{typeTitle,jdbcType=VARCHAR},now(), ",
-        "now())"
+            "insert into book_type (id, type_id, ",
+            "type_title, create_time, ",
+            "modify_time)",
+            "values (UUID(), #{typeId,jdbcType=INTEGER}, ",
+            "#{typeTitle,jdbcType=VARCHAR},now(), ",
+            "now())"
     })
     int insert(BookType record);
 
@@ -28,17 +28,17 @@ public interface BookTypeMapper {
     int insertSelective(BookType record);
 
     @Select({
-        "select",
-        "id, type_id, type_title, create_time, modify_time",
-        "from book_type",
-        "where id = #{id,jdbcType=VARCHAR}"
+            "select",
+            "id, type_id, type_title, create_time, modify_time",
+            "from book_type",
+            "where id = #{id,jdbcType=VARCHAR}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="type_id", property="typeId", jdbcType=JdbcType.INTEGER),
-        @Result(column="type_title", property="typeTitle", jdbcType=JdbcType.VARCHAR),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="modify_time", property="modifyTime", jdbcType=JdbcType.TIMESTAMP)
+            @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="type_id", property="typeId", jdbcType=JdbcType.INTEGER),
+            @Result(column="type_title", property="typeTitle", jdbcType=JdbcType.VARCHAR),
+            @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="modify_time", property="modifyTime", jdbcType=JdbcType.TIMESTAMP)
     })
     BookType selectByPrimaryKey(String id);
 
@@ -79,11 +79,11 @@ public interface BookTypeMapper {
     int updateByPrimaryKeySelective(BookType record);
 
     @Update({
-        "update book_type",
-        "set type_id = #{typeId,jdbcType=INTEGER},",
-          "type_title = #{typeTitle,jdbcType=VARCHAR},",
-          "modify_time = now()",
-        "where id = #{id,jdbcType=VARCHAR}"
+            "update book_type",
+            "set type_id = #{typeId,jdbcType=INTEGER},",
+            "type_title = #{typeTitle,jdbcType=VARCHAR},",
+            "modify_time = now()",
+            "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(BookType record);
 }

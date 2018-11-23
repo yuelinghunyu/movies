@@ -13,6 +13,10 @@ public class BooksSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
         
+        if (record.getChapterId() != null) {
+            sql.VALUES("chapter_id", "#{chapterId,jdbcType=VARCHAR}");
+        }
+        
         if (record.getTitle() != null) {
             sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
         }
@@ -25,8 +29,8 @@ public class BooksSqlProvider {
             sql.VALUES("author", "#{author,jdbcType=VARCHAR}");
         }
         
-        if (record.getIntrourl() != null) {
-            sql.VALUES("introUrl", "#{introurl,jdbcType=VARCHAR}");
+        if (record.getIntroUrl() != null) {
+            sql.VALUES("intro_url", "#{introUrl,jdbcType=VARCHAR}");
         }
         
         if (record.getBookType() != null) {
@@ -68,8 +72,8 @@ public class BooksSqlProvider {
             sql.SET("author = #{author,jdbcType=VARCHAR}");
         }
         
-        if (record.getIntrourl() != null) {
-            sql.SET("introUrl = #{introurl,jdbcType=VARCHAR}");
+        if (record.getIntroUrl() != null) {
+            sql.SET("intro_url = #{introUrl,jdbcType=VARCHAR}");
         }
         
         if (record.getBookType() != null) {
@@ -93,6 +97,7 @@ public class BooksSqlProvider {
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");
+        sql.WHERE("chapter_id = #{chapterId,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

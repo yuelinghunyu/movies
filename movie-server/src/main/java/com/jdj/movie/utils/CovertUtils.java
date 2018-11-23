@@ -1,9 +1,6 @@
 package com.jdj.movie.utils;
 
-import com.jdj.movie.model.Areas;
-import com.jdj.movie.model.Movie;
-import com.jdj.movie.model.MovieConvert;
-import com.jdj.movie.model.Types;
+import com.jdj.movie.model.*;
 
 import java.util.List;
 
@@ -30,6 +27,15 @@ public class CovertUtils {
         return "";
     }
 
+    public static String getBlogTypeTitle(int blogType, List<BookType> list){
+        for(BookType bookType:list){
+            if(bookType.getTypeId() == blogType){
+                return bookType.getTypeTitle();
+            }
+        }
+        return "";
+    }
+
     public static String getIsFreeTitle(int isFree){
         String isFreeVal = "";
         switch (isFree){
@@ -42,8 +48,19 @@ public class CovertUtils {
         }
         return isFreeVal;
     }
-
-
+    //博客
+    public static BlogConvert convertBlog(Blog blog,List<BookType> bookTypeList){
+        BlogConvert blogConvert = new BlogConvert();
+        blogConvert.setId(blog.getId());
+        blogConvert.setTitle(blog.getTitle());
+        blogConvert.setBlogType(blog.getBlogType());
+        blogConvert.setBlogTypeTitle(getBlogTypeTitle(blog.getBlogType(),bookTypeList));
+        blogConvert.setHref(blog.getHref());
+        blogConvert.setTimes(blog.getTimes());
+        blogConvert.setCreateTime(blog.getCreateTime());
+        return blogConvert;
+    }
+    //电影
     public static MovieConvert covertMovie(Movie movie,List<Areas> areaslist, List<Types> typeslist){
         MovieConvert movieConvert = new MovieConvert();
         movieConvert.setId(movie.getId());

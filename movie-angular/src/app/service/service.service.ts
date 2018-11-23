@@ -164,6 +164,22 @@ export class ServiceService {
     const param = 'id=' + body.id;
     return this.http.post(url,param,this.httpOptions);
   }
+
+  //小册博客获取
+  setBlog(body){
+    const url = this.mso + "/blog/addOrUpdate"
+    const param = 'id='+body.id+'&title='+body.title+'&blogType='+body.blogType+'&href='+body.href
+    return this.http.post(url,param,this.httpOptions)
+  }
+  getBlogList(param){
+    const url = this.mso + "/blog/list";
+    return this.http.get(url,{params:param})
+  }
+  deleteBlog(body){
+    const url = this.mso + "/blog/delete";
+    const param = 'id=' + body.id;
+    return this.http.post(url,param,this.httpOptions);
+  }
   /**小册接口结束 */
 
   /**轮播图列表开始*/
@@ -182,4 +198,5 @@ export class ServiceService {
     return this.http.post(url,param,this.httpOptions);
   }
   /**轮播图列表结束*/
+
 }

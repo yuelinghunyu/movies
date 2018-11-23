@@ -41,14 +41,6 @@
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->
-        <!--<table tableName="sales" domainObjectName="Sales"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
-        <!--&gt;-->
-        <!--</table>-->
-        <!--<table tableName="tailor" domainObjectName="Tailor"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
-        <!--&gt;-->
-        <!--</table>-->
         <!--<table tableName="types" domainObjectName="Types"-->
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->

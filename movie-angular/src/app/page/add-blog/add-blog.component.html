@@ -1,0 +1,61 @@
+<div class="add-blog-container">
+    <h3>新增博客</h3>
+    <form [formGroup] = "blogForm" class="add-blog-form" (submit)="createBlog()">
+        <div class="div-box">
+            <div class="form-group blog-form-item">
+                <label for="blog-title">博客标题:</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="blog-title" 
+                  placeholder="博客标题"
+                  name="blogTitle"
+                  formControlName="blogTitle"
+                >
+            </div>
+            <span class="warning-container" *ngIf="titleFlag">
+              标题不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group banner-form-item">
+                <label for="blog-type">博客类型:</label>
+                <div class="banner-pic-select">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info">博客类型</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="caret"></span>
+                          <span class="sr-only"></span>
+                        </button>
+                        <ul class="dropdown-menu blog-menu" (click)="selectType($event)">
+                          <li>电影</li>
+                          <li>小册</li>
+                        </ul>
+                      </div>
+                </div>
+                <input
+                  id="blog-type"
+                  type="hidden" 
+                  name="blogType" 
+                  formControlName="blogType"
+                >
+            </div>
+        </div>
+        <div class="div-box">
+            <div class="form-group blog-form-item">
+                <label for="blog-title">博客链接:</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="blog-href" 
+                  placeholder="博客链接"
+                  name="blogHref"
+                  formControlName="blogHref"
+                >
+            </div>
+            <span class="warning-container" *ngIf="hrefFlag">
+              标题不能为空！
+            </span>
+        </div>
+    </form>
+</div>

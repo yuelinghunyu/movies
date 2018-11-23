@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { trigger,state,style,animate,transition} from '@angular/animations';
-import { FormArray, FormBuilder, FormGroup,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { ForbiddenNameValidor } from '../../shared/forbidden-name.directive';
 import { ServiceService } from '../../service/service.service';
 import { Pagination } from "../../common/pagination/pagination";

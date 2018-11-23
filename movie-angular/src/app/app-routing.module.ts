@@ -11,6 +11,8 @@ import { CreateMoviesComponent } from './page/create-movies/create-movies.compon
 import { AddMovieComponent } from './page/add-movie/add-movie.component';
 //小册
 import { BookTypeComponent } from './page/book-type/book-type.component';
+import { CreateBlogComponent} from './page/create-blog/create-blog.component';
+import { AddBlogComponent} from './page/add-blog/add-blog.component';
 
 //轮播图
 import { BannerListComponent } from './page/banner-list/banner-list.component';
@@ -57,6 +59,14 @@ const routes:Routes = [
       {
         path:'banner-add-update',
         component:BannerAddOrUpdateComponent
+      },
+      {
+        path:'create-blog',
+        component:CreateBlogComponent
+      },
+      {
+        path:'add-blog',
+        component:AddBlogComponent
       }
     ]
   },
