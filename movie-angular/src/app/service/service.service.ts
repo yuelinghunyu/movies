@@ -164,6 +164,10 @@ export class ServiceService {
     const param = 'id=' + body.id;
     return this.http.post(url,param,this.httpOptions);
   }
+  getBookTypeTotal(){
+    const url = this.mso + "/bookType/getTotal";
+    return this.http.get(url)
+  }
 
   //小册博客获取
   setBlog(body){

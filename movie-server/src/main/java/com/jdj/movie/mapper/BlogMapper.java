@@ -40,7 +40,7 @@ public interface BlogMapper {
                 "and title = #{title,jdbcType=VARCHAR}",
             "</if>",
             "<if test='blogType!= -1'>",
-                "and blogType = #{blogType,jdbcType=INTEGER}",
+                "and blog_type = #{blogType,jdbcType=INTEGER}",
             "</if>",
             "order by create_time desc",
             "limit #{skip},#{limit}",
@@ -69,7 +69,7 @@ public interface BlogMapper {
             "from blog",
             "where 1=1",
             "<if test='blogType!= -1'>",
-                "and blogType = #{blogType,jdbcType=INTEGER}",
+                "and blog_type = #{blogType,jdbcType=INTEGER}",
             "</if>",
             "</script>"
     })

@@ -64,18 +64,22 @@ public class BlogsController {
             @RequestParam(value = "title",required = true) String title,
             @RequestParam(value = "blogType",required = true) int blogType,
             @RequestParam(value = "href",required = true) String href,
-            @RequestParam(value = "times",required = false,defaultValue = "") int times
+            @RequestParam(value = "times",required = false,defaultValue = "-1") int times
     ){
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setBlogType(blogType);
         blog.setHref(href);
-        blog.setTimes(times);
         int flag = 0;
+        if(times == -1){
+            blog.setTimes(0);
+        }else{
+            blog.setTimes(times);
+        }
         if(id.isEmpty()){
             logger.info("id值","：空，执行插入数据库操作");
             flag = blogBll.insertBlog(blog);
-        }else {
+        }else{
             logger.info("id值","："+id+";执行更新数据库操作");
             blog.setId(id);
             flag = blogBll.update(blog);

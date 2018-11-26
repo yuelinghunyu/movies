@@ -27,7 +27,6 @@ class Classify extends Component{
             classifyType:[],
             activeVal:'全部',
             movieList:[],
-            typesShow:true,
             movieField:{
                 area:-1,
                 type:-1,

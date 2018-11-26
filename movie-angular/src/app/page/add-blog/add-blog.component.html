@@ -22,14 +22,13 @@
                 <label for="blog-type">博客类型:</label>
                 <div class="banner-pic-select">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-info">博客类型</button>
+                        <button type="button" class="btn btn-info">{{blogTypeVal}}</button>
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="caret"></span>
                           <span class="sr-only"></span>
                         </button>
                         <ul class="dropdown-menu blog-menu" (click)="selectType($event)">
-                          <li>电影</li>
-                          <li>小册</li>
+                          <li *ngFor="let bookType of bookTypeList;let i = index" [attr.id]='bookType.id' [attr.type]='bookType.typeId'>{{bookType.typeTitle}}</li>
                         </ul>
                       </div>
                 </div>
@@ -38,8 +37,12 @@
                   type="hidden" 
                   name="blogType" 
                   formControlName="blogType"
+                  [(ngModel)]="blog.blogType"
                 >
             </div>
+            <span class="warning-container" *ngIf="typeFlag">
+                博客类型不能为空！
+              </span>
         </div>
         <div class="div-box">
             <div class="form-group blog-form-item">
@@ -54,8 +57,16 @@
                 >
             </div>
             <span class="warning-container" *ngIf="hrefFlag">
-              标题不能为空！
+              链接不能为空！
             </span>
+        </div>
+        <div class="submit-container">
+            <button 
+            type="submit" 
+            class="btn btn-primary"
+            >
+            提交
+          </button>
         </div>
     </form>
 </div>

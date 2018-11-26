@@ -23,13 +23,35 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                
+              <tr *ngFor="let blog of blogList;let i = index" [attr.id]='blog.id'>
+                <th scope="row">{{i+1}}</th>
+                <td>{{blog.blogTypeTitle}}</td>
+                <td>{{blog.title}}</td>
+                <td>{{blog.href}}</td>
+                <td>{{blog.times}}</td>
+                <td>{{blog.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td>
+                  <button
+                    type="button" 
+                    class="btn btn-danger btn-sm"
+                    data-toggle="modal"
+                    data-target=".bs-example-modal-sm"
+                    (click)="alertModalItem(blog.id)"
+                  >
+                    删除
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-primary btn-sm"
+                  >修改</button>
+                </td>
               </tr>
             </tbody>
           </table>
           <div class="pagination-container">
-            <app-pagination></app-pagination>
+            <app-pagination [pagination] = "pagination"></app-pagination>
           </div>
     </div>
+     <!-- 弹框组件 -->
+     <app-modal [modal]="modal"></app-modal> 
 </div>
