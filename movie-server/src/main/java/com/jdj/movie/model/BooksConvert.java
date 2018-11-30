@@ -2,7 +2,10 @@ package com.jdj.movie.model;
 
 import java.util.Date;
 
-public class Books {
+/**
+ * Created by jiangdajun on 2018/11/30.
+ */
+public class BooksConvert{
     private String id;
 
     private String title;
@@ -14,6 +17,8 @@ public class Books {
     private String introUrl;
 
     private Integer bookType;
+
+    private String bookTypeTitle;
 
     private Long price;
 
@@ -36,7 +41,7 @@ public class Books {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getLogo() {
@@ -44,7 +49,7 @@ public class Books {
     }
 
     public void setLogo(String logo) {
-        this.logo = logo == null ? null : logo.trim();
+        this.logo = logo;
     }
 
     public String getAuthor() {
@@ -52,7 +57,7 @@ public class Books {
     }
 
     public void setAuthor(String author) {
-        this.author = author == null ? null : author.trim();
+        this.author = author;
     }
 
     public String getIntroUrl() {
@@ -60,7 +65,7 @@ public class Books {
     }
 
     public void setIntroUrl(String introUrl) {
-        this.introUrl = introUrl == null ? null : introUrl.trim();
+        this.introUrl = introUrl;
     }
 
     public Integer getBookType() {
@@ -69,6 +74,14 @@ public class Books {
 
     public void setBookType(Integer bookType) {
         this.bookType = bookType;
+    }
+
+    public String getBookTypeTitle() {
+        return bookTypeTitle;
+    }
+
+    public void setBookTypeTitle(String bookTypeTitle) {
+        this.bookTypeTitle = bookTypeTitle;
     }
 
     public Long getPrice() {
@@ -100,6 +113,6 @@ public class Books {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
 }

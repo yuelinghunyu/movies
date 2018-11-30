@@ -38,5 +38,8 @@ public class ChapterBll {
         return chaptersMapper.deleteByParam(id,bookId);
     }
 
+    public int getChapterCount(String id,String bookId,String bookTitle,String title){
+        return chaptersMapper.getChapterCount(id,bookId,bookTitle,title);
+    }
 
 }

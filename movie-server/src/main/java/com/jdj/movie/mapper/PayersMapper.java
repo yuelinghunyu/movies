@@ -20,7 +20,7 @@ public interface PayersMapper {
         "books, payDate)",
         "values (UUID(), #{wechatId,jdbcType=VARCHAR}, ",
         "#{wechatName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, ",
-        "#{books,jdbcType=VARCHAR}, #{paydate,jdbcType=DATE})"
+        "#{books,jdbcType=VARCHAR}, now()"
     })
     int insert(Payers record);
 
@@ -71,8 +71,14 @@ public interface PayersMapper {
             "select count(0)",
             "from payers",
             "where 1=1",
+            "<if test='id != null and id != &apos;&apos;'>",
+            "and id = #{id,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='wechatId != null and wechatId != &apos;&apos;'>",
+            "and wechat_id = #{wechatId,jdbcType=VARCHAR}",
+            "</if>",
             "<if test='wechatName != null and wechatName != &apos;&apos;'>",
-                "and wechat_name = #{wechatId,jdbcType=VARCHAR}",
+                "and wechat_name = #{wechatName,jdbcType=VARCHAR}",
             "</if>",
             "<if test='books != null and books != &apos;&apos;'>",
                 "and books = #{books,jdbcType=VARCHAR}",
@@ -80,6 +86,8 @@ public interface PayersMapper {
             "</script>"
     })
     int getPayersCount(
+            @Param("id") String id,
+            @Param("wechatId") String wechatId,
             @Param("wechatName") String wechatName,
             @Param("books") String books
     );

@@ -36,6 +36,15 @@ public class CovertUtils {
         return "";
     }
 
+    public static String getBookTypeTitle(int bookType,List<BookType> list){
+        for(BookType type:list){
+            if(type.getTypeId() == bookType){
+                return type.getTypeTitle();
+            }
+        }
+        return "";
+    }
+
     public static String getIsFreeTitle(int isFree){
         String isFreeVal = "";
         switch (isFree){
@@ -81,5 +90,22 @@ public class CovertUtils {
         movieConvert.setModifyTime(movie.getModifyTime());
         movieConvert.setDescription(movie.getDescription());
         return movieConvert;
+    }
+
+    //小册
+    public static BooksConvert covertBook(Books books,List<BookType> bookTypeList){
+        BooksConvert booksConvert = new BooksConvert();
+        booksConvert.setId(books.getId());
+        booksConvert.setLogo(books.getLogo());
+        booksConvert.setTitle(books.getTitle());
+        booksConvert.setAuthor(books.getAuthor());
+        booksConvert.setBookType(books.getBookType());
+        booksConvert.setBookTypeTitle(getBookTypeTitle(books.getBookType(),bookTypeList));
+        booksConvert.setIntroUrl(books.getIntroUrl());
+        booksConvert.setPrice(books.getPrice());
+        booksConvert.setDescription(books.getDescription());
+        booksConvert.setCreateTime(books.getCreateTime());
+        booksConvert.setModifyTime(books.getModifyTime());
+        return booksConvert;
     }
 }

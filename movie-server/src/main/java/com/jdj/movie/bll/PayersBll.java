@@ -19,11 +19,11 @@ public class PayersBll {
             String id,
             String wechatId,
             String wechatName,
-            String books,
+            String bookId,
             int skip,
             int limit
     ){
-        return payersMapper.selectByParams(id,wechatId,wechatName,books,skip,limit);
+        return payersMapper.selectByParams(id,wechatId,wechatName,bookId,skip,limit);
     }
 
     public int insertPayers(Payers payers){
@@ -31,9 +31,11 @@ public class PayersBll {
     }
 
     public int getPayersCount(
+            String id,
+            String wechatId,
             String wechatName,
             String bookId
     ){
-        return payersMapper.getPayersCount(wechatName,bookId);
+        return payersMapper.getPayersCount(id,wechatId,wechatName,bookId);
     }
 }

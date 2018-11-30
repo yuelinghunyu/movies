@@ -10,9 +10,16 @@ import java.util.List;
 @Mapper
 public interface ChaptersMapper {
     @Delete({
+        "<script>",
         "delete from chapters",
-        "where id = #{id,jdbcType=VARCHAR}",
-          "and book_id = #{bookId,jdbcType=VARCHAR}"
+        "where 1=1",
+            "<if test='id!=null and id!= &apos;&apos;'>",
+            "and id = #{id,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='bookId!=null and bookId!= &apos;&apos;'>",
+            "and book_Id = #{bookId,jdbcType=VARCHAR}",
+            "</if>",
+        "</script>"
     })
     int deleteByParam(String id, String bookId);
 
@@ -79,17 +86,25 @@ public interface ChaptersMapper {
             "select count(0)",
             "from chapters",
             "where 1=1",
+            "<if test='id!=null and id!= &apos;&apos;'>",
+            "and id = #{id,jdbcType=VARCHAR}",
+            "</if>",
             "<if test='bookId!=null and bookId!= &apos;&apos;'>",
             "and book_Id = #{bookId,jdbcType=VARCHAR}",
             "</if>",
             "<if test='bookTitle!=null and bookTitle!= &apos;&apos;'>",
             "and book_title = #{bookTitle,jdbcType=VARCHAR}",
             "</if>",
+            "<if test='title!=null and title!= &apos;&apos;'>",
+            "and title = #{title,jdbcType=VARCHAR}",
+            "</if>",
             "</script>"
     })
     int getChapterCount(
-            @Param("bookId") String bookId,
-            @Param("bookTitle") String bookTitle
+            @Param("id") String id,
+            @Param("book_id") String bookId,
+            @Param("book_title") String bookTitle,
+            @Param("title") String title
     );
 
 

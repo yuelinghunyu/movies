@@ -12,11 +12,7 @@ public class BooksSqlProvider {
         if (record.getId() != null) {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
-        
-        if (record.getChapterId() != null) {
-            sql.VALUES("chapter_id", "#{chapterId,jdbcType=VARCHAR}");
-        }
-        
+
         if (record.getTitle() != null) {
             sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
         }
@@ -97,7 +93,6 @@ public class BooksSqlProvider {
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");
-        sql.WHERE("chapter_id = #{chapterId,jdbcType=VARCHAR}");
         
         return sql.toString();
     }
