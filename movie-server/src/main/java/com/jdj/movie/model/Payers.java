@@ -2,7 +2,11 @@ package com.jdj.movie.model;
 
 import java.util.Date;
 
-public class Payers extends PayersKey {
+public class Payers {
+    private String id;
+
+    private String wechatId;
+
     private String wechatName;
 
     private String logo;
@@ -10,6 +14,22 @@ public class Payers extends PayersKey {
     private String books;
 
     private Date paydate;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getWechatId() {
+        return wechatId;
+    }
+
+    public void setWechatId(String wechatId) {
+        this.wechatId = wechatId == null ? null : wechatId.trim();
+    }
 
     public String getWechatName() {
         return wechatName;

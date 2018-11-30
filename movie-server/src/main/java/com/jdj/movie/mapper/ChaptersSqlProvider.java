@@ -13,6 +13,14 @@ public class ChaptersSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
         
+        if (record.getBookId() != null) {
+            sql.VALUES("book_id", "#{bookId,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getBookTitle() != null) {
+            sql.VALUES("book_title", "#{bookTitle,jdbcType=VARCHAR}");
+        }
+        
         if (record.getTitle() != null) {
             sql.VALUES("title", "#{title,jdbcType=VARCHAR}");
         }
@@ -44,6 +52,10 @@ public class ChaptersSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("chapters");
         
+        if (record.getBookTitle() != null) {
+            sql.SET("book_title = #{bookTitle,jdbcType=VARCHAR}");
+        }
+        
         if (record.getTitle() != null) {
             sql.SET("title = #{title,jdbcType=VARCHAR}");
         }
@@ -69,6 +81,7 @@ public class ChaptersSqlProvider {
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");
+        sql.WHERE("book_id = #{bookId,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

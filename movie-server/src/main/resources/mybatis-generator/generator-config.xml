@@ -69,13 +69,13 @@
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->
-        <!--<table tableName="payers" domainObjectName="Payers"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
-        <!--&gt;-->
-        <!--</table>-->
-        <table tableName="book_type" domainObjectName="BookType"
+        <table tableName="payers" domainObjectName="Payers"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
         >
         </table>
+        <!--<table tableName="book_type" domainObjectName="BookType"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--&gt;-->
+        <!--</table>-->
     </context>
 </generatorConfiguration>

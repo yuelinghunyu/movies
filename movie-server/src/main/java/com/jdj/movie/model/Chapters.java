@@ -2,8 +2,8 @@ package com.jdj.movie.model;
 
 import java.util.Date;
 
-public class Chapters {
-    private String id;
+public class Chapters extends ChaptersKey {
+    private String bookTitle;
 
     private String title;
 
@@ -17,12 +17,12 @@ public class Chapters {
 
     private Date modifyTime;
 
-    public String getId() {
-        return id;
+    public String getBookTitle() {
+        return bookTitle;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle == null ? null : bookTitle.trim();
     }
 
     public String getTitle() {

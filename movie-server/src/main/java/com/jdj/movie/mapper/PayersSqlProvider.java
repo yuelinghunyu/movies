@@ -40,6 +40,10 @@ public class PayersSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("payers");
         
+        if (record.getWechatId() != null) {
+            sql.SET("wechat_id = #{wechatId,jdbcType=VARCHAR}");
+        }
+        
         if (record.getWechatName() != null) {
             sql.SET("wechat_name = #{wechatName,jdbcType=VARCHAR}");
         }
@@ -57,7 +61,6 @@ public class PayersSqlProvider {
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");
-        sql.WHERE("wechat_id = #{wechatId,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

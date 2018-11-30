@@ -2,16 +2,12 @@ package com.jdj.movie.mapper;
 
 import com.jdj.movie.model.Books;
 import com.jdj.movie.model.BooksKey;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
+@Mapper
 public interface BooksMapper {
     @Delete({
         "delete from books",
@@ -26,11 +22,11 @@ public interface BooksMapper {
         "intro_url, book_type, ",
         "price, create_time, ",
         "modify_time, description)",
-        "values (#{id,jdbcType=VARCHAR}, #{chapterId,jdbcType=VARCHAR}, ",
+        "values (UUID(), #{chapterId,jdbcType=VARCHAR}, ",
         "#{title,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, ",
         "#{introUrl,jdbcType=VARCHAR}, #{bookType,jdbcType=INTEGER}, ",
-        "#{price,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{modifyTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR})"
+        "#{price,jdbcType=DECIMAL}, now(), ",
+        "now(), #{description,jdbcType=LONGVARCHAR})"
     })
     int insert(Books record);
 
@@ -38,12 +34,30 @@ public interface BooksMapper {
     int insertSelective(Books record);
 
     @Select({
+        "<script>",
         "select",
         "id, chapter_id, title, logo, author, intro_url, book_type, price, create_time, ",
         "modify_time, description",
         "from books",
-        "where id = #{id,jdbcType=VARCHAR}",
-          "and chapter_id = #{chapterId,jdbcType=VARCHAR}"
+        "where 1=1",
+            "<if test='id!=null and id!= &apos;&apos;'>",
+                "and id = #{id,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='chapterId!=null and chapterId!= &apos;&apos;'>",
+                "and chapter_id = #{chapterId,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='title != null and title != &apos;&apos;'>",
+                "and title = #{title,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='author != null and author != &apos;&apos;'>",
+                "and author = #{author,jdbcType=VARCHAR}",
+            "</if>",
+            "<if test='bookType!= -1'>",
+                "and book_type = #{bookType,jdbcType=INTEGER}",
+            "</if>",
+            "order by create_time desc",
+            "limit #{skip},#{limit}",
+        "</script>"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
@@ -58,7 +72,15 @@ public interface BooksMapper {
         @Result(column="modify_time", property="modifyTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="description", property="description", jdbcType=JdbcType.LONGVARCHAR)
     })
-    Books selectByPrimaryKey(BooksKey key);
+    List<Books> selectByParam(
+            @Param("id") String id,
+            @Param("chapterId") String chapterId,
+            @Param("title") String title,
+            @Param("author") String author,
+            @Param("bookType") int bookType,
+            @Param("skip") int skip,
+            @Param("limit") int limit
+    );
 
     @UpdateProvider(type=BooksSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Books record);
@@ -72,12 +94,26 @@ public interface BooksMapper {
           "book_type = #{bookType,jdbcType=INTEGER},",
           "price = #{price,jdbcType=DECIMAL},",
           "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "modify_time = #{modifyTime,jdbcType=TIMESTAMP},",
+          "modify_time = now(),",
           "description = #{description,jdbcType=LONGVARCHAR}",
-        "where id = #{id,jdbcType=VARCHAR}",
-          "and chapter_id = #{chapterId,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKeyWithBLOBs(Books record);
+
+
+    @Select({
+            "<script>",
+            "select count(0)",
+            "from books",
+            "where 1=1",
+            "<if test='bookType!= -1'>",
+            "and book_type = #{bookType,jdbcType=INTEGER}",
+            "</if>",
+            "</script>"
+    })
+    int getBooksCount(
+            @Param("bookType") int bookType
+    );
 
     @Update({
         "update books",
