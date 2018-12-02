@@ -1,0 +1,26 @@
+<div class="payer-list-container">
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0)">章节信息</a></li>
+        <li class="active">章节列表</li>
+    </ol>
+    <div class="payer-list-content">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>微信ID</th>
+            <th>微信昵称</th>
+            <th>微信图像</th>
+            <th>购买小册</th>
+            <th>购买时间</th>
+          </tr>
+          
+        </thead>
+      </table>
+      <div class="pagination-container">
+          <app-pagination [pagination] = "pagination"></app-pagination>
+      </div>
+    </div>
+     <!-- 弹框组件 -->
+     <app-modal [modal]="modal"></app-modal> 
+  </div>

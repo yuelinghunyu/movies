@@ -1,0 +1,26 @@
+.book-create-container{
+    font-size:14px; 
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}
+h3{
+    font-size: 14px;
+    line-height: 40px;
+    width: 200px;
+    padding-left: 60px;
+    font-weight: bold;
+}
+.add-book-form{
+    width: 600px;
+    padding:10px 0px 10px 60px;
+    min-height: 400px;
+}
+.book-menu{
+    min-width: 100px !important; 
+}
+.book-menu > li{
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}

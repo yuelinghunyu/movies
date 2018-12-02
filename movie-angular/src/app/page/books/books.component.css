@@ -1,0 +1,6 @@
+.book-list-container{
+    font-size:14px; 
+    padding: 20px;
+    min-width: 1024px;
+    overflow: auto;
+}

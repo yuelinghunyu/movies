@@ -1,0 +1,27 @@
+<div class="feed-list-container">
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0)">章节信息</a></li>
+        <li class="active">章节列表</li>
+    </ol>
+    <div class="feed-list-content">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>反馈模块</th>
+            <th>反馈类型</th>
+            <th>内容</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+            <th>操作</th>
+          </tr>
+          
+        </thead>
+      </table>
+      <div class="pagination-container">
+          <app-pagination [pagination] = "pagination"></app-pagination>
+      </div>
+    </div>
+     <!-- 弹框组件 -->
+     <app-modal [modal]="modal"></app-modal> 
+  </div>

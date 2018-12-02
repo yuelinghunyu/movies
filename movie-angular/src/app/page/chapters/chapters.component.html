@@ -1,0 +1,35 @@
+<div class="chapter-list-container">
+  <ol class="breadcrumb">
+      <li><a href="javascript:void(0)">章节信息</a></li>
+      <li class="active">章节列表</li>
+  </ol>
+  <div class="chapter-list-content">
+    <table class="table table-bordered table-hover">
+      <caption>章节列表
+        <button type="button" 
+          class="btn btn-info pull-right"
+          (click)="addChapter()"
+        >新增章节</button>
+      </caption>
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>小册</th>
+          <th>名称</th>
+          <th>链接</th>
+          <th>阅读时间</th>
+          <th>浏览次数</th>
+          <th>创建时间</th>
+          <th>修改时间</th>
+          <th>操作</th>
+        </tr>
+        
+      </thead>
+    </table>
+    <div class="pagination-container">
+        <app-pagination [pagination] = "pagination"></app-pagination>
+    </div>
+  </div>
+   <!-- 弹框组件 -->
+   <app-modal [modal]="modal"></app-modal> 
+</div>

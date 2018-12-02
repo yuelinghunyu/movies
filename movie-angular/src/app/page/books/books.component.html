@@ -1,0 +1,37 @@
+<div class="book-list-container">
+  <ol class="breadcrumb">
+      <li><a href="javascript:void(0)">小册信息</a></li>
+      <li class="active">小册列表</li>
+  </ol>
+  <div class="book-list-content">
+    <table class="table table-bordered table-hover">
+      <caption>小册列表
+        <button type="button" 
+          class="btn btn-info pull-right"
+          (click)="addBook()"
+        >新增小册</button>
+      </caption>
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>类型</th>
+          <th>名称</th>
+          <th>图片</th>
+          <th>作者</th>
+          <th>简介</th>
+          <th>价格</th>
+          <th>描叙</th>
+          <th>创建时间</th>
+          <th>修改时间</th>
+          <th>操作</th>
+        </tr>
+        
+      </thead>
+    </table>
+    <div class="pagination-container">
+        <app-pagination [pagination] = "pagination"></app-pagination>
+    </div>
+  </div>
+   <!-- 弹框组件 -->
+   <app-modal [modal]="modal"></app-modal> 
+</div>

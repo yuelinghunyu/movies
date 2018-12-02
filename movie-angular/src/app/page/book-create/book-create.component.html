@@ -1,0 +1,113 @@
+<div class="book-create-container">
+    <h3>新增小册</h3>
+    <form [formGroup] = "bookCreateForm" class="add-book-form" (submit)="createBook()">
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="book-title">小册标题:</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="book-title" 
+                  placeholder="小册标题"
+                  name="bookTitle"
+                  formControlName="bookTitle"
+                >
+            </div>
+            <span class="warning-container" *ngIf="titleFlag">
+              标题不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="book-logo">图片:</label>
+                <div class="book-logo-select">
+                    <input 
+                      type="file" 
+                      title="上传图片" 
+                      class="btn btn-info"
+                      ng2FileSelect
+                      [uploader]="uploader"
+                    >
+              
+                </div>
+                <input 
+                  type="hidden" 
+                  name="bookLogo" 
+                  formControlName="bookLogo"
+              
+                >
+            </div>
+            <span class="warning-container" *ngIf="bookLogoFlag">
+                logo不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="blog-type">小册类型:</label>
+                <div class="book-pic-select">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info">小册类型</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="caret"></span>
+                          <span class="sr-only"></span>
+                        </button>
+                        <ul class="dropdown-menu book-menu">
+                            <li>前端</li>
+                        </ul>
+                      </div>
+                </div>
+                <input
+                  id="book-type"
+                  type="hidden" 
+                  name="bookType" 
+                  formControlName="bookType"
+                >
+            </div>
+            <span class="warning-container" *ngIf="typeFlag">
+                小册类型不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="book-author">作者:</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="book-author" 
+                  placeholder="作者"
+                  name="bookAuthor"
+                  formControlName="bookAuthor"
+                >
+            </div>
+            <span class="warning-container" *ngIf="authorFlag">
+              作者不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="book-description">小册描述:</label>
+                <textarea 
+                  class="form-control" 
+                  id="book-description" 
+                  placeholder="小册描述,500字以内"
+                  name="bookDescription"
+                  rows="3"
+                  maxlength="500"
+                  style="resize:none;"
+                  formControlName="bookDescription"
+                ></textarea>
+            </div>
+            <span class="warning-container" *ngIf="bookDescriptionFlag">
+              描述不能为空！
+            </span>
+        </div>
+        <div class="submit-container">
+            <button 
+            type="submit" 
+            class="btn btn-primary"
+            >
+            提交
+          </button>
+        </div>
+    </form>
+</div>
