@@ -16,9 +16,7 @@ h3{
     padding:10px 0px 10px 60px;
     min-height: 400px;
 }
-.chapter-menu{
-    min-width: 100px !important; 
-}
+
 .chapter-menu > li{
     text-align: center;
     line-height: 30px;

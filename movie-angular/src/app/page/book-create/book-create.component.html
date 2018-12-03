@@ -27,18 +27,60 @@
                       class="btn btn-info"
                       ng2FileSelect
                       [uploader]="uploader"
+                      (change)="fileChange($event)"
                     >
-              
+                    <span class="pic-href" title="book.logo" *ngIf="hrefLink">{{book.logo}}</span>
                 </div>
                 <input 
                   type="hidden" 
                   name="bookLogo" 
                   formControlName="bookLogo"
-              
+                  [(ngModel)]="book.logo"
                 >
             </div>
             <span class="warning-container" *ngIf="bookLogoFlag">
                 logo不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="book-author">作者:</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="book-author" 
+                    placeholder="作者"
+                    name="bookAuthor"
+                    formControlName="bookAuthor"
+                >
+            </div>
+            <span class="warning-container" *ngIf="authorFlag">
+                作者不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group book-form-item">
+                <label for="book-intro-url">小册简介:</label>
+                <div class="book-intro-url-select">
+                    <input 
+                        type="file" 
+                        title="上传markdown文件" 
+                        class="btn btn-info"
+                        ng2FileSelect
+                        [uploader]="uploader"
+                        (change)="introChange($event)"
+                    >
+                    <span class="intro-href" title="book.introUrl" *ngIf="introLink">{{book.introUrl}}</span>
+                </div>
+                <input 
+                    type="hidden" 
+                    name="bookIntroUrl" 
+                    formControlName="bookIntroUrl"
+                    [(ngModel)]="book.introUrl"
+                >
+            </div>
+            <span class="warning-container" *ngIf="bookIntroUrlFlag">
+                小册简介不能为空！
             </span>
         </div>
         <div class="div-box">
@@ -69,19 +111,16 @@
         </div>
         <div class="div-box">
             <div class="form-group book-form-item">
-                <label for="book-author">作者:</label>
+                <label for="book-price">价格:</label>
                 <input 
-                  type="text" 
-                  class="form-control" 
-                  id="book-author" 
-                  placeholder="作者"
-                  name="bookAuthor"
-                  formControlName="bookAuthor"
+                    type="text" 
+                    class="form-control" 
+                    id="book-price" 
+                    placeholder="小册价格"
+                    name="bookPrice"
+                    formControlName="bookPrice"
                 >
             </div>
-            <span class="warning-container" *ngIf="authorFlag">
-              作者不能为空！
-            </span>
         </div>
         <div class="div-box">
             <div class="form-group book-form-item">

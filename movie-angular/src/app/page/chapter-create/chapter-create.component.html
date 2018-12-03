@@ -19,11 +19,37 @@
         </div>
         <div class="div-box">
             <div class="form-group chapter-form-item">
-                <label for="chapter-logo">图片:</label>
-                <div class="chapter-logo-select">
+                <label for="blog-type">章节小册:</label>
+                <div class="chapter-pic-select">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info">章节小册</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <ul class="dropdown-menu chapter-menu">
+                            <li>vue 音乐播放器实战</li>
+                        </ul>
+                        </div>
+                </div>
+                <input
+                    id="chapter-book"
+                    type="hidden" 
+                    name="chapterBook" 
+                    formControlName="chapterBook"
+                >
+            </div>
+            <span class="warning-container" *ngIf="bookFlag">
+                章节类型不能为空！
+            </span>
+        </div>
+        <div class="div-box">
+            <div class="form-group chapter-form-item">
+                <label for="chapter-link">章节链接:</label>
+                <div class="chapter-link-select">
                     <input 
                       type="file" 
-                      title="上传图片" 
+                      title="上传MD文件" 
                       class="btn btn-info"
                       ng2FileSelect
                       [uploader]="uploader"
@@ -32,73 +58,29 @@
                 </div>
                 <input 
                   type="hidden" 
-                  name="chapterLogo" 
-                  formControlName="chapterLogo"
+                  name="chapterLink" 
+                  formControlName="chapterLink"
               
                 >
             </div>
-            <span class="warning-container" *ngIf="chapterLogoFlag">
-                logo不能为空！
+            <span class="warning-container" *ngIf="linkFlag">
+                小册章节不能为空！
             </span>
         </div>
         <div class="div-box">
             <div class="form-group chapter-form-item">
-                <label for="blog-type">章节类型:</label>
-                <div class="chapter-pic-select">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-info">章节类型</button>
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="caret"></span>
-                          <span class="sr-only"></span>
-                        </button>
-                        <ul class="dropdown-menu chapter-menu">
-                            <li>前端</li>
-                        </ul>
-                      </div>
-                </div>
-                <input
-                  id="chapter-type"
-                  type="hidden" 
-                  name="chapterType" 
-                  formControlName="chapterType"
-                >
-            </div>
-            <span class="warning-container" *ngIf="typeFlag">
-                章节类型不能为空！
-            </span>
-        </div>
-        <div class="div-box">
-            <div class="form-group chapter-form-item">
-                <label for="chapter-author">作者:</label>
+                <label for="chapter-time">阅读时长:</label>
                 <input 
                   type="text" 
                   class="form-control" 
-                  id="chapter-author" 
-                  placeholder="作者"
-                  name="chapterAuthor"
-                  formControlName="chapterAuthor"
+                  id="chapter-time" 
+                  placeholder="阅读时长，格式23分12秒"
+                  name="chapterTime"
+                  formControlName="chapterTime"
                 >
             </div>
-            <span class="warning-container" *ngIf="authorFlag">
+            <span class="warning-container" *ngIf="timeFlag">
               作者不能为空！
-            </span>
-        </div>
-        <div class="div-box">
-            <div class="form-group chapter-form-item">
-                <label for="chapter-description">章节描述:</label>
-                <textarea 
-                  class="form-control" 
-                  id="chapter-description" 
-                  placeholder="章节描述,500字以内"
-                  name="chapterDescription"
-                  rows="3"
-                  maxlength="500"
-                  style="resize:none;"
-                  formControlName="chapterDescription"
-                ></textarea>
-            </div>
-            <span class="warning-container" *ngIf="chapterDescriptionFlag">
-              描述不能为空！
             </span>
         </div>
         <div class="submit-container">

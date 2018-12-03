@@ -57,10 +57,6 @@
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->
-        <!--<table tableName="book_feedback" domainObjectName="BookFeedback"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
-        <!--&gt;-->
-        <!--</table>-->
         <!--<table tableName="books" domainObjectName="Books"-->
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
@@ -69,7 +65,7 @@
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"-->
         <!--&gt;-->
         <!--</table>-->
-        <table tableName="payers" domainObjectName="Payers"
+        <table tableName="feed_back" domainObjectName="feedBack"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
         >
         </table>

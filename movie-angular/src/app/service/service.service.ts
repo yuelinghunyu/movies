@@ -184,6 +184,44 @@ export class ServiceService {
     const param = 'id=' + body.id;
     return this.http.post(url,param,this.httpOptions);
   }
+
+  //小册创建;
+  setBook(body){
+    const url = this.mso + "/books/addOrUpdate"
+    const param = 'id='+body.id+'&title='+body.title+'&logo='+body.logo+'&introUrl='+body.introUrl+'&author='+body.author+'&bookType='+body.bookType+'&price='+body.price+'&description='+body.description;
+    return this.http.post(url,param,this.httpOptions);
+  }
+  getBookList(param){
+    const url = this.mso + "/books/list";
+    return this.http.get(url,{params:param})
+  }
+  deleteBook(body){
+    const url = this.mso + "/books/delete";
+    const param = 'id=' + body.id;
+    return this.http.post(url,param,this.httpOptions);
+  }
+
+  //章节接口
+  setChapter(body){
+    const url = this.mso + "/chapters/addOrUpdate"
+    const param = 'id='+body.id+'&bookId='+body.bookId+'&bookTitle='+body.bookTitle+'&title='+body.title+'&href='+body.href+'&time='+body.time
+    return this.http.post(url,param,this.httpOptions)
+  }
+  getChapterList(param){
+    const url = this.mso + "/chapters/list";
+    return this.http.get(url,{params:param})
+  }
+  deleteChapter(body){
+    const url = this.mso + "/chapters/delete";
+    const param = 'id=' + body.id;
+    return this.http.post(url,param,this.httpOptions);
+  }
+
+  //获取打赏
+  getPayerList(param){
+    const url = this.mso + "/payers/list";
+    return this.http.get(url,{params:param})
+  }
   /**小册接口结束 */
 
   /**轮播图列表开始*/
@@ -203,4 +241,10 @@ export class ServiceService {
   }
   /**轮播图列表结束*/
 
+  /**反馈记录开始*/
+  getFeedBackList(param){
+    const url = this.mso + '/feed-back/list';
+    return this.http.get(url,{params:param})
+  }
+  /**反馈记录结束*/
 }

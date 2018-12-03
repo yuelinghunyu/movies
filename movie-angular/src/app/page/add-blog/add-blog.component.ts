@@ -16,9 +16,9 @@ export class AddBlogComponent implements OnInit {
   public titleFlag:Boolean = false;
   public hrefFlag:Boolean = false;
   public typeFlag:Boolean = false;
-  private config:Config = new Config();
-  private bookTypeList = [];
-  private blogTypeVal = '博客类型'
+  public config:Config = new Config();
+  public bookTypeList = [];
+  public blogTypeVal = '博客类型'
   constructor(
     private fb: FormBuilder,
     private service:ServiceService,

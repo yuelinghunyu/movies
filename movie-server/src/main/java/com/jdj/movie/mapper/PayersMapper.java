@@ -9,18 +9,18 @@ import java.util.List;
 @Mapper
 public interface PayersMapper {
     @Delete({
-        "delete from payers",
-        "where id = #{id,jdbcType=VARCHAR}"
+            "delete from payers",
+            "where id = #{id,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(String id);
 
     @Insert({
-        "insert into payers (id, wechat_id, ",
-        "wechat_name, logo, ",
-        "books, payDate)",
-        "values (UUID(), #{wechatId,jdbcType=VARCHAR}, ",
-        "#{wechatName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, ",
-        "#{books,jdbcType=VARCHAR}, now()"
+            "insert into payers (id, wechat_id, ",
+            "wechat_name, logo, ",
+            "books, payDate)",
+            "values (UUID(), #{wechatId,jdbcType=VARCHAR}, ",
+            "#{wechatName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, ",
+            "#{books,jdbcType=VARCHAR}, now()"
     })
     int insert(Payers record);
 
@@ -28,34 +28,34 @@ public interface PayersMapper {
     int insertSelective(Payers record);
 
     @Select({
-        "<script>",
-        "select",
-        "id, wechat_id, wechat_name, logo, books, payDate",
-        "from payers",
-        "where 1=1",
+            "<script>",
+            "select",
+            "id, wechat_id, wechat_name, logo, books, payDate",
+            "from payers",
+            "where 1=1",
             "<if test='id != null and id != &apos;&apos;'>",
-                "and id = #{id,jdbcType=VARCHAR}",
+            "and id = #{id,jdbcType=VARCHAR}",
             "</if>",
             "<if test='wechatId != null and wechatId != &apos;&apos;'>",
-                "and wechat_id = #{wechatId,jdbcType=VARCHAR}",
+            "and wechat_id = #{wechatId,jdbcType=VARCHAR}",
             "</if>",
             "<if test='wechatName != null and wechatName != &apos;&apos;'>",
-                "and wechat_name = #{wechatName,jdbcType=VARCHAR}",
+            "and wechat_name = #{wechatName,jdbcType=VARCHAR}",
             "</if>",
             "<if test='books != null and books != &apos;&apos;'>",
-                "and books = #{books,jdbcType=VARCHAR}",
+            "and books = #{books,jdbcType=VARCHAR}",
             "</if>",
             "order by convert(wechat_name using gbk) asc",
             "limit #{skip},#{limit}",
-        "</script>"
+            "</script>"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="wechat_id", property="wechatId", jdbcType=JdbcType.VARCHAR),
-        @Result(column="wechat_name", property="wechatName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="logo", property="logo", jdbcType=JdbcType.VARCHAR),
-        @Result(column="books", property="books", jdbcType=JdbcType.VARCHAR),
-        @Result(column="payDate", property="paydate", jdbcType=JdbcType.DATE)
+            @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+            @Result(column="wechat_id", property="wechatId", jdbcType=JdbcType.VARCHAR),
+            @Result(column="wechat_name", property="wechatName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="logo", property="logo", jdbcType=JdbcType.VARCHAR),
+            @Result(column="books", property="books", jdbcType=JdbcType.VARCHAR),
+            @Result(column="payDate", property="paydate", jdbcType=JdbcType.DATE)
     })
     List<Payers> selectByParams(
             String id,
@@ -78,10 +78,10 @@ public interface PayersMapper {
             "and wechat_id = #{wechatId,jdbcType=VARCHAR}",
             "</if>",
             "<if test='wechatName != null and wechatName != &apos;&apos;'>",
-                "and wechat_name = #{wechatName,jdbcType=VARCHAR}",
+            "and wechat_name = #{wechatName,jdbcType=VARCHAR}",
             "</if>",
             "<if test='books != null and books != &apos;&apos;'>",
-                "and books = #{books,jdbcType=VARCHAR}",
+            "and books = #{books,jdbcType=VARCHAR}",
             "</if>",
             "</script>"
     })
@@ -97,13 +97,13 @@ public interface PayersMapper {
     int updateByPrimaryKeySelective(Payers record);
 
     @Update({
-        "update payers",
-        "set wechat_id = #{wechatId,jdbcType=VARCHAR},",
-          "wechat_name = #{wechatName,jdbcType=VARCHAR},",
-          "logo = #{logo,jdbcType=VARCHAR},",
-          "books = #{books,jdbcType=VARCHAR},",
-          "payDate = now()",
-        "where id = #{id,jdbcType=VARCHAR}"
+            "update payers",
+            "set wechat_id = #{wechatId,jdbcType=VARCHAR},",
+            "wechat_name = #{wechatName,jdbcType=VARCHAR},",
+            "logo = #{logo,jdbcType=VARCHAR},",
+            "books = #{books,jdbcType=VARCHAR},",
+            "payDate = now()",
+            "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Payers record);
 }

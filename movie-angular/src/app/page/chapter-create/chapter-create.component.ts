@@ -14,10 +14,10 @@ export class ChapterCreateComponent implements OnInit {
   public chapterCreateForm:FormGroup;
   private config:Config = new Config();
   public titleFlag:Boolean = false;
-  public authorFlag:Boolean = false;
-  public chapterLogoFlag:Boolean = false;
-  public chapterDescriptionFlag:Boolean = false;
-  private authorization:string;
+  public bookFlag:Boolean = false;
+  public linkFlag:Boolean = false;
+  public timeFlag:Boolean = false;
+  public authorization:string;
 
   uploader:FileUploader = new FileUploader({
     url:"/mso/file/toOssServer",
@@ -37,12 +37,9 @@ export class ChapterCreateComponent implements OnInit {
    createChapterForm(){
     this.chapterCreateForm = this.fb.group({
       chapterTitle:["",[Validators.required]],
-      chapterLogo:["",[Validators.required]],
-      chapterAuthor:["",[Validators.required]],
-      chapterIntroUrl:["",[Validators.required]],
-      chapterType:["",[Validators.required]],
-      chapterPrice:[""],
-      chapterDescription:["",[Validators.required]]
+      chapterLink:["",[Validators.required]],
+      chapterBook:["",[Validators.required]],
+      chapterTime:["",[Validators.required]]
     })
   }
   ngOnInit() {

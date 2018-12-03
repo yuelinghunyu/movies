@@ -1,16 +1,24 @@
 package com.jdj.movie.mapper;
 
-import com.jdj.movie.model.BookFeedback;
+import com.jdj.movie.model.FeedBack;
 import org.apache.ibatis.jdbc.SQL;
 
-public class BookFeedbackSqlProvider {
+public class FeedBackSqlProvider {
 
-    public String insertSelective(BookFeedback record) {
+    public String insertSelective(FeedBack record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("book_feedback");
+        sql.INSERT_INTO("feed_back");
         
         if (record.getId() != null) {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getWechatId() != null) {
+            sql.VALUES("wechat_id", "#{wechatId,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getWechatName() != null) {
+            sql.VALUES("wechat_name", "#{wechatName,jdbcType=VARCHAR}");
         }
         
         if (record.getFeedType() != null) {
@@ -36,9 +44,17 @@ public class BookFeedbackSqlProvider {
         return sql.toString();
     }
 
-    public String updateByPrimaryKeySelective(BookFeedback record) {
+    public String updateByPrimaryKeySelective(FeedBack record) {
         SQL sql = new SQL();
-        sql.UPDATE("book_feedback");
+        sql.UPDATE("feed_back");
+        
+        if (record.getWechatId() != null) {
+            sql.SET("wechat_id = #{wechatId,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getWechatName() != null) {
+            sql.SET("wechat_name = #{wechatName,jdbcType=VARCHAR}");
+        }
         
         if (record.getFeedType() != null) {
             sql.SET("feed_type = #{feedType,jdbcType=INTEGER}");

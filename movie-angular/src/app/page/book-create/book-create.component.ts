@@ -4,6 +4,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ServiceService } from '../../service/service.service';
 import { Router } from '@angular/router';
 import { Config} from "../../config/config";
+import { Book } from './book';
 
 @Component({
   selector: 'app-book-create',
@@ -12,19 +13,24 @@ import { Config} from "../../config/config";
 })
 export class BookCreateComponent implements OnInit {
   public bookCreateForm:FormGroup;
-  private config:Config = new Config();
+  public config:Config = new Config();
+  public book:Book = Book.bookDefault;
   public titleFlag:Boolean = false;
   public authorFlag:Boolean = false;
   public bookLogoFlag:Boolean = false;
   public bookDescriptionFlag:Boolean = false;
-  private authorization:string;
+  public bookIntroUrlFlag:Boolean = false;
+  public authorization:string;
+  public hrefLink:Boolean = false;
+  public introLink:Boolean = false;
+  public jpgValid:boolean=false;
 
   uploader:FileUploader = new FileUploader({
     url:"/mso/file/toOssServer",
     method:"post",
     headers:[{name:'Authorization',value:this.authorization = "mso " + localStorage.getItem("accessToken")}],
     itemAlias:"uploader",
-    autoUpload:false
+    autoUpload:false,
   });
 
   constructor(
@@ -51,6 +57,46 @@ export class BookCreateComponent implements OnInit {
   }
   createBook(){
     const formData = this.bookCreateForm.value;
-    console.log(formData)
+    if(formData.bookTitle === ""){
+      this.titleFlag = true;
+      return false;
+    }
+    if(formData.bookLogo === ""){
+      this.bookLogoFlag = true;
+      return false;
+    }
+    if(formData.bookAuthor === ""){
+      this.authorFlag = true;
+      return false;
+    }
+  }
+  fileChange(ev){
+    const isJpg = ev.target.files[0].name.split(".")[1];
+    const exg = "(png|jpg|gif|jpeg|PNG|JPG|GIF|JPEG)";
+    this.jpgValid = new RegExp(exg).test(isJpg);
+    if(this.jpgValid){
+      let lg = this.uploader.queue.length;
+      this.uploader.queue[lg-1].upload();//开始上传;
+      this.uploader.queue[lg-1].onSuccess = (res,status,headers)=>{
+        if(status == 200){
+           const resData = JSON.parse(res);
+           this.book.logo = resData["data"].fileUrl;
+           this.hrefLink = true;
+        }
+      }
+      this.uploader.queue[lg-1].onError =(res,status,headers)=>{}
+    }
+  }
+  introChange(ev){
+    let lg = this.uploader.queue.length;
+    this.uploader.queue[lg-1].upload();//开始上传;
+    this.uploader.queue[lg-1].onSuccess = (res,status,headers)=>{
+      if(status == 200){
+          const resData = JSON.parse(res);
+          this.book.introUrl = resData["data"].fileUrl;
+          this.introLink = true;
+      }
+    }
+    this.uploader.queue[lg-1].onError =(res,status,headers)=>{}
   }
 }
