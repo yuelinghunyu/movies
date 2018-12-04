@@ -95,8 +95,9 @@ export class BannerAddOrUpdateComponent implements OnInit {
     const exg = "(png|jpg|gif|jpeg|PNG|JPG|GIF|JPEG)";
     this.jpgValid = new RegExp(exg).test(isJpg);
     if(this.jpgValid){
-      this.uploader.queue[0].upload();//开始上传;
-      this.uploader.queue[0].onSuccess = (res,status,headers)=>{
+      let lg = this.uploader.queue.length;
+      this.uploader.queue[lg-1].upload();//开始上传;
+      this.uploader.queue[lg-1].onSuccess = (res,status,headers)=>{
         if(status == 200){
            const resData = JSON.parse(res);
            this.bannerModel.href = resData["data"].fileUrl;
@@ -106,7 +107,7 @@ export class BannerAddOrUpdateComponent implements OnInit {
           
         }
       }
-      this.uploader.queue[0].onError =(res,status,headers)=>{
+      this.uploader.queue[lg-1].onError =(res,status,headers)=>{
          
       }
     }

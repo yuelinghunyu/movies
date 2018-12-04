@@ -74,8 +74,8 @@ public interface ChaptersMapper {
     })
     List<Chapters> selectByChapterParam(
             @Param("id") String id,
-            @Param("book_id") String bookId,
-            @Param("book_title") String bookTitle,
+            @Param("bookId") String bookId,
+            @Param("bookTitle") String bookTitle,
             @Param("title") String title,
             @Param("skip") int skip,
             @Param("limit") int limit
@@ -86,24 +86,24 @@ public interface ChaptersMapper {
             "select count(0)",
             "from chapters",
             "where 1=1",
-            "<if test='id!=null and id!= &apos;&apos;'>",
-            "and id = #{id,jdbcType=VARCHAR}",
-            "</if>",
-            "<if test='bookId!=null and bookId!= &apos;&apos;'>",
-            "and book_Id = #{bookId,jdbcType=VARCHAR}",
-            "</if>",
-            "<if test='bookTitle!=null and bookTitle!= &apos;&apos;'>",
-            "and book_title = #{bookTitle,jdbcType=VARCHAR}",
-            "</if>",
-            "<if test='title!=null and title!= &apos;&apos;'>",
-            "and title = #{title,jdbcType=VARCHAR}",
-            "</if>",
+                "<if test='id!=null and id!= &apos;&apos;'>",
+                "and id = #{id,jdbcType=VARCHAR}",
+                "</if>",
+                "<if test='bookId!=null and bookId!= &apos;&apos;'>",
+                "and book_id = #{bookId,jdbcType=VARCHAR}",
+                "</if>",
+                "<if test='bookTitle!=null and bookTitle!= &apos;&apos;'>",
+                "and book_title = #{bookTitle,jdbcType=VARCHAR}",
+                "</if>",
+                "<if test='title!=null and title!= &apos;&apos;'>",
+                "and title = #{title,jdbcType=VARCHAR}",
+                "</if>",
             "</script>"
     })
     int getChapterCount(
             @Param("id") String id,
-            @Param("book_id") String bookId,
-            @Param("book_title") String bookTitle,
+            @Param("bookId") String bookId,
+            @Param("bookTitle") String bookTitle,
             @Param("title") String title
     );
 

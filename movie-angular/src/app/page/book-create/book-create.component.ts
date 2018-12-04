@@ -20,10 +20,14 @@ export class BookCreateComponent implements OnInit {
   public bookLogoFlag:Boolean = false;
   public bookDescriptionFlag:Boolean = false;
   public bookIntroUrlFlag:Boolean = false;
+  public typeFlag:Boolean = false;
   public authorization:string;
   public hrefLink:Boolean = false;
   public introLink:Boolean = false;
   public jpgValid:boolean=false;
+  public bookTypeVal: string= '博客类型'
+
+  public bookTypeList:[]
 
   uploader:FileUploader = new FileUploader({
     url:"/mso/file/toOssServer",
@@ -42,7 +46,19 @@ export class BookCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getBookTypes()
+  }
+  getBookTypes(){
+    this.service.getBookTypeTotal().subscribe(res=>{
+      if(res['code'] === this.config.ERROR_OK){
+        const total = res['data']
+        this.service.getBookTypeList({page:1,limit:total}).subscribe(res=>{
+          if(res['code'] === this.config.ERROR_OK){
+            this.bookTypeList = res['data'].list
+          }
+        })
+      }
+    })
   }
   createBookForm(){
     this.bookCreateForm = this.fb.group({
@@ -69,6 +85,35 @@ export class BookCreateComponent implements OnInit {
       this.authorFlag = true;
       return false;
     }
+    if(formData.bookIntroUrl === ""){
+      this.bookIntroUrlFlag = true;
+      return false
+    }
+    if(formData.bookType === ""){
+      this.typeFlag = true;
+      return false;
+    }
+    if(formData.bookDescription === ""){
+      this.bookDescriptionFlag = true;
+      return false;
+    }
+    const param = {
+      id:"",
+      title:formData.bookTitle,
+      logo:formData.bookLogo,
+      introUrl:formData.bookIntroUrl,
+      author:formData.bookAuthor,
+      bookType:formData.bookType,
+      price:formData.bookPrice,
+      description:formData.bookDescription
+    }
+    console.log(param)
+    this.service.setBook(param).subscribe(res=>{
+      if(res['code'] === this.config.ERROR_OK){
+        this.bookCreateForm.reset()
+        this.router.navigateByUrl("/frame/book-list");
+      }
+    })
   }
   fileChange(ev){
     const isJpg = ev.target.files[0].name.split(".")[1];
@@ -98,5 +143,9 @@ export class BookCreateComponent implements OnInit {
       }
     }
     this.uploader.queue[lg-1].onError =(res,status,headers)=>{}
+  }
+  selectType(ev:Event){
+    this.bookTypeVal = ev.target['textContent'];
+    this.book.bookType = ev.target['getAttribute']("type")
   }
 }

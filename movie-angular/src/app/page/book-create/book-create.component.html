@@ -88,13 +88,13 @@
                 <label for="blog-type">小册类型:</label>
                 <div class="book-pic-select">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-info">小册类型</button>
+                        <button type="button" class="btn btn-info">{{bookTypeVal}}</button>
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="caret"></span>
                           <span class="sr-only"></span>
                         </button>
-                        <ul class="dropdown-menu book-menu">
-                            <li>前端</li>
+                        <ul class="dropdown-menu book-menu" (click)="selectType($event)">
+                            <li *ngFor="let bookType of bookTypeList;let i = index" [attr.id]='bookType.id' [attr.type]='bookType.typeId'>{{bookType.typeTitle}}</li>
                         </ul>
                       </div>
                 </div>
@@ -103,6 +103,7 @@
                   type="hidden" 
                   name="bookType" 
                   formControlName="bookType"
+                  [(ngModel)]="book.bookType"
                 >
             </div>
             <span class="warning-container" *ngIf="typeFlag">

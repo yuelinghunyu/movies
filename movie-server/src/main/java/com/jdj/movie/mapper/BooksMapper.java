@@ -20,7 +20,7 @@ public interface BooksMapper {
         "intro_url, book_type, ",
         "price, create_time, ",
         "modify_time, description)",
-        "values (UUID(), UUID(), ",
+        "values (UUID(), ",
         "#{title,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, ",
         "#{introUrl,jdbcType=VARCHAR}, #{bookType,jdbcType=INTEGER}, ",
         "#{price,jdbcType=DECIMAL}, now(), ",

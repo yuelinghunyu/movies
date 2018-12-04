@@ -69,7 +69,7 @@ public class BooksController {
             @RequestParam(value = "introUrl",required = true) String introUrl,
             @RequestParam(value = "author",required = true) String author,
             @RequestParam(value = "bookType",required = true) int bookType,
-            @RequestParam(value = "price",required = true) Long price,
+            @RequestParam(value = "price",required = false,defaultValue = "0") Long price,
             @RequestParam(value = "description",required = true) String description
     ){
         Books books = new Books();
@@ -105,8 +105,13 @@ public class BooksController {
 
         int flag = booksBll.deleteBooksItem(id);
         /**删除章节表*/
-        int chFlag = chapterBll.deleteChapterItem("",id);
-        if(flag>0 && chFlag>0){
+        int total = chapterBll.getChapterCount("",id,"","");
+        int chFlag = 0;
+        if(total>0){
+            chFlag = chapterBll.deleteChapterItem("",id);
+        }
+
+        if(flag>0 && chFlag>=0){
             return new ReturnModel(0,true);
         }else {
             return new ReturnModel(-1,false);
