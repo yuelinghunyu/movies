@@ -58,12 +58,12 @@ public interface PayersMapper {
             @Result(column="payDate", property="paydate", jdbcType=JdbcType.DATE)
     })
     List<Payers> selectByParams(
-            String id,
-            String wechatId,
-            String wechatName,
-            String books,
-            int skip,
-            int limit
+            @Param("id") String id,
+            @Param("wechatId") String wechatId,
+            @Param("wechatName") String wechatName,
+            @Param("books") String books,
+            @Param("skip") int skip,
+            @Param("limit") int limit
     );
 
     @Select({

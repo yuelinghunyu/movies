@@ -27,7 +27,7 @@ export class BookCreateComponent implements OnInit {
   public jpgValid:boolean=false;
   public bookTypeVal: string= '博客类型'
 
-  public bookTypeList:[]
+  public bookTypeList=[]
 
   uploader:FileUploader = new FileUploader({
     url:"/mso/file/toOssServer",

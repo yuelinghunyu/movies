@@ -1,8 +1,10 @@
 package com.jdj.movie;
 
 import com.jdj.movie.bll.MovieBll;
+import com.jdj.movie.bll.UsersBll;
 import com.jdj.movie.enums.StaticTypes;
 import com.jdj.movie.model.Movie;
+import com.jdj.movie.model.Users;
 import com.jdj.movie.utils.Md5Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,8 @@ import java.util.UUID;
 public class MovieServerApplicationTests {
 	@Autowired
 	private MovieBll movieBll;
+	@Autowired
+	private UsersBll usersBll;
 
 	@Test
 	public void contextLoads() {
@@ -63,4 +67,17 @@ public class MovieServerApplicationTests {
 		List<Movie> list = movieBll.getMovieListLike(title,0,10);
 		int count = movieBll.getMovieListLikeCount(title);
 	}
+
+	@Test
+	public void testInsertUser(){
+		String wechatId = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+		String wechatName = "四叶草";
+		String wechatLogo = "http://yuelinghunyu.oss-cn-beijing.aliyuncs.com/data/1543933272768.jpg?Expires=1859293270&OSSAccessKeyId=LTAIuw9k1cverkbk&Signature=c5tSu2FLVBfdZHw6UsuBFokAi/A%3D";
+		Users users = new Users();
+		users.setWechatId(wechatId);
+		users.setWechatName(wechatName);
+		users.setWechatLogo(wechatLogo);
+		usersBll.insertUserItem(users);
+	}
+
 }

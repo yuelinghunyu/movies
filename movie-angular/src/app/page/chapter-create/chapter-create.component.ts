@@ -22,7 +22,7 @@ export class ChapterCreateComponent implements OnInit {
   public chapterHref:Boolean = false;
   public authorization:string;
 
-  public bookList:[]
+  public bookList=[]
   public chapter:Chapter=Chapter.chapterDefault
   public chapterVal:string="章节小册"
 

@@ -43,9 +43,9 @@ public interface UsersMapper {
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<Users> selectByName(
-            String wechatName,
-            int skip,
-            int limit
+            @Param("wechatName") String wechatName,
+            @Param("skip") int skip,
+            @Param("limit") int limit
     );
 
 

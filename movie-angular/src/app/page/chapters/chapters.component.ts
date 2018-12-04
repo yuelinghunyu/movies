@@ -15,7 +15,7 @@ export class ChaptersComponent implements OnInit {
   public pagination:Pagination = Pagination.defaultPagination;
   public modal:Modal = Modal.modal;
   public config:Config = new Config();
-  public chapterList:[]
+  public chapterList=[]
   constructor(
     public service:ServiceService,
     private router:Router,
