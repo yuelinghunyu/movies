@@ -4,3 +4,22 @@
     min-width: 1024px;
     overflow: auto;
 }
+
+th{
+    text-align: center;
+}
+td{
+   text-align: center;
+   display: table-cell;
+   vertical-align: middle !important;
+}
+.chapter-href{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    width: 100px;
+}
+.pagination-container{
+   padding: 20px 0px;
+}

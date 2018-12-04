@@ -17,11 +17,14 @@ public interface ChaptersMapper {
             "and id = #{id,jdbcType=VARCHAR}",
             "</if>",
             "<if test='bookId!=null and bookId!= &apos;&apos;'>",
-            "and book_Id = #{bookId,jdbcType=VARCHAR}",
+            "and book_id = #{bookId,jdbcType=VARCHAR}",
             "</if>",
         "</script>"
     })
-    int deleteByParam(String id, String bookId);
+    int deleteByParam(
+            @Param("id") String id,
+            @Param("bookId") String bookId
+    );
 
     @Insert({
         "insert into chapters (id, book_id, ",
@@ -48,7 +51,7 @@ public interface ChaptersMapper {
             "and id = #{id,jdbcType=VARCHAR}",
             "</if>",
             "<if test='bookId!=null and bookId!= &apos;&apos;'>",
-            "and book_Id = #{bookId,jdbcType=VARCHAR}",
+            "and book_id = #{bookId,jdbcType=VARCHAR}",
             "</if>",
             "<if test='bookTitle!=null and bookTitle!= &apos;&apos;'>",
             "and book_title = #{bookTitle,jdbcType=VARCHAR}",
@@ -56,8 +59,7 @@ public interface ChaptersMapper {
             "<if test='title!=null and title!= &apos;&apos;'>",
             "and title = #{title,jdbcType=VARCHAR}",
             "</if>",
-            "group by book_id",
-            "order by create_time desc",
+            "order by book_title desc",
             "limit #{skip},#{limit}",
         "</script>"
     })

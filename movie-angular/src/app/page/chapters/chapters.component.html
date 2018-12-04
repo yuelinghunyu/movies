@@ -23,8 +23,41 @@
           <th>修改时间</th>
           <th>操作</th>
         </tr>
-        
       </thead>
+      <tbody>
+        <tr *ngFor="let chapter of chapterList;let i = index" [attr.id]='chapter.id'>
+          <th scope="row">{{i+1}}</th>
+          <td>{{chapter.bookTitle}}</td>
+          <td>{{chapter.title}}</td>
+          <td>
+            <span 
+              class="chapter-href"
+              [attr.title]="chapter.href"
+            >
+                {{chapter.href}}
+            </span>
+          </td>
+          <td>{{chapter.time}}</td>
+          <td>{{chapter.browser}}次</td>
+          <td>{{chapter.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+          <td>{{chapter.modifyTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+          <td>
+            <button
+              type="button" 
+              class="btn btn-danger btn-sm"
+              data-toggle="modal"
+              data-target=".bs-example-modal-sm"
+              (click)="alertModalItem(chapter.id)"
+            >
+              删除
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-primary btn-sm"
+            >修改</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
     <div class="pagination-container">
         <app-pagination [pagination] = "pagination"></app-pagination>

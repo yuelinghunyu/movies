@@ -200,6 +200,10 @@ export class ServiceService {
     const param = 'id=' + body.id;
     return this.http.post(url,param,this.httpOptions);
   }
+  getBookCount(){
+    const url = this.mso + "/books/getCount";
+    return this.http.get(url)
+  }
 
   //章节接口
   setChapter(body){

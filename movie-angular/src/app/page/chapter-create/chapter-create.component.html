@@ -22,13 +22,13 @@
                 <label for="blog-type">章节小册:</label>
                 <div class="chapter-pic-select">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-info">章节小册</button>
+                        <button type="button" class="btn btn-info">{{chapterVal}}</button>
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
                             <span class="sr-only"></span>
                         </button>
-                        <ul class="dropdown-menu chapter-menu">
-                            <li>vue 音乐播放器实战</li>
+                        <ul class="dropdown-menu chapter-menu" (click)="selectType($event)">
+                            <li *ngFor="let book of bookList;let i = index" [attr.id]='book.id' [attr.title]='book.title'>{{book.title}}</li>
                         </ul>
                         </div>
                 </div>
@@ -37,6 +37,7 @@
                     type="hidden" 
                     name="chapterBook" 
                     formControlName="chapterBook"
+                    [(ngModel)]="chapter.bookId"
                 >
             </div>
             <span class="warning-container" *ngIf="bookFlag">
@@ -53,14 +54,15 @@
                       class="btn btn-info"
                       ng2FileSelect
                       [uploader]="uploader"
+                      (change)="fileChange($event)"
                     >
-              
+                    <span class="chapter-href" title="chapter.href" *ngIf="chapterHref">{{chapter.href}}</span>
                 </div>
                 <input 
                   type="hidden" 
                   name="chapterLink" 
                   formControlName="chapterLink"
-              
+                  [(ngModel)]="chapter.href"
                 >
             </div>
             <span class="warning-container" *ngIf="linkFlag">
