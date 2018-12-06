@@ -3,6 +3,7 @@ package com.jdj.movie.controller;
 import com.jdj.movie.bll.BookTypeBll;
 import com.jdj.movie.bll.BooksBll;
 import com.jdj.movie.bll.ChapterBll;
+import com.jdj.movie.bll.PayersBll;
 import com.jdj.movie.model.*;
 import com.jdj.movie.utils.CovertUtils;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +33,8 @@ public class BooksController {
     private BookTypeBll bookTypeBll;
     @Autowired
     private ChapterBll chapterBll;
+    @Autowired
+    private PayersBll payersBll;
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ReturnModel getBookList(
@@ -50,7 +54,11 @@ public class BooksController {
 
 
         for(int i=0;i<booksList.size();i++){
-            BooksConvert booksConvert  = CovertUtils.covertBook(booksList.get(i),bookTypeList);
+            int chapterCount = chapterBll.getChapterCount("",id,"","");
+            int payerCount = payersBll.getPayersCount("","","",id);
+            List<Payers> payersList = payersBll.getPayersList("","","",id,0,payerCount);
+            List<Chapters> chaptersList = chapterBll.getChapterList("",id,"","",0,chapterCount);
+            BooksConvert booksConvert  = CovertUtils.covertBook(booksList.get(i),bookTypeList,chaptersList,payersList);
             booksConvertList.add(booksConvert);
         }
         int total = booksBll.getBooksCount(id,title,author,bookType);
@@ -67,14 +75,17 @@ public class BooksController {
             @RequestParam(value = "title",required = true) String title,
             @RequestParam(value = "logo",required = true) String logo,
             @RequestParam(value = "introUrl",required = true) String introUrl,
+            @RequestParam(value = "OSSAccessKeyId") String keyId,
+            @RequestParam(value = "Signature") String sign,
             @RequestParam(value = "author",required = true) String author,
             @RequestParam(value = "bookType",required = true) int bookType,
             @RequestParam(value = "price",required = false,defaultValue = "0") Long price,
             @RequestParam(value = "description",required = true) String description
-    ){
+    )throws Exception{
         Books books = new Books();
         books.setTitle(title);
-        books.setLogo(logo);
+        String newLogo = logo + "&OSSAccessKeyId="+keyId+"&Signature="+ URLEncoder.encode(sign, "utf-8");
+        books.setLogo(newLogo);
         books.setAuthor(author);
         books.setIntroUrl(introUrl);
         books.setBookType(bookType);

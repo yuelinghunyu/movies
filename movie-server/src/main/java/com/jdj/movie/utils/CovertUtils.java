@@ -93,7 +93,7 @@ public class CovertUtils {
     }
 
     //小册
-    public static BooksConvert covertBook(Books books,List<BookType> bookTypeList){
+    public static BooksConvert covertBook(Books books,List<BookType> bookTypeList,List<Chapters> chaptersList,List<Payers> payersList){
         BooksConvert booksConvert = new BooksConvert();
         booksConvert.setId(books.getId());
         booksConvert.setLogo(books.getLogo());
@@ -101,6 +101,8 @@ public class CovertUtils {
         booksConvert.setAuthor(books.getAuthor());
         booksConvert.setBookType(books.getBookType());
         booksConvert.setBookTypeTitle(getBookTypeTitle(books.getBookType(),bookTypeList));
+        booksConvert.setChaptersList(chaptersList);
+        booksConvert.setPayersList(payersList);
         booksConvert.setIntroUrl(books.getIntroUrl());
         booksConvert.setPrice(books.getPrice());
         booksConvert.setDescription(books.getDescription());

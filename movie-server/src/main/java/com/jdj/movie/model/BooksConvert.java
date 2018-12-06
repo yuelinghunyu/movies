@@ -1,6 +1,7 @@
 package com.jdj.movie.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jiangdajun on 2018/11/30.
@@ -27,6 +28,26 @@ public class BooksConvert{
     private Date modifyTime;
 
     private String description;
+
+    private List<Chapters> chaptersList;
+
+    private List<Payers> payersList;
+
+    public List<Payers> getPayersList() {
+        return payersList;
+    }
+
+    public void setPayersList(List<Payers> payersList) {
+        this.payersList = payersList;
+    }
+
+    public List<Chapters> getChaptersList() {
+        return chaptersList;
+    }
+
+    public void setChaptersList(List<Chapters> chaptersList) {
+        this.chaptersList = chaptersList;
+    }
 
     public String getId() {
         return id;
