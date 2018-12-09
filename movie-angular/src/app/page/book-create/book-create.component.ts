@@ -97,17 +97,22 @@ export class BookCreateComponent implements OnInit {
       this.bookDescriptionFlag = true;
       return false;
     }
+
+    //将logo地址换下格式http://yuelinghunyu.oss-cn-beijing.aliyuncs.com/data/1544331625969.md?Expires=1859691625&OSSAccessKeyId=LTAIuw9k1cverkbk&Signature=EmDtEpUdV%2BALZhL7U3emb2XgKvc%3D
+    const array = formData.bookLogo.split("?")
+    const paramArray = array[1].split("&")
+    let logo = array[0]+"?"+paramArray[0]+"&OSSAccessKeyIdLogo="+paramArray[1].split("=")[1]+"&SignatureLogo="+paramArray[2].split("=")[1]
+
     const param = {
       id:"",
       title:formData.bookTitle,
-      logo:formData.bookLogo,
+      logo:logo,
       introUrl:formData.bookIntroUrl,
       author:formData.bookAuthor,
       bookType:formData.bookType,
       price:formData.bookPrice,
       description:formData.bookDescription
     }
-    console.log(param)
     this.service.setBook(param).subscribe(res=>{
       if(res['code'] === this.config.ERROR_OK){
         this.bookCreateForm.reset()

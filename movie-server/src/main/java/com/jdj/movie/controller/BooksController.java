@@ -75,8 +75,10 @@ public class BooksController {
             @RequestParam(value = "title",required = true) String title,
             @RequestParam(value = "logo",required = true) String logo,
             @RequestParam(value = "introUrl",required = true) String introUrl,
-            @RequestParam(value = "OSSAccessKeyId") String keyId,
-            @RequestParam(value = "Signature") String sign,
+            @RequestParam(value = "OSSAccessKeyId",required = false,defaultValue = "") String keyId,
+            @RequestParam(value = "Signature",required = false,defaultValue = "") String sign,
+            @RequestParam(value = "OSSAccessKeyIdLogo",required = false,defaultValue = "") String keyIdLogo,
+            @RequestParam(value = "SignatureLogo",required = false,defaultValue = "") String signLogo,
             @RequestParam(value = "author",required = true) String author,
             @RequestParam(value = "bookType",required = true) int bookType,
             @RequestParam(value = "price",required = false,defaultValue = "0") Long price,
@@ -84,10 +86,11 @@ public class BooksController {
     )throws Exception{
         Books books = new Books();
         books.setTitle(title);
-        String newLogo = logo + "&OSSAccessKeyId="+keyId+"&Signature="+ URLEncoder.encode(sign, "utf-8");
+        String newLogo = logo + "&OSSAccessKeyId="+keyIdLogo+"&Signature="+ URLEncoder.encode(signLogo, "utf-8");
         books.setLogo(newLogo);
         books.setAuthor(author);
-        books.setIntroUrl(introUrl);
+        String newIntroUrl = introUrl;
+        books.setIntroUrl(newIntroUrl);
         books.setBookType(bookType);
         books.setPrice(price);
         books.setDescription(description);
