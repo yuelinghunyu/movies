@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {getUserInfo,getUser} from '../../server/server'
+import { ERROR_OK } from '../../plugin/utils'
+import axios from "axios";
 import './person.scss';
 
 import PropTypes from 'prop-types';
@@ -10,14 +13,21 @@ class Person extends Component{
     }
     constructor(props){
         super(props)
+        this.state = {
+            user:{
+                wechatId:"",
+                wechatName:"",
+                wechatLogo:""
+            }
+        }
         this.redirectFeekBack = this.redirectFeekBack.bind(this)
     }
     render(){
         return(
             <div className="person-container">
-               <div className='logo-container'>
-                    <img src='' alt='logo' />
-                    <span>月翎魂雨</span>
+               <div className='logo-container' id={this.state.user.wechatId}>
+                    <img src={this.state.user.wechatLogo} alt="logo"/>
+                    <span className="username">{this.state.user.wechatName}</span>
                </div>
                <div className='feedBack-container' onClick={this.redirectFeekBack}>
                    <span>意见反馈</span>
@@ -26,9 +36,29 @@ class Person extends Component{
             </div>
         )
     }
-    redirectFeekBack(){
-        const path = '/feed-back';
+    redirectFeekBack(ev){
+        ev.preventDefault();
+        const path = "/feed-back"+"/"+this.state.user.wechatId+"/"+this.state.user.wechatName;
         this.context.router.history.push(path);
+    }
+    componentWillMount(){
+        const userParam = {
+            wechatName:getUser().wechatName
+        }
+        const payerParam = {
+            wechatId:getUser().wechatId
+        }
+        getUserInfo(userParam).then(res=>{
+            if(res.data.code === ERROR_OK){
+                this.setState({
+                    user:{
+                        wechatId:res.data.data.list[0].wechatId,
+                        wechatName:res.data.data.list[0].wechatName,
+                        wechatLogo:res.data.data.list[0].wechatLogo
+                    }
+                })
+            }
+        })
     }
 }
 

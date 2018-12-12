@@ -25,7 +25,7 @@ class App extends Component {
           <Footer></Footer>
           <Route path="/select" component={Select}/>
           <Route path="/classify" component={Classify}/>
-          <Route path="/feed-back" component={FeedBack}/>
+          <Route path="/feed-back/:wechatId/:wechatName" component={FeedBack}/>
           <Route path='/movie-detail/:id' component={Movie} />
         </div>
       </Router>

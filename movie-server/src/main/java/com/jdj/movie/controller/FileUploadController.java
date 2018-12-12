@@ -74,7 +74,7 @@ public class FileUploadController {
         }
         return new ReturnModel(0,map);
     }
-    
+
     @RequestMapping(value = "/getChapters",method = RequestMethod.GET)
     public ReturnModel getChapter(
             @RequestParam(value = "url",required = false,defaultValue = "") String url

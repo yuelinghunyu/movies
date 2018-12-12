@@ -12,6 +12,8 @@ const getBannerList = (param) =>{
         params:param
     }).then((res)=>{
         return Promise.resolve(res.data)
+    }).catch((error)=>{
+        return Promise.reject(error);
     })
 }
 
@@ -23,6 +25,8 @@ const getAreaList = (param) => {
         params:param
     }).then((res)=>{
         return Promise.resolve(res.data)
+    }).catch((error)=>{
+        return Promise.reject(error);
     })
 }
 //获取类型列表
@@ -33,6 +37,8 @@ const getTypeList = (param) => {
         params:param
     }).then((res)=>{
         return Promise.resolve(res.data)
+    }).catch((error)=>{
+        return Promise.reject(error);
     })
 }
 //获取电影列表
@@ -43,6 +49,8 @@ const getMovieList = (param) => {
         params:param
     }).then((res)=>{
         return Promise.resolve(res.data)
+    }).catch((error)=>{
+        return Promise.reject(error);
     })
 }
 //模糊查询电影列表
@@ -53,6 +61,8 @@ const getMovieLikeList = (param) => {
         params:param
     }).then((res)=>{
         return Promise.resolve(res.data)
+    }).catch((error)=>{
+        return Promise.reject(error);
     })
 }
 const funcGetBannerList = (param) => {
@@ -94,6 +104,39 @@ const funcGetTotal = (param) => {
         params:param
     })
 }
+
+const getUserInfo = (params) => {
+    let url = baseUrl + '/users/list';
+    return axios.get(url,{
+        headers:headers,
+        params:params
+    }).then((res)=>{
+        return Promise.resolve(res)
+    }).catch((error)=>{
+        return Promise.reject(error);
+    })
+}
+const getUser = ()=>{
+    return {
+        wechatId:"6a8db3a6097d4687bf3e29fb2c24cfaf",
+        wechatName:"四叶草"
+    }
+}
+
+const setFeedBack = (params)=>{
+    let url = baseUrl + "/feed-back/set-feed-back";
+    let formData = new FormData()
+    for(let key in params){
+        formData.append(key,params[key])
+    }
+    return axios.post(url,formData,{
+        headers:headers
+    }).then((res)=>{
+        return Promise.resolve(res)
+    }).catch((error)=>{
+        return Promise.reject(error);
+    })
+}
 export {
     getBannerList,
     getAreaList,
@@ -104,5 +147,8 @@ export {
     funcGetMovieList,
     funcGetTypeList,
     funcGetTotal,
-    getMovieLikeList
+    getMovieLikeList,
+    getUserInfo,
+    getUser,
+    setFeedBack
 }
