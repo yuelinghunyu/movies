@@ -109,19 +109,19 @@ export class CreateMoviesComponent implements OnInit {
       });
     });
 
-    this.initList();
+    this.initList(this.movieListBySelect);
     this.pagination.changePage = (()=>{
-      this.initList();
+      this.initList(this.movieListBySelect);
     });
   }
   //获取电影列表
-  initList(){
+  initList(param){
      //获取所有的movie列表;
-     const param = {
+     const params = Object.assign({
       "page":this.pagination.currentPage,
       "limit":this.pagination.pageItems
-    }
-    this.getMovieListBySelect(param);
+    },param)
+    this.getMovieListBySelect(params);
   }
    //弹框出现;
    private alertModalItem(id:string){

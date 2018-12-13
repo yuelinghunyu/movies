@@ -21,7 +21,7 @@
             width: 90%;
             height: 5rem;
             display: block;
-            border: 1px solid #888;
+            border: 1PX solid #888;
             box-sizing: border-box;
             @include radius();
             font-size: 28px;
@@ -30,7 +30,7 @@
         .select-type-container{
             width: 90%;
             font-size: 28px;
-            border: 1px solid #888;
+            border: 1PX solid #888;
             box-sizing: border-box;
             padding: 0 0.2rem 0.5rem 0.2rem;
             @include radius();

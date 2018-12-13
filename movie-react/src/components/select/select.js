@@ -61,7 +61,13 @@ class Select extends Component{
             localStorage.setItem('movieList',JSON.stringify(newMovieList))
         }else{
             movieList = JSON.parse(movieList)
-            localStorage.setItem('movieList',JSON.stringify(_.uniq(_.concat(movieList,newMovieList))))
+            movieList.map((item)=>{
+                if(item.id === newMovieList[0].id){
+                    return false
+                }else{
+                    localStorage.setItem('movieList',JSON.stringify(_.uniq(_.concat(movieList,newMovieList))))
+                }
+            })
         }
     }
     clearHistory(){
@@ -70,10 +76,12 @@ class Select extends Component{
             history:true
         })
     }
-    selectMovieRedirect(movie){
+    selectMovieRedirect(movie,type){
         let array = []
         array.push(movie)
-        this.localStorageOperate(array)
+        if(type === "list"){
+            this.localStorageOperate(array)
+        }
         this.setState({
             history:false
         })
@@ -105,7 +113,7 @@ class Select extends Component{
                         <li 
                             id={movie.id} 
                             key={index}
-                            onClick={this.selectMovieRedirect.bind(this,movie)}
+                            onClick={this.selectMovieRedirect.bind(this,movie,"list")}
                         >{movie.title}</li>
                     )
                 })
@@ -121,7 +129,7 @@ class Select extends Component{
                         <span 
                             id={movie.id} 
                             key={index}
-                            onClick={this.selectMovieRedirect.bind(this,movie)}
+                            onClick={this.selectMovieRedirect.bind(this,movie,"history")}
                         >{movie.title}</span>
                     )
                 })
