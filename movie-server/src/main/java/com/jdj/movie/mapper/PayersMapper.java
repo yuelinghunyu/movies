@@ -20,7 +20,7 @@ public interface PayersMapper {
             "books, payDate)",
             "values (UUID(), #{wechatId,jdbcType=VARCHAR}, ",
             "#{wechatName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, ",
-            "#{books,jdbcType=VARCHAR}, now()"
+            "#{books,jdbcType=VARCHAR}, now())"
     })
     int insert(Payers record);
 

@@ -54,10 +54,10 @@ public class BooksController {
 
 
         for(int i=0;i<booksList.size();i++){
-            int chapterCount = chapterBll.getChapterCount("",id,"","");
-            int payerCount = payersBll.getPayersCount("","","",id);
-            List<Payers> payersList = payersBll.getPayersList("","","",id,0,payerCount);
-            List<Chapters> chaptersList = chapterBll.getChapterList("",id,"","",0,chapterCount);
+            int chapterCount = chapterBll.getChapterCount("",booksList.get(i).getId(),"","");
+            int payerCount = payersBll.getPayersCount("","","",booksList.get(i).getId());
+            List<Payers> payersList = payersBll.getPayersList("","","",booksList.get(i).getId(),0,payerCount);
+            List<Chapters> chaptersList = chapterBll.getChapterList("",booksList.get(i).getId(),"","",0,chapterCount);
             BooksConvert booksConvert  = CovertUtils.covertBook(booksList.get(i),bookTypeList,chaptersList,payersList);
             booksConvertList.add(booksConvert);
         }
