@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {getUserInfo,getUser} from '../../server/server'
 import { ERROR_OK } from '../../plugin/utils'
-import axios from "axios";
+import "../../static/fonts/iconfont.css"
 import './person.scss';
 
 import PropTypes from 'prop-types';
@@ -31,7 +31,9 @@ class Person extends Component{
                </div>
                <div className='feedBack-container' onClick={this.redirectFeekBack}>
                    <span>意见反馈</span>
-                   <span></span>
+                   <span>
+                        <i className="icon iconfont icon-right"></i>
+                   </span>
                </div>
             </div>
         )

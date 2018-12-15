@@ -5,6 +5,7 @@ import {getMovieLikeList} from '../../server/server'
 import { ERROR_OK,throttle} from '../../plugin/utils'
 import PropTypes from 'prop-types';
 import _ from 'lodash'
+import "../../static/fonts/iconfont.css"
 import './select.scss';
 
 const styles = {
@@ -91,7 +92,9 @@ class Select extends Component{
     render(){
         let input = <div className = 'input-container'>
                         <p>
-                            <span></span>
+                            <span>
+                                <i className="icon iconfont icon-sousuo"></i>
+                            </span>
                             <input 
                                 type='text' 
                                 placeholder='权利的游戏' 
@@ -113,7 +116,7 @@ class Select extends Component{
                         <li 
                             id={movie.id} 
                             key={index}
-                            onClick={this.selectMovieRedirect.bind(this,movie,"list")}
+                            onClick={this.selectMovieRedirect.bind(this,movie,"history")}
                         >{movie.title}</li>
                     )
                 })
@@ -129,7 +132,7 @@ class Select extends Component{
                         <span 
                             id={movie.id} 
                             key={index}
-                            onClick={this.selectMovieRedirect.bind(this,movie,"history")}
+                            onClick={this.selectMovieRedirect.bind(this,movie,"list")}
                         >{movie.title}</span>
                     )
                 })
@@ -144,7 +147,10 @@ class Select extends Component{
                     {movieList}
                     <div className='clear-btn'>
                         <span>搜索历史</span>
-                        <span onClick={this.clearHistory.bind(this)}>清空</span>
+                        <div onClick={this.clearHistory.bind(this)}>
+                            <span>清空</span>
+                            <span><i className="icon iconfont icon-shanchu"></i></span>
+                        </div>
                     </div>
                     {historyList}
                 </div> 

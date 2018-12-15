@@ -2,8 +2,12 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import './footer.scss';
 import "../../static/fonts/iconfont.css"
+import PropTypes from "prop-types";
 
 class Footer extends Component{
+    static contextTypes = {
+        router:PropTypes.object.isRequired,
+    }
     constructor(props){
         super(props)
         this.state={
@@ -14,6 +18,16 @@ class Footer extends Component{
         this.setState({
             status:status
         });
+    }
+    componentWillMount(){
+        let status = ""
+        if(this.context.router.route.location.pathname === "/person"){
+            status = "person"
+        }
+        if(this.context.router.route.location.pathname === "/home" || this.context.router.route.location.pathname=== "/"){
+            status = "home"
+        }
+        this.pageHandle(status)
     }
     render(){
         return(

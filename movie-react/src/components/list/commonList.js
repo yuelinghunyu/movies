@@ -25,7 +25,7 @@ class CommonList extends Component{
                         <LazyLoad height={368}>
                             <img src={item.picUrl} alt={item.title}/>
                         </LazyLoad>
-                        <span>{0}</span>    
+                        {/* <span>{0}</span>     */}
                     </div>
                     <div className="logo-content">
                         <p className="logo-title">{item.title}</p>

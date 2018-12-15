@@ -143,7 +143,7 @@ export class CreateMoviesComponent implements OnInit {
         this.modal.tips = "删除成功！";
         $("#tipModal").modal('hide');
         this.modal.flag = false;
-        this.initList();
+        this.initList(this.movieListBySelect);
       }
     })
   }

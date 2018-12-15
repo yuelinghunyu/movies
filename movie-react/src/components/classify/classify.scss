@@ -17,20 +17,19 @@
             @extend .flex;
             @extend .justify-content-between;
             @extend .align-items-center;
-            span:nth-child(1){
-                width: 40px;
-                height: 40px;
-                background: url('../../static/image/black.png') -10px -70px no-repeat;
+            span:nth-child(1),span:nth-child(3){
+                width: 45px;
+                height: 45px;
+                i{
+                    font-size:45px;
+                    line-height: 45px;
+                    text-align: center;
+                }
             }
             span:nth-child(2){
                 font-size: 33px;
                 font-weight: bold;
                 color: #333;
-            }
-            span:nth-child(3){
-                width: 40px;
-                height: 40px;
-                background: url('../../static/image/black.png')  -250px -10px no-repeat;
             }
         }
         .classify-select{

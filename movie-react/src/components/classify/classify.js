@@ -10,6 +10,7 @@ import axios from 'axios'
 import {getAreaList,funcGetAreaList,getMovieList,funcGetMovieList,funcGetTotal} from '../../server/server';
 import Loading from '../../components/loading/loading';
 import NoData from '../../components/noData/noData'
+import "../../static/fonts/iconfont.css"
 
 const styles = {
     fadeInRightBig:{
@@ -287,9 +288,13 @@ class Classify extends Component{
             <StyleRoot className = "cssRoot">
                 <div className='classify-container'style={styles.fadeInRightBig}>
                     <div className='classify-header'>
-                        <span onClick={this.backToLastEvent.bind(this)}></span>
+                        <span onClick={this.backToLastEvent.bind(this)}>
+                            <i className="icon iconfont icon-left"></i>
+                        </span>
                         <span>资源</span>
-                        <span onClick={this.redirectToSelect.bind(this)}></span>
+                        <span onClick={this.redirectToSelect.bind(this)}>
+                            <i className="icon iconfont icon-sousuo"></i>
+                        </span>
                     </div>
                     <ul className='classify-select'>
                         {liList}

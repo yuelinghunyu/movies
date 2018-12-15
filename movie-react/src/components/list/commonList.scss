@@ -30,6 +30,10 @@
                 color: #000;
                 font-size:28px;
                 line-height: 40px;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
             .logo-discription{
                 width: 100%;

@@ -36,9 +36,13 @@
         height: 100px;
         padding: 0 30px;
         span:nth-child(2){
-            width: 40px;
-            height: 40px;
-            background: url('../../static/image/grey.png') -65px -70px;
+            width: 45px;
+            height: 45px;
+            i{
+                font-size:45px;
+                line-height: 45px;
+                text-align: center;
+            }
         }
     }
 }

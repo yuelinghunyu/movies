@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { getMovieList } from '../../server/server'
 import { ERROR_OK } from '../../plugin/utils'
 import NoData from '../../components/noData/noData'
+import "../../static/fonts/iconfont.css"
 import './movie.scss'
 
 const styles = {
@@ -22,7 +23,9 @@ class Movie extends Component{
         super(props)
         this.state = {
             movie:{},
-            noDataFlag:false
+            noDataFlag:false,
+            link:"",
+            password:""
         }
     }
     componentWillMount(){
@@ -31,7 +34,15 @@ class Movie extends Component{
            if(res.code === ERROR_OK && res.data.total>0){
                this.setState({
                    movie:res.data.list[0]
+               },()=>{
+                let linkArray  = this.state.movie.content.split("密码")
+                this.setState({
+                    link:linkArray[0],
+                    password:linkArray[1]
+                })
                })
+               
+          
            }else{
             this.setState({
                 noDataFlag:true
@@ -51,7 +62,9 @@ class Movie extends Component{
             content =  <div className="content-display">
                             <div className="movie-detail">
                                 <div className='movie-detail-top'>
-                                    <img src={this.state.movie.picUrl} alt='movie-logo'/>
+                                    <div className="movie-logo">
+                                        <img src={this.state.movie.picUrl} alt='movie-logo'/>
+                                    </div>
                                     <p className='movie-other'>
                                         <label for='movie-area'>
                                             地区：<span id='movie-area'>{this.state.movie.areaTitle}</span>
@@ -75,10 +88,10 @@ class Movie extends Component{
                                 <label>电影链接：</label>
                                 <p className='movie-link'>
                                     <label for='movie-href'>
-                                        电影资源：<span id='movie-type'>{this.state.movie.content}</span>
+                                        电影资源：<a id='movie-type' href={this.state.link}>百度网盘</a>
                                     </label>
                                     <label for='movie-password'>
-                                        密码：<span id='movie-type'>{this.state.movie.content}</span>
+                                        密码：<span id='movie-type'>{this.state.password}</span>
                                     </label>
                                 </p>
                             </div>
@@ -88,7 +101,9 @@ class Movie extends Component{
             <StyleRoot className = "cssRoot">
                 <div className='movie-detail-container' style={styles.fadeInRightBig}>
                     <div className='movie-header'>
-                        <span onClick={this.backToLastEvent.bind(this)}></span>
+                        <span onClick={this.backToLastEvent.bind(this)}>
+                            <i className="icon iconfont icon-left"></i>
+                        </span>
                         <span>电影主题</span>
                         <span></span>
                     </div>
