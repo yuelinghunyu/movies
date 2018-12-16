@@ -7,7 +7,7 @@ import './classify.scss';
 import { ERROR_OK } from '../../plugin/utils'
 import PropTypes from 'prop-types';
 import axios from 'axios'
-import {getAreaList,funcGetAreaList,getMovieList,funcGetMovieList,funcGetTotal} from '../../server/server';
+import {funcGetAreaList,getMovieList,funcGetTotal} from '../../server/server';
 import Loading from '../../components/loading/loading';
 import NoData from '../../components/noData/noData'
 import "../../static/fonts/iconfont.css"

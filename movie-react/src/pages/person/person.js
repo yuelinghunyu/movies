@@ -44,21 +44,11 @@ class Person extends Component{
         this.context.router.history.push(path);
     }
     componentWillMount(){
-        const userParam = {
-            wechatName:getUser().wechatName
-        }
-        const payerParam = {
-            wechatId:getUser().wechatId
-        }
-        getUserInfo(userParam).then(res=>{
-            if(res.data.code === ERROR_OK){
-                this.setState({
-                    user:{
-                        wechatId:res.data.data.list[0].wechatId,
-                        wechatName:res.data.data.list[0].wechatName,
-                        wechatLogo:res.data.data.list[0].wechatLogo
-                    }
-                })
+        this.setState({
+            user:{
+                wechatId:getUser().wechatId,
+                wechatName:getUser().wechatName,
+                wechatLogo:getUser().wechatLogo
             }
         })
     }

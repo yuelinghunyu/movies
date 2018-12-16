@@ -43,7 +43,7 @@ public class BooksController {
             @RequestParam(value = "author",required = false,defaultValue = "") String author,
             @RequestParam(value = "bookType",required = false,defaultValue = "-1") int bookType,
             @RequestParam(value = "page",required = false,defaultValue = "1") int page,
-            @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
+            @RequestParam(value = "limit",required = false,defaultValue = "500") int limit
     ){
         int skip = (page-1)*limit;
         List<Books> booksList = booksBll.getBookList(id,title,author,bookType,skip,limit);

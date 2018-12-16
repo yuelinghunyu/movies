@@ -119,10 +119,25 @@ const getUserInfo = (params) => {
 const getUser = ()=>{
     return {
         wechatId:"6a8db3a6097d4687bf3e29fb2c24cfaf",
-        wechatName:"四叶草"
+        wechatName:"三叶草",
+        wechatLogo:"https://pic.qqtn.com/up/2016-11/2016113014090291434.jpg"
     }
 }
-
+//关注插入数据库
+const setAttention = (params)=>{
+    let url = baseUrl + '/users/attention';
+    let formData = new FormData()
+    for(let key in params){
+        formData.append(key,params[key])
+    }
+    return axios.post(url,formData,{
+        headers:headers
+    }).then((res)=>{
+        return Promise.resolve(res)
+    }).catch((error)=>{
+        return Promise.reject(error);
+    })
+}
 const setFeedBack = (params)=>{
     let url = baseUrl + "/feed-back/set-feed-back";
     let formData = new FormData()
@@ -150,5 +165,6 @@ export {
     getMovieLikeList,
     getUserInfo,
     getUser,
-    setFeedBack
+    setFeedBack,
+    setAttention
 }

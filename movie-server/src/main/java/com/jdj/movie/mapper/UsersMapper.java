@@ -28,12 +28,20 @@ public interface UsersMapper {
     int insertSelective(Users record);
 
     @Select({
-        "select",
-        "id, wechat_id, wechat_name, wechat_logo, create_time",
-        "from users",
-        "where wechat_name = #{wechatName,jdbcType=VARCHAR}",
-        "order by  create_time desc",
-        "limit #{skip},#{limit}",
+            "<script>",
+                "select",
+                "id, wechat_id, wechat_name, wechat_logo, create_time",
+                "from users",
+                "where 1=1",
+                    "<if test='wechatId != null and wechatId != &apos;&apos;'>",
+                    "and wechat_id = #{wechatId,jdbcType=VARCHAR}",
+                    "</if>",
+                    "<if test='wechatName != null and wechatName != &apos;&apos;'>",
+                    "and wechat_name LIKE CONCAT(CONCAT('%',#{wechatName,jdbcType=VARCHAR},'%'))",
+                    "</if>",
+                "order by  create_time desc",
+                "limit #{skip},#{limit}",
+            "</script>"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
@@ -43,6 +51,7 @@ public interface UsersMapper {
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<Users> selectByName(
+            @Param("wechatId") String wechatId,
             @Param("wechatName") String wechatName,
             @Param("skip") int skip,
             @Param("limit") int limit
@@ -54,12 +63,16 @@ public interface UsersMapper {
             "select count(0)",
             "from users",
             "where 1=1",
+            "<if test='wechatId != null and wechatId != &apos;&apos;'>",
+                "and wechat_id = #{wechatId,jdbcType=VARCHAR}",
+            "</if>",
             "<if test='wechatName != null and wechatName != &apos;&apos;'>",
             "and wechat_name LIKE CONCAT(CONCAT('%',#{wechatName,jdbcType=VARCHAR},'%'))",
             "</if>",
             "</script>"
     })
     int getUsersCount(
+            @Param("wechatId") String wechatId,
             @Param("wechatName") String wechatName
     );
 

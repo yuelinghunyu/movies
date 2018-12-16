@@ -38,7 +38,7 @@ public class BlogsController {
             @RequestParam(value = "title",required = false,defaultValue = "") String title,
             @RequestParam(value = "blogType",required = false,defaultValue = "-1") int blogType,
             @RequestParam(value = "page",required = false,defaultValue = "1") int page,
-            @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
+            @RequestParam(value = "limit",required = false,defaultValue = "50") int limit
     ){
         int skip = (page-1)*limit;
         List<Blog> blogList = blogBll.getBlogList(id,title,blogType,skip,limit);
@@ -74,6 +74,7 @@ public class BlogsController {
         if(times == -1){
             blog.setTimes(0);
         }else{
+            times ++;
             blog.setTimes(times);
         }
         if(id.isEmpty()){

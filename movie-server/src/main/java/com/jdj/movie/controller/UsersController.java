@@ -38,7 +38,7 @@ public class UsersController {
         users.setWechatLogo(wechatLogo);
 
         int flag = usersBll.insertUserItem(users);
-        int total = usersBll.getUserCount("");
+        int total = usersBll.getUserCount("","");
         if(flag>0){
             logger.info("info","：用户关注成功");
             return new ReturnModel(0,total);
@@ -50,9 +50,10 @@ public class UsersController {
 
     @RequestMapping(value = "/getCount",method = RequestMethod.GET)
     public ReturnModel getTotalCount(
+            @RequestParam(value = "wechatId",required = false,defaultValue = "") String wechatId,
             @RequestParam(value = "wechatName",required = false,defaultValue = "") String wechatName
     ){
-        int totalCount = usersBll.getUserCount(wechatName);
+        int totalCount = usersBll.getUserCount(wechatId,wechatName);
         Map map = new HashMap<>();
         map.put("total",totalCount);
         return new ReturnModel(0,map);
@@ -60,14 +61,15 @@ public class UsersController {
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ReturnModel getUsersList(
+            @RequestParam(value = "wechatId",required = false,defaultValue = "") String wechatId,
             @RequestParam(value = "wechatName",required = false,defaultValue = "") String wechatName,
             @RequestParam(value = "page",required = false,defaultValue = "1") int page,
             @RequestParam(value = "limit",required = false,defaultValue = "9") int limit
 
     ){
         int skip = (page-1)*limit;
-        List<Users> usersList = usersBll.getUserList(wechatName,skip,limit);
-        int total = usersBll.getUserCount(wechatName);
+        List<Users> usersList = usersBll.getUserList(wechatId,wechatName,skip,limit);
+        int total = usersBll.getUserCount(wechatId,wechatName);
         Map map = new HashMap<>();
         map.put("total",total);
         map.put("list",usersList);

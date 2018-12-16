@@ -18,12 +18,12 @@ public class UsersBll {
     public int insertUserItem(Users users){
         return usersMapper.insert(users);
     }
-    public List<Users> getUserList(String wechatName,int skip,int limit){
-        return usersMapper.selectByName(wechatName,skip,limit);
+    public List<Users> getUserList(String wechatId,String wechatName,int skip,int limit){
+        return usersMapper.selectByName(wechatId,wechatName,skip,limit);
     }
 
-    public int getUserCount(String wechatName){
-        return  usersMapper.getUsersCount(wechatName);
+    public int getUserCount(String wechatId,String wechatName){
+        return  usersMapper.getUsersCount(wechatId,wechatName);
     }
 
 }

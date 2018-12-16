@@ -10,6 +10,8 @@ import FeedBack from './components/feedback/feedback'
 import Movie from './components/movie/movie'
 import './App.scss';
 import initReactFastclick from 'react-fastclick';
+import {getUserInfo,getUser,setAttention} from './server/server'
+import { ERROR_OK } from './plugin/utils'
 
 initReactFastclick();
 class App extends Component {
@@ -32,7 +34,26 @@ class App extends Component {
       </Router>
     );
   }
-  componentDidMount(){}
+  componentDidMount(){
+    //关注微信公众号；
+    const param = {
+      wechatId:getUser().wechatId,
+      wechatName:getUser().wechatName,
+      wechatLogo:getUser().wechatLogo
+    }
+    const userParam = {
+      wechatId:getUser().wechatId
+    }
+    getUserInfo(userParam).then(res=>{//查询有没有
+      if(res.data.code === ERROR_OK && res.data.data.total === 0){
+          setAttention(param).then(res=>{
+              if(res.data.code === ERROR_OK){
+                  console.log("关注微信公众号、插入数据库成功")
+              }
+          })
+      }
+    })
+  }
 }
 
 export default App;
