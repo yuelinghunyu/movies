@@ -22,24 +22,26 @@ class Types extends Component{
     componentWillMount(){
         getTypeList({}).then(res=>{
             if(res.code === ERROR_OK){
-                let array = []
-                const all = {
-                    id:'all',
-                    type:0,
-                    title:'全部类型'
+                if(res.data.list.length>0){
+                    let array = []
+                    const all = {
+                        id:'all',
+                        type:0,
+                        title:'全部类型'
+                    }
+                    let list = res.data.list
+                    list.unshift(all)
+    
+                    const typeItem = {
+                        types:1,
+                        list:list
+                    }
+                    array.push(typeItem);
+                    array.push(CLASSIFY_TYPES)
+                    this.setState({
+                        typesList:array
+                    })
                 }
-                let list = res.data.list
-                list.unshift(all)
-
-                const typeItem = {
-                    types:1,
-                    list:list
-                }
-                array.push(typeItem);
-                array.push(CLASSIFY_TYPES)
-                this.setState({
-                    typesList:array
-                })
             }
         })
     }

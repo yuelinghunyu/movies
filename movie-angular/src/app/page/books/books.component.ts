@@ -18,7 +18,7 @@ export class BooksComponent implements OnInit {
   public bookList=[]
   constructor(
     public service:ServiceService,
-    private router:Router,
+    public router:Router,
   ) { }
 
   ngOnInit() {

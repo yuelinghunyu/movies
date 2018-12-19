@@ -41,8 +41,13 @@
             .select-logo{
                 width: 26px;
                 height: 26px;
-                background: url('../../static/image/header.png')  -56px -10px;
-                margin-right:-10px; 
+                @extend .flex;
+                @extend .justify-content-center;
+                @extend .align-items-center;
+                i{
+                    font-size: 26px;
+                    text-align: center;
+                }
             }
         }
         p:nth-child(2){
@@ -50,7 +55,13 @@
             .select-all{
                 width: 26px;
                 height: 26px;
-                background: url('../../static/image/header.png')  -10px -10px;
+                @extend .flex;
+                @extend .justify-content-center;
+                @extend .align-items-center;
+                i{
+                    font-size: 26px;
+                    text-align: center;
+                }
             }
             .select-all-text{
                 margin-left: -10px;

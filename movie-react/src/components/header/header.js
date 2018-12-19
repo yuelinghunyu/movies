@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './header.scss';
 import CommonHeader from './commonHeader'
@@ -28,21 +27,22 @@ class Header extends Component{
                 <CommonHeader list={this.props.types}></CommonHeader>
                 <div className={`header-select ${this.props.scrollTop<290?'nor':'cur'}`}>
                     <p className="select-movie" onClick={this.skipRouteEvent.bind(this)}>
-                        <span className="select-logo"></span>
+                        <span className="select-logo">
+                            <i className="icon iconfont icon-sousuo"></i>
+                        </span>
                         <span>权利的游戏</span>
                     </p>
                     <p className="select-child-type" onClick={this.skipClassifyEvent.bind(this)}>
                         <span>史诗</span>
                         <span>惊悚</span>
-                        <span className="select-all"></span>
+                        <span className="select-all">
+                            <i className="icon iconfont icon-zhinengyouhua"></i>
+                        </span>
                         <span className="select-all-text">全部</span>
                     </p>
                 </div>
             </div>
         )
-    }
-    componentDidMount(){
-        
     }
 }
 

@@ -52,9 +52,9 @@ export class AddMovieComponent implements OnInit {
   //是否免费;
   movieIsFreeVal:number = 1;
   constructor(
-    private fb:FormBuilder,
-    private service:ServiceService,
-    private router:Router
+    public fb:FormBuilder,
+    public service:ServiceService,
+    public router:Router
   ) { 
     this.createAddMovieForm();
   };

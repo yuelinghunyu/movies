@@ -12,20 +12,20 @@ import { Modal } from '../../common/modal/modal';
 })
 export class BannerListComponent implements OnInit {
 
-  private tabShow:Boolean = true;
-  private Config:Config = new Config();
-  private bannerOneList:any = [];
-  private bannerTwoList:any = [];
+  public tabShow:Boolean = true;
+  public Config:Config = new Config();
+  public bannerOneList:any = [];
+  public bannerTwoList:any = [];
   public modal:Modal = Modal.modal;
   public type: any = 1;
-  private total1:any = 0;
-  private total2:any = 0;
-  private state:string;
+  public total1:any = 0;
+  public total2:any = 0;
+  public state:string;
   public pagination1:Pagination = Pagination.defaultPagination;
   public pagination2:Pagination = Pagination.defaultPagination;
   constructor(
-    private service:ServiceService,
-    private router:Router
+    public service:ServiceService,
+    public router:Router
   ) { }
 
   ngOnInit() {
@@ -91,7 +91,7 @@ export class BannerListComponent implements OnInit {
     this.router.navigateByUrl("/frame/banner-add-update")
   }
    //弹框出现;
-   private alertModalItem(id:string){
+   public alertModalItem(id:string){
     this.modal.tips = "是否删除该项？";
     this.modal.id = id;
     this.modal.changeEvent=((id:string)=>{

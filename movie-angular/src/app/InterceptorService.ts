@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 @Injectable()
 export class InterceptorService implements HttpInterceptor{
     constructor(
-        private router:Router,
+        public router:Router,
     ){ }
     authorization:string = "";
     authReq:any;
@@ -32,7 +32,7 @@ export class InterceptorService implements HttpInterceptor{
             return Observable.create(observer => observer.next(event));
         }));
     }
-    private handleData(event: HttpResponse<any>): Observable<any> {
+    public handleData(event: HttpResponse<any>): Observable<any> {
         // 业务处理：一些通用操作
         switch (event.status) {
           case 200:
@@ -53,7 +53,7 @@ export class InterceptorService implements HttpInterceptor{
           return ErrorObservable.create(event);
       }
     }
-    private backForLoginOut(){
+    public backForLoginOut(){
         if(localStorage.getItem("accessToken") !== null || localStorage.getItem("person")!== null){
             localStorage.removeItem("accessToken");
             localStorage.removeItem("person");

@@ -32,12 +32,12 @@ export class BookTypeComponent implements OnInit {
   public modal:Modal = Modal.modal;
   public bookType:BookType = BookType.defaultBookType;
   public bookTypeList:Array<any>
-  private bookTypeForm:FormGroup
+  public bookTypeForm:FormGroup
   public config:Config = new Config()
-  private state:string;
-  private total:number;
+  public state:string;
+  public total:number;
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public service:ServiceService
   ) {
     this.createBookTypeForm();
@@ -52,7 +52,7 @@ export class BookTypeComponent implements OnInit {
   }
 
    //获取数据列表;
-   private initList():void{
+   public initList():void{
     const param = {
       "page":this.pagination.currentPage,
       "limit":this.pagination.pageItems
@@ -74,8 +74,7 @@ export class BookTypeComponent implements OnInit {
     })
   }
    //新增小册类型;
-  createBookType (id:string) {
-    console.log(id);
+  createBookType () {
     const typeId = this.bookTypeForm.get('bookType').value
     const typeTitle = this.bookTypeForm.get('bookTypeTitle').value
 
@@ -101,7 +100,7 @@ export class BookTypeComponent implements OnInit {
     this.state = this.state === 'active' ? 'inactive' : 'active';
   }
   //弹框出现;
-  private alertModalItem(id:string){
+  public alertModalItem(id:string){
     this.modal.tips = "是否删除该项？";
     this.modal.id = id;
     this.modal.changeEvent=((id:string)=>{

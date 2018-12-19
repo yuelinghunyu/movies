@@ -31,13 +31,13 @@ export class CreateTypesComponent implements OnInit {
   public pagination:Pagination = Pagination.defaultPagination;
   public modal:Modal = Modal.modal;
   public type:Type = Type.defaultType;
-  private state:string;
-  private typeList:Array<any>;
-  private total:number;
+  public state:string;
+  public typeList:Array<any>;
+  public total:number;
   typesForm: FormGroup;
   Config:Config = new Config();
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public service:ServiceService
   ) { 
     this.createTypesForm();
@@ -51,7 +51,7 @@ export class CreateTypesComponent implements OnInit {
     });
   }
   //弹框出现;
-  private alertModalItem(id:string){
+  public alertModalItem(id:string){
     this.modal.tips = "是否删除该项？";
     this.modal.id = id;
     this.modal.changeEvent=((id:string)=>{
@@ -59,7 +59,7 @@ export class CreateTypesComponent implements OnInit {
     })
   }
   //删除一条记录;
-  private deleteTypeItem(id:string){
+  public deleteTypeItem(id:string){
     this.modal.flag = true;
     this.modal.tips = "正在删除，请稍后...";
     const param = {
@@ -75,7 +75,7 @@ export class CreateTypesComponent implements OnInit {
     })
   }
   //获取数据列表;
-  private initList():void{
+  public initList():void{
     const param = {
       "page":this.pagination.currentPage,
       "limit":this.pagination.pageItems

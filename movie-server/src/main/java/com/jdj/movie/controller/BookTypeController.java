@@ -33,10 +33,6 @@ public class BookTypeController {
     ){
         int skip = (page-1)*limit;
         List<BookType> list = bookTypeBll.getBookTypeList(skip,limit);
-        if(list.size()==0){
-            logger.info("list的长度",list.size());
-            return new ReturnModel(0,new ArrayList<>());
-        }
         int total = bookTypeBll.getTotalCount();
         Map map = new HashMap<>();
         map.put("total",total);

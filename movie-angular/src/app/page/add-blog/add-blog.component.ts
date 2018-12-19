@@ -20,9 +20,9 @@ export class AddBlogComponent implements OnInit {
   public bookTypeList = [];
   public blogTypeVal = '博客类型'
   constructor(
-    private fb: FormBuilder,
-    private service:ServiceService,
-    private router:Router
+    public fb: FormBuilder,
+    public service:ServiceService,
+    public router:Router
   ) { 
     this.createBlogForm()
   }

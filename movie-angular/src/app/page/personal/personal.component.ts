@@ -9,7 +9,7 @@ import { Config} from "../../config/config";
   styleUrls: ['./personal.component.css']
 })
 export class PersonalComponent implements OnInit {
-  private personList = [];
+  public personList = [];
   persons:Person = Person.personDefault;
   Config:Config = new Config();
   constructor(public service:ServiceService) {}

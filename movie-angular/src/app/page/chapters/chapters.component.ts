@@ -18,7 +18,7 @@ export class ChaptersComponent implements OnInit {
   public chapterList=[]
   constructor(
     public service:ServiceService,
-    private router:Router,
+    public router:Router,
   ) { }
 
   ngOnInit() {

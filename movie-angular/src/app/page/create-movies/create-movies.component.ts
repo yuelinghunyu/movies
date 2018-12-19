@@ -39,8 +39,8 @@ export class CreateMoviesComponent implements OnInit {
       movieType:-1
   };
   constructor(
-    private router:Router,
-    private service:ServiceService
+    public router:Router,
+    public service:ServiceService
   ) {}
 
   ngOnInit() {
@@ -124,7 +124,7 @@ export class CreateMoviesComponent implements OnInit {
     this.getMovieListBySelect(params);
   }
    //弹框出现;
-   private alertModalItem(id:string){
+   public alertModalItem(id:string){
     this.modal.tips = "是否删除该项？";
     this.modal.id = id;
     this.modal.changeEvent=((id:string)=>{
@@ -132,7 +132,7 @@ export class CreateMoviesComponent implements OnInit {
     })
   }
   //删除一条记录;
-  private deleteTypeItem(id:string){
+  public deleteTypeItem(id:string){
     this.modal.flag = true;
     this.modal.tips = "正在删除，请稍后...";
     const param = {

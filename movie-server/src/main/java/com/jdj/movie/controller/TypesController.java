@@ -30,10 +30,6 @@ public class TypesController {
     ){
         int skip = (page-1)*limit;
         List<Types> list = typesBll.getTypeList(skip,limit);
-        if(list.size()==0){
-            logger.info("list的长度",list.size());
-            return new ReturnModel(0,new ArrayList<>());
-        }
         int total = typesBll.getTotal();
         Map map = new HashMap<>();
         map.put("total",total);

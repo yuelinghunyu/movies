@@ -28,22 +28,37 @@ class Home  extends Component{
     componentWillMount(){
         axios.all([funcGetBannerList({type:1}),funcGetAreaList({}),funcGetMovieList({})]).then(
             axios.spread((banner, area,movie)=>{
-                const all = {
-                    id:'all',
-                    area:0,
-                    title:'全部'
+                if(area.data.data.list.length>0){
+                    const all = {
+                        id:'all',
+                        area:0,
+                        title:'全部'
+                    }
+                    let list = area.data.data.list
+                    list.unshift(all)
+                    this.setState({
+                        movie_types:list
+                    })
                 }
-                let list = area.data.data.list
-                list.unshift(all)
-                this.setState({
-                    swiperList:banner.data.data.list,
-                    movie_types:list,
-                    movieList:movie.data.data.list
-                },()=>{
+                if(banner.data.data.list.length>0){
+                    this.setState({
+                        swiperList:banner.data.data.list,
+                    })
+                }
+                if(movie.data.data.list.length>0){
+                    this.setState({
+                        movieList:movie.data.data.list
+                    },()=>{
+                        this.setState({
+                            loading:true
+                        })
+                    })
+                }else{
                     this.setState({
                         loading:true
                     })
-                })
+                }
+                
             })
         )
     }

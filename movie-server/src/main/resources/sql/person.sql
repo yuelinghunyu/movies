@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50713
+Source Server Version : 50717
 Source Host           : localhost:3306
-Source Database       : movies
+Source Database       : mso
 
 Target Server Type    : MYSQL
-Target Server Version : 50713
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-08-31 16:58:51
+Date: 2018-12-17 19:05:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;

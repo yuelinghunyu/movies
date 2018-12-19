@@ -118,25 +118,31 @@ class Classify extends Component{
     componentWillMount(){
         axios.all([funcGetAreaList({}),funcGetTotal({})]).then(
             axios.spread((area,total)=>{
-                const all = {
-                    id:'all',
-                    area:this.state.movieField.area,
-                    title:'全部'
-                }
-                let list = area.data.data.list;
-                list.unshift(all)
-                getMovieList({page:1,limit:total.data.data.total}).then(res=>{
-                    if(res.code === ERROR_OK){
-                        this.setState({
-                            classifyType:list,
-                            movieList:res.data.list
-                        },()=>{
-                            this.setState({
-                                loading:true
-                            })
-                        })
+                if(area.data.data.list.length>0){
+                    const all = {
+                        id:'all',
+                        area:this.state.movieField.area,
+                        title:'全部'
                     }
-                })
+                    let list = area.data.data.list;
+                    list.unshift(all)
+                    getMovieList({page:1,limit:total.data.data.total}).then(res=>{
+                        if(res.code === ERROR_OK){
+                            this.setState({
+                                classifyType:list,
+                                movieList:res.data.list
+                            },()=>{
+                                this.setState({
+                                    loading:true
+                                })
+                            })
+                        }
+                    })
+                }else{
+                    this.setState({
+                        loading:true
+                    })
+                }
             })
         )
     }

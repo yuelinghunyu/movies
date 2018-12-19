@@ -38,9 +38,9 @@ export class BookCreateComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
-    private service:ServiceService,
-    private router:Router
+    public fb: FormBuilder,
+    public service:ServiceService,
+    public router:Router
   ) { 
     this.createBookForm()
   }

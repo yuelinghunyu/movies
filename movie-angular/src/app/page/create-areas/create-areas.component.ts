@@ -31,13 +31,13 @@ export class CreateAreasComponent implements OnInit {
   public pagination:Pagination = Pagination.defaultPagination;
   public modal:Modal = Modal.modal;
   public area:Area = Area.defaultArea;
-  private state:string;
-  private areaList:Array<any>;
-  private total:number;
+  public state:string;
+  public areaList:Array<any>;
+  public total:number;
   areasForm: FormGroup;
   Config:Config = new Config();
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public service:ServiceService
   ) {
     this.createAreasForm();
@@ -52,7 +52,7 @@ export class CreateAreasComponent implements OnInit {
     
   }
   //弹框出现;
-  private alertModalItem(id:string){
+  public alertModalItem(id:string){
     this.modal.close = true;
     this.modal.tips = "是否删除该项？";
     this.modal.id = id;
@@ -62,7 +62,7 @@ export class CreateAreasComponent implements OnInit {
   }
   
   //删除一条记录;
-  private deleteAreaItem(id:string){
+  public deleteAreaItem(id:string){
     this.modal.flag = true;
     this.modal.tips = "正在删除，请稍后...";
     const param = {
@@ -78,7 +78,7 @@ export class CreateAreasComponent implements OnInit {
     })
   }
   //获取数据列表;
-  private initList():void{
+  public initList():void{
     const param = {
       "page":this.pagination.currentPage,
       "limit":this.pagination.pageItems

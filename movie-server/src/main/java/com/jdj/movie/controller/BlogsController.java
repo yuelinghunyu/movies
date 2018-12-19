@@ -74,8 +74,9 @@ public class BlogsController {
         if(times == -1){
             blog.setTimes(0);
         }else{
-            times ++;
-            blog.setTimes(times);
+            List<Blog> blogList = blogBll.getBlogList(id,title,blogType,0,50);
+            int historyTimes = blogList.get(0).getTimes() + 1;
+            blog.setTimes(historyTimes);
         }
         if(id.isEmpty()){
             logger.info("id值","：空，执行插入数据库操作");

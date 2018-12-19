@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from "./service/service.service";
 import {InterceptorService} from "./InterceptorService";
 import {HTTP_INTERCEPTORS,HttpClientModule} from "@angular/common/http";
-import { CommonModule } from "@angular/common";
+import { CommonModule,HashLocationStrategy , LocationStrategy } from "@angular/common";
 import { FileUploadModule } from "ng2-file-upload";
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ChartModule } from 'angular-highcharts/angular-highcharts';
@@ -76,7 +76,7 @@ export const httpInterceptorProviders = [
     LazyLoadImageModule,
     ChartModule
   ],
-  providers: [ServiceService,httpInterceptorProviders],
+  providers: [ServiceService,httpInterceptorProviders,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

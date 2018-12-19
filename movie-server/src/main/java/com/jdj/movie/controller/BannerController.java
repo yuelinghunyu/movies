@@ -39,10 +39,6 @@ public class BannerController {
     ){
         int skip = (page-1)*limit;
         List<Banner> list = bannerBll.getBannerList(type,skip,limit);
-        if(list.size()==0){
-            logger.info("list的长度",list.size());
-            return new ReturnModel(0,new ArrayList<>());
-        }
         int total = bannerBll.getTotalByType(type);
         Map map = new HashMap<>();
         map.put("total",total);

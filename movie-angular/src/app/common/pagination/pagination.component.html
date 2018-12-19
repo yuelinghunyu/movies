@@ -6,7 +6,7 @@
       </a>
     </li>
     <li 
-      *ngFor="let item of pageList;trackBy:index"
+      *ngFor="let item of pageList"
       [ngClass]="{active:item === pagination.currentPage}"
     >
       <a href="javascript:void(0)" (click)="changeCurrentPage(item)">

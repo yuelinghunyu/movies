@@ -70,8 +70,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   Config:Config = new Config();
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
+    public fb: FormBuilder,
+    public router: Router,
     public service:ServiceService
   ) {
     this.createForm();

@@ -22,7 +22,7 @@ export class CreateBlogComponent implements OnInit {
 
   constructor(
     public service:ServiceService,
-    private router:Router,
+    public router:Router,
   ) {}
 
   ngOnInit() {

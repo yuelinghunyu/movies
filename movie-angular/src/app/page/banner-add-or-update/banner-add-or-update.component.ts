@@ -13,15 +13,15 @@ import { Config} from "../../config/config";
 })
 export class BannerAddOrUpdateComponent implements OnInit {
 
-  private bannerForm:FormGroup;
-  private titleFlag:Boolean = false;
-  private picHrefFlag:Boolean = false;
-  private bannerTypeTxt:String="电影";
-  private bannerModel:Banner = Banner.bannerDefault;
-  private jpgValid:boolean=false;
-  private authorization:string;
-  private hrefLink:boolean = false;
-  private Config:Config = new Config();
+  public bannerForm:FormGroup;
+  public titleFlag:Boolean = false;
+  public picHrefFlag:Boolean = false;
+  public bannerTypeTxt:String="电影";
+  public bannerModel:Banner = Banner.bannerDefault;
+  public jpgValid:boolean=false;
+  public authorization:string;
+  public hrefLink:boolean = false;
+  public Config:Config = new Config();
 
   uploader:FileUploader = new FileUploader({
     url:"/mso/file/toOssServer",
@@ -32,9 +32,9 @@ export class BannerAddOrUpdateComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
-    private service:ServiceService,
-    private router:Router
+    public fb: FormBuilder,
+    public service:ServiceService,
+    public router:Router
   ) {
     this.createBannerForm()
    }

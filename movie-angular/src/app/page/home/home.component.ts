@@ -14,8 +14,8 @@ import 'rxjs/add/observable/forkJoin';
 export class HomeComponent implements OnInit {
   
   constructor(
-    private activatedRoute:ActivatedRoute,
-    private service:ServiceService
+    public activatedRoute:ActivatedRoute,
+    public service:ServiceService
   ) {}
 
   chart = new Chart({

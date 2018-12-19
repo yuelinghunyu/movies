@@ -35,14 +35,14 @@ import { Person } from './person';
   ]
 })
 export class FrameComponent implements OnInit {
-  private state:string;
-  private listNone:boolean = false;
+  public state:string;
+  public listNone:boolean = false;
   loginId:number;
   person:Person = Person.personDefault;
   constructor(
-    private router:Router,
-    private activatedRoute:ActivatedRoute,
-    private service:ServiceService
+    public router:Router,
+    public activatedRoute:ActivatedRoute,
+    public service:ServiceService
   ) { }
 
   ngOnInit() {

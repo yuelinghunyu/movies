@@ -17,7 +17,7 @@ export class MovieFeedbackComponent implements OnInit {
   public config:Config = new Config();
   constructor(
     public service:ServiceService,
-    private router:Router,
+    public router:Router,
   ) { }
 
   ngOnInit() {
